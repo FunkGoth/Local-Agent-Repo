@@ -8,10 +8,12 @@ Son güncelleme: 2026-10-01 16:20
 4. Global STATE.md'yi bu işe işaret edecek şekilde güncelleyeceğim
 
 ## Sıradaki Adım
-- Global STATE.md'yi "aktif iş: work/2026-10-01-hafiza-mimarisi" yap
-- Git commit al
-- FunkGoth'a yapıyı göster, teyit et
-- Onay al → bir sonraki adıma geç (ör: devir simülasyonu, veya EmberTale T1'e dön)
+- ✅ Global STATE.md pointer güncellendi
+- ✅ Git commit alındı
+- ✅ FunkGoth yapıyı onayladı
+- ⏳ DEVR TESTİ: FunkGoth yeni sohbet açacak → "PROTOCOL.md'yi oku ve devam et" diyecek
+  → Ben sistemi takip edip bu state.md'den devam etmeliyim
+  → Test başarılıysa → EmberTale T1'e dön (work/2026-10-01-embertale-vizyon/ kur)
 
 ## Açık Sorular
 - FunkGoth bu yapıyı onaylıyor mu?
