@@ -11,11 +11,12 @@ Son güncelleme: 2026-10-01 (Oturum 4)
 2. EmberTale T1–T6: ayrı sohbet (`E:\Project EmberTale\` kökü, TASKS.md).
 
 ## Bekleyen Kararlar (FunkGoth)
-- B2: 128K ctx denensin mi? (17.74 GB ağırlık → ~23.5/24 GB, sınırda)
-- B3: Q5_K_M — önerim vazgeç (24 GB'a sığmaz); onay bekleniyor
+- B2: 128K ctx → **REDDEDİLİYOR** (empirik: 23.6/24 GB + donma)
+- B3: Q5_K_M → **GERİ ÇEKİLDİ** (sığmaz)
 - B4: `scratch\claude-embertale-md\` silinsin mi? (onay gelince ben silerim)
-- B5: Reasoning Budget 8192 → 16384?
-- B6: LM Studio system prompt → kısa bootstrap metni (metin hazırlanıyor)
+- B5: Budget → **8192'de kaldı** (16384 denendi, dondu, geri alındı); alternatif: slot 4→2
+- B6: System prompt → **dosya tabanlı giriş: E:\README.md** (oluşturuldu); LM Studio prompt'u boşaltılacak (FunkGoth manuel)
+- YENİ: E: alanı yapısı onayı (mevcut iskelet + README önerisi FunkGoth'ta; çok proje/çok model mimarisi)
 
 ## Detay
 - İş state'i: `work/2026-10-01-agent-iyilestirme-analizi/state.md`

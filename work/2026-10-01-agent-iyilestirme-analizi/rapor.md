@@ -71,10 +71,11 @@ Tarih: 2026-10-01 · Durum: FunkGoth onayı bekleniyor · İş: `work/2026-10-01
 
 ### B — FunkGoth onayı gerekir
 - B1: ~~KV cache tipi doğrulama~~ → **ÇÖZÜLDÜ (2026-10-01): UI'da KV zaten Q8_0 (K+V), Flash Attention açık — değişiklik gerekmedi**
-- B2: Context 64K → 128K (uzun agent oturumları için; 17.74 GB ağırlık ile ~23.5/24 GB, sınırda) *(token payı)*
+- B2: Context 64K → 128K → **REDDEDİLİYOR (2026-10-01 empirik):** ayar değişikliklerinden sonra VRAM 23.6/24.0 GB dedicated + 2.7 GB shared'e ulaştı → agent kilitlendi, ayarlar geri alındı. 64K bu kartın stabil tavanıdır.
 - B3: ~~Q5_K_M indir~~ → **GERİ ÇEKİLDİ (2026-10-01): model dosyası 17.74 GB; Q5_K_M ≈ 21 GB + KV + mmproj → 24 GB VRAM'e sığmaz, katmanlar RAM'e taşar → yavaş**
 - B4: `E:\agent\scratch\claude-embertale-md\` geçici kopyasını temizle (T6) *(silme)*
-- B5: Zor görevler için reasoning effort ayarı (Bionic) *(davranış)*
+- B5: Reasoning Budget 8192 → 16384 denendi → **GERİ ALINDI (2026-10-01):** 4 slot × bütçe rezervasyonu VRAM'i 24 GB'ın üzerine taşıdı, session dondu. Alternatif: önce slot 4→2, ya da zor görevde geçici yükselt + sonra 8192'ye dönüş.
+- B6: ~~LM Studio system prompt~~ → **YENİ YAKLAŞIM (FunkGoth):** global prompt proje-bağımsız olacak (çok proje, çok uygulama, çok model) → her şey E: içinde; giriş noktası dosya tabanlı: **E:\README.md** (oluşturuldu). LM Studio prompt'u boşaltılacak ya da tek satır: "Workspace: E:\ — E:\README.md'yi oku ve uygula."
 
 ## 7. Kaynaklar
 - Sunucu logu: `C:\Users\dumba\.lmstudio\apps\bionic\server-logs\2026-10\2026-10-01.1.log` (MTP, n_gpu_layers, n_ctx_slot)

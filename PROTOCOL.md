@@ -3,12 +3,13 @@
 ## Amaç
 Bu klasör, E:\ çalışma alanı için agent'ın oturumlar arası kalıcı hafızasıdır.
 Agent burada özerk yazar; kullanıcı her an okuyup müdahale edebilir.
+`E:\README.md` = her model/uygulama için evrensel giriş noktası (disk haritası + sabit kurallar).
 
 ## Dosya Haritası
 | Dosya | Görev |
 |---|---|
 | PROTOCOL.md | İşleyiş kuralları (bu dosya). Sabit; değişikliği LOG'a gerekçesiyle yazılır. |
-| STATE.md | Anlık durum — 4 sabit bölüm: Aktif İş / Sıradaki Adım / Bekleyen Kararlar / Son Güncelleme. ≤30 satır, her adımdan sonra güncellenir. |
+| STATE.md | Anlık durum — 4 sabit bölüm: Aktif İş / Sıradaki Adım / Beklenen Kararlar / Son Güncelleme. ≤30 satır, her adımdan sonra güncellenir. |
 | TASKS.md | Sıra bekleyen işler. Sıradaki iş buradan seçilir. |
 | DECISIONS.md | Çalışma alanı kararları (tarih, karar, gerekçe, karar veren). |
 | LOG.md | Oturum günlüğü (ne oldu, neden). |
@@ -23,9 +24,9 @@ Agent burada özerk yazar; kullanıcı her an okuyup müdahale edebilir.
 ## Çalışma Döngüsü
 - Al: TASKS.md'den sıradaki işi seç.
 - Yap: işi küçük adımlarla ilerlet.
-- Kaydet: her adımdan sonra STATE.md'ye ne yapıldığını + sıradaki adımı yaz.
-- Öğren: hata / işe yarayan yöntem → lessons.md'ye bir satır.
-- Ölç: ~10 tool çağrısında kendine sor: "Tekrar ediyor muyum, talimatları unutuyor muyum, dosyayı çok mu okuyorum?" Evetse devir yap.
+- Kaydet: her adımdan sonra STATE.md'ye ne yaptığını ve sıradaki adımı yaz.
+- Öğren: hata yaptıysan veya işe yarayan bir yöntem bulduysan lessons.md'ye bir satır ekle.
+- Ölç: her ~10 tool çağrısında kendine sor: "Tekrar ediyor muyum, talimatları unutuyor muyum, dosyalar çok mu okundu?" Evetse devir yap.
 - Kapanış: iş bitince iş state.md'sine "TAMAM" yaz, TASKS.md Arşiv'e tek satır taşı; 30+ dosyaya ulaşan işi alt klasöre böl.
 - Okuma bütçesi: aynı oturumda okuduğun dosyayı yeniden okuma; önce STATE.md, sonra yalnızca gerekli parça.
 - Scratch: yalnızca geçici dosyalar; iş kapanışında "temizlenebilir mi?" sorusu + kullanıcı onayıyla silinir.
@@ -34,7 +35,7 @@ Agent burada özerk yazar; kullanıcı her an okuyup müdahale edebilir.
 
 ## Devir
 - STATE.md'yi eksiksiz güncelle (durum, sıradaki adım, açık sorular).
-- STATE'e "Bekleyen Kararlar" satırlarını ekle — devir bu satırlar üzerinden kendiliğinden gerçekleşir (2026-10-01 devir testi doğruladı).
+- STATE'e "Beklenen Kararlar" satırlarını ekle — devir bu satırlar üzerinden kendiliğinden gerçekleşir (2026-10-01 devir testi doğruladı).
 - "Yeni sohbet aç: PROTOCOL.md'yi oku ve devam et" yaz ve dur.
 
 ## Sabit Kurallar (değiştirilemez)
@@ -44,8 +45,18 @@ Agent burada özerk yazar; kullanıcı her an okuyup müdahale edebilir.
 4. Projenin Docs/ dosyaları kullanıcı malıdır: agent önerir, kullanıcı onaylar.
    Kullanıcı onayı olmadan hiçbir içerik "canon" ilan edilemez.
 
+## Çoklu Proje İskeleti (2026-10-01)
+- E:\ = agent'ın tahsisli çalışma alanıdır (çok proje + çok agent uygulaması + çok model için).
+- `E:\README.md` = evrensel giriş noktası: kimlik, disk haritası, sabit kurallar, yeni proje iskeleti.
+- Global system prompt'lar **proje-bağımsız** tutulur: boş ya da tek satır — "Workspace: E:\ — E:\README.md'yi oku ve uygula."
+- Yeni proje = `E:\<proje-adı>\` kökü, standart iskelet: `README.md` (proje özeti) + `Docs\` (kullanıcı belgeleri) + `.agents\skills\` (proje skill'leri).
+- Proje-özel talimatlar **her zaman projenin kendi klasöründe** yaşar; global prompt'a veya agent hafızasına taşınmaz.
+- Agent hafızası (`E:\agent\`) proje-agnostiktir: çalışma sistemi + proje-arası durum; proje içerikleri içermez.
+- Taşıma/yeniden yapılandırma: yalnızca `move` (silme yok); tüm referanslar (skill, doc, uygulama kökü) güncellenmeden taşınmaz; LOG'a gerekçeli kayıt.
+
 ## Protokol Değişiklikleri
-- 2026-10-01 (Oturum 4): A1/A2 uygulandı — Çalışma Döngüsü'ne 5 kural (kapanış, okuma bütçesi, scratch, global dosya bütçesi, distille), STATE 4 bölüm/≤30 satır, Devir'e "bekleyen karar" kuralı. Gerekçe: LOG.md.
+- 2026-10-01 (Oturum 4): A1/A2 uygulandı — Çalışma Döngüsü'ne 5 kural (kapanış, okuma bütçesi, scratch, global dosya bütçesi, distille), STATE 4 bölüm/≤30 satır, Devir'e "beklenen karar" kuralı. Gerekçe: LOG.md.
+- 2026-10-01 (Oturum 4): "Çoklu Proje İskeleti" bölümü + `E:\README.md` giriş noktası eklendi. Gerekçe: FunkGoth çok proje/çok uygulama/çok model planı; global prompt proje-bağımsız kalmalı. LOG.md.
 
 ## Proje Haritası (EmberTale)
 - Proje kökü: E:\Project EmberTale\
