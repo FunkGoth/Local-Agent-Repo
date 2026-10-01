@@ -1,27 +1,25 @@
 # STATE — Anlık Durum
-Son güncelleme: 2026-10-01 (Oturum 4)
+Son güncelleme: 2026-10-01 (Oturum 5)
 
 ## Aktif İş
 | İş | Klasör | Durum |
 |---|---|---|
-| T7 Agent İyileştirme Analizi | work/2026-10-01-agent-iyilestirme-analizi/ | ✅ Rapor + A1/A2 + E: alanı tamam — kalan kararlar aşağıda |
-| Multi-agent / Delegation kurulumu | PROTOCOL (Delegation) + delegation/ | 🔄 Protokol hazır (commit 2fcb759) — worker runtime seçimi (A/B/C) bekleniyor |
+| T7 Agent İyileştirme Analizi | work/2026-10-01-agent-iyilestirme-analizi/ | ✅ Rapor + B1–B6 kararları kapalı — kalan: B4/B6 manuel |
+| Delegation Worker B | PROTOCOL (Delegation) + delegation/ | ✅ **Kurulu + ilk test TAMAM** (worker8b; T7 raporu incelemesi) |
 
 ## Sıradaki Adım
-1. **Worker runtime seçimi (A/B/C)** → FunkGoth sormak; seçilene göre kurulum + ilk delegasyon denemesi (A: API canlı deneme / B: kurulum adımları + test çağrısı / C: brief yazar, FunkGoth sohbet açar).
-2. B4 onayı (scratch temizliği) + B6 manuel (LM Studio prompt'u → boşalt veya "E:\README.md'yi oku" tek satırı).
+1. Worker test sonucunu FunkGoth'a raporla (result dosyası: doğrulama + "shared 2.7 GB notu" önerisi).
+2. B4 onayı (scratch temizliği — onay gelince ben silerim) + B6 manuel (LM Studio prompt'u → boşalt veya "E:\README.md'yi oku" tek satırı).
 3. EmberTale T1–T6: ayrı sohbet (`E:\Project EmberTale\` kökü, TASKS.md).
 
 ## Bekleyen Kararlar (FunkGoth)
-- B2: 128K ctx → **REDDEDİLİYOR** (empirik: 23.6/24 GB + donma)
-- B3: Q5_K_M → **GERİ ÇEKİLDİ** (sığmaz)
-- B4: `scratch\claude-embertale-md\` silinsin mi? (onay gelince ben silerim)
-- B5: Budget → **8192'de kaldı** (16384 denendi, dondu, geri alındı); alternatif: slot 4→2
-- B6: System prompt → **dosya tabanlı giriş: E:\README.md** (oluşturuldu); LM Studio prompt'u boşaltılacak (FunkGoth manuel)
-- YENİ: E: alanı yapısı onayı (mevcut iskelet + README önerisi FunkGoth'ta; çok proje/çok model mimarisi)
-- YENİ: Worker runtime seçimi: A (aynı model API, sıfır kurulum, sınırda) / B (CPU küçük model 2. port, önerilen, sıfır VRAM) / C (yeni Bionic sohbet, tam agent) — FunkGoth
+- B2: 128K ctx → **REDDEDİLDİ** (23.6/24 GB + donma) · B3: Q5_K_M → **GERİ ÇEKİLDİ** · B5: Budget → **8192'de kaldı** (16384 dondu)
+- B4: `scratch\claude-embertale-md\` silinsin mi?
+- B6: LM Studio prompt'u → boşalt / tek satır (FunkGoth manuel)
+- E:\ alanı yapısı onayı (mevcut iskelet + README önerisi)
+- Worker runtime: **B ONAYLI + KURULU (2026-10-01)** — worker8b (qwen3:8b, CPU, port 11434)
 
 ## Detay
+- Worker: `ollama ps` → worker8b **100% CPU**, ctx 8192; metrik: ~63 tok/s prompt, ~7 tok/s eval (7800X3D)
+- Brief/result: `delegation/brief-t7-rapor-inceleme.md` + `delegation/result-t7-rapor-inceleme.md` (doğrulama dahil)
 - İş state'i: `work/2026-10-01-agent-iyilestirme-analizi/state.md`
-- Rapor: `work/2026-10-01-agent-iyilestirme-analizi/rapor.md`
-- Geçmiş oturum özeti: LOG.md (STATE'ten kaldırıldı — A1a)

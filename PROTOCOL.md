@@ -44,7 +44,8 @@ Agent burada özerk yazar; kullanıcı her an okuyup müdahale edebilir.
 - Brief protokolü: iş → `delegation\brief-<konu>.md` (amaç + kapsam + GEREKLİ dosya parçaları + çıktı formatı/kelime limiti) → worker çıktısı **kompakt** (≤200 kelime veya sabit format) → `delegation\result-<konu>.md`.
 - Ana agentın context'i yalnız brief+result kadar büyür; hacimli ara iş atılabilir havuzda kalır.
 - Worker'ın aracı YOK: sadece "beyin" işi (taslak, review, özet, çıkarım); dosya işini ana agent yapar.
-- Worker runtime'ları: **(A)** aynı model, localhost:1234 API — sıfır kurulum, SINIRDA (yalnız FunkGoth GO'suyla); **(B)** küçük CPU modeli (GPU katman 0) ikinci sunucu portu — **TERCİH EDİLEN** (sıfır VRAM; 7800X3D CPU inferencede iyi); **(C)** yeni Bionic sohbet = tam agent, araçlı (FunkGoth açar, brief'i ben yazarım).
+- Worker runtime'ları: **(A)** aynı model, localhost:1234 API — sıfır kurulum, SINIRDA (yalnız FunkGoth GO'suyla); **(B) KURULU (2026-10-01)**: `worker8b` (qwen3:8b, 5.2 GB) — Ollama port 11434, **CPU-only** (`num_gpu 0`, `num_ctx 8192`, `temperature 0.3`), endpoint `http://localhost:11434/api/chat`; **(C)** yeni Bionic sohbet = tam agent, araçlı (FunkGoth açar, brief'i ben yazarım).
+- Worker B çağrısı: `curl -s -d @payload.json http://localhost:11434/api/chat` (`model: worker8b`, `stream: false`); worker'ın aracı YOK → gerekli dosya parçaları prompt'a gömülür.
 
 ## Sabit Kurallar (değiştirilemez)
 1. Yalnızca E:\ içinde yaz/sil.
@@ -66,6 +67,7 @@ Agent burada özerk yazar; kullanıcı her an okuyup müdahale edebilir.
 - 2026-10-01 (Oturum 4): A1/A2 uygulandı — Çalışma Döngüsü'ne 5 kural (kapanış, okuma bütçesi, scratch, global dosya bütçesi, distille), STATE 4 bölüm/≤30 satır, Devir'e "beklenen karar" kuralı. Gerekçe: LOG.md.
 - 2026-10-01 (Oturum 4): "Çoklu Proje İskeleti" bölümü + `E:\README.md` giriş noktası eklendi. Gerekçe: FunkGoth çok proje/çok uygulama/çok model planı; global prompt proje-bağımsız kalmalı. LOG.md.
 - 2026-10-01 (Oturum 4): "Delegation" bölümü + `delegation/` klasörü — ana agent (yönetici) + worker context havuzları; VRAM kuralı (sıralı, tek worker) + brief/result protokolü + runtime seçenekleri (A/B/C). Gerekçe: ana sohbetin context ekonomisi + 24 GB tavan (donma kanıtıyla). LOG.md.
+- 2026-10-01 (Oturum 5): Delegation Runtime B somutlaştı — `worker8b` (qwen3:8b) Ollama port 11434, CPU-only (`num_gpu 0`), ctx 8192, temp 0.3; ilk brief→result denemesi T7 raporu incelemesi. Gerekçe: FunkGoth B'yi onayladı; lokal GGUF import'u bu ortamda kırık (lessons.md). LOG.md.
 
 ## Proje Haritası (EmberTale)
 - Proje kökü: E:\Project EmberTale\
