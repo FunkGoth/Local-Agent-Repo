@@ -1,5 +1,6 @@
 # STATE — Anlık Durum
 Son güncelleme: 2026-10-01 (Oturum 5)
+> Devir notu (context doluluğu): kayıtlar cf35c5b itibarıyla eksiksiz. **Yeni sohbet aç: PROTOCOL.md'yi oku ve devam et.** İlk iş: ≥2026-10-02 ise oturum başında "Sistem Değerlendirmesi zamanı geldi, yapayım mı?" diye sor.
 
 ## Aktif İş
 | İş | Klasör | Durum |
