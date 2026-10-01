@@ -5,6 +5,8 @@ Son güncelleme: 2026-10-01
 - (yok — kullanıcı kararı bekleniyor)
 
 ## Bekleyen
+> Not (2026-10-01, Oturum 3): T1–T6, FunkGoth'un `E:\Project EmberTale\` kökünde açacağı yeni sohbet içinde işlenecek.
+
 - T1 [kullanıcı kararı] 4 doküman: elme yaklaşımı vs satır satır birlikte gözden geçirme.
 - T2 [T1 sonrası, kullanıcı onayı] L1 vizyon canon'ı: onaylanan içeriğe göre özet (vision.md benzeri) + detay dosyası.
 - T3 [L2 sohbeti] ARCHITECTURE.md / DECISIONS.md / ROADMAP.md'yi L2 Proje İskeleti sohbetinde işle (bu oturumda işlenmez).
@@ -13,4 +15,4 @@ Son güncelleme: 2026-10-01
 - T6 [opsiyonel] E:\agent\scratch\claude-embertale-md\ geçici kopyasını kullanıcı onayıyla temizle.
 
 ## Arşiv
-- (yok)
+- ✅ 2026-10-01 Hafıza Mimarisi — tamamlandı; devir testi Oturum 3'te başarılı (FunkGoth memnun). Klasör: `work/2026-10-01-hafiza-mimarisi/`

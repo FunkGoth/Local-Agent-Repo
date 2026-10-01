@@ -16,3 +16,5 @@
 - FunkGoth sordu: "Yarım kalan işler neler?" → PROTOCOL→STATE→TASKS→iş state'i okundu, rapor verildi.
 - Not: Bu oturum, Oturum 2'deki devir testinin fiili karşılığı olabilir (yeni sohbet, hafızadan devam). FunkGoth onaylarsa devir testini başarılı sayıp EmberTale T1'e döneceğiz.
 - Bekleyen kararlar: (1) devir testi onayı, (2) T1 yaklaşımı (elme vs satır satır).
+- DEVR TESTİ BAŞARILI: FunkGoth onayladı — "hafızayı esnek kullanmak" ve "hafızayı kullanmak" takdir edildi; şaşırtma (açık soru ile devam) işe yaradı. Hafıza Mimarisi işi TAMAM, TASKS Arşiv'e alındı.
+- EmberTale T1–T6: FunkGoth bunları `E:\Project EmberTale\` kökünde açacağı yeni sohbet içinde işleyecek; bu oturum kapanıyor.

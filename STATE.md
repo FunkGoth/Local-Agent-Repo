@@ -4,18 +4,16 @@ Son güncelleme: 2026-10-01 (Oturum 3)
 ## Aktif İş
 | İş | Klasör | Durum |
 |---|---|---|
-| Hafıza Mimarisi | work/2026-10-01-hafiza-mimarisi/ | 🔄 FunkGoth onayı bekleniyor |
+| — | — | Yok (Hafıza Mimarisi ✅ tamamlandı → Arşiv) |
 
-## Detay
-Aktif işin state'i: `work/2026-10-01-hafiza-mimarisi/state.md`
-
-## Sıradaki Adım
-- FunkGoth'a soruldu: yarım kalanlar raporlandı; iki karar bekleniyor:
-  1. Bu sohbet (Oturum 3) devir testinin başarılı sayılsın mı? (Ben hafızadan devam ettim)
-  2. T1 kararı: 4 doküman — "elme yaklaşımı" mı, satır satır birlikte mi?
-- Devir testi başarılıysa → `work/2026-10-01-embertale-vizyon/` kurulur, EmberTale T1 başlar.
+## Sıradaki Adım (başka oturumda)
+- EmberTale T1–T6: FunkGoth bunları `E:\Project EmberTale\` kökünde açacağı yeni sohbet içinde işleyecek.
+- O oturumda yapılacaklar:
+  1. E:\agent\ için erişim iste (yetkiler oturum başına)
+  2. `work/2026-10-01-embertale-vizyon/` klasörünü kur (brief/state/notes)
+  3. T1'e başla: 4 doküman — "elme yaklaşımı" vs satır satır (kullanıcı kararı)
 
 ## Geçmiş
 - Oturum 1 (EmberTale projesi): Docs/ değerlendirme + skill oluşturma + hafıza kurulumu → `work/` altında yok (o oturumda henüz work/ yoktu)
 - Oturum 2: Hafıza mimarisi anlaşılması + work/ yapısının kurulması
-- Oturum 3 (bu): "Yarım kalan işler?" sorusu → PROTOCOL→STATE→TASKS okunup rapor verildi; karar bekleniyor
+- Oturum 3 (bu): devir testinin ta kendisiydi ve BAŞARILI (FunkGoth onayladı, memnun). Hafıza Mimarisi tamamlandı; EmberTale işleri proje klasörü sohbetine devredildi.
