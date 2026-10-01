@@ -17,6 +17,7 @@ Son güncelleme: 2026-10-01 (Oturum 4)
 - B5: Budget → **8192'de kaldı** (16384 denendi, dondu, geri alındı); alternatif: slot 4→2
 - B6: System prompt → **dosya tabanlı giriş: E:\README.md** (oluşturuldu); LM Studio prompt'u boşaltılacak (FunkGoth manuel)
 - YENİ: E: alanı yapısı onayı (mevcut iskelet + README önerisi FunkGoth'ta; çok proje/çok model mimarisi)
+- YENİ: Worker runtime seçimi: A (aynı model API, sıfır kurulum, sınırda) / B (CPU küçük model 2. port, önerilen, sıfır VRAM) / C (yeni Bionic sohbet, tam agent) — FunkGoth
 
 ## Detay
 - İş state'i: `work/2026-10-01-agent-iyilestirme-analizi/state.md`
