@@ -46,7 +46,7 @@ Agent burada özerk yazar; kullanıcı her an okuyup müdahale edebilir.
 - Ana agentın context'i yalnız brief+result kadar büyür; hacimli ara iş atılabilir havuzda kalır.
 - Worker'ın aracı YOK: sadece "beyin" işi (taslak, review, özet, çıkarım); dosya işini ana agent yapar.
 - Worker runtime'ları: **(A)** aynı model, localhost:1234 API — sıfır kurulum, SINIRDA (yalnız FunkGoth GO'suyla); **(B) KURULU (2026-10-01)**: `worker8b` (qwen3:8b, 5.2 GB) — Ollama port 11434, **CPU-only** (`num_gpu 0`, `num_ctx 8192`, `temperature 0.3`), endpoint `http://localhost:11434/api/chat`; **(C)** yeni Bionic sohbet = tam agent, araçlı (FunkGoth açar, brief'i ben yazarım).
-- Worker B çağrısı: `curl -s -d @payload.json http://localhost:11434/api/chat` (`model: worker8b`, `stream: false`); worker'ın aracı YOK → gerekli dosya parçaları prompt'a gömülür.
+- Worker B çağrısı: `curl -s -d @payload.json http://localhost:11434/api/chat` (`model: worker8b`, `stream: false`, **`think: false`** = varsayılan — 2026-10-01 ölçümü: aynı brief 41s→3.7s, kalite korundu; derin çıkarım işinde `think: true`); worker'ın aracı YOK → gerekli dosya parçaları prompt'a gömülür.
 - **Otonom sub-agent yetkisi (FunkGoth, 2026-10-01)**: ana agent, verimli gördüğü işlerde worker B'yi çağrı başı onay sormadan tetikler (kaba tarama/özet/çıkarım/taslak); her çalıştırma `metrics/runs.csv`'ye kaydedilir (yakalama protokolü → metrics/README.md). Runtime C hâlâ FunkGoth GO'su ister (ana model context/VRAM tüketir).
 
 ## Sistem Değerlendirmesi (24 saatte 1) — 2026-10-01
@@ -80,6 +80,7 @@ Agent burada özerk yazar; kullanıcı her an okuyup müdahale edebilir.
 - 2026-10-01 (Oturum 5): Delegation Runtime B somutlaştı — `worker8b` (qwen3:8b) Ollama port 11434, CPU-only (`num_gpu 0`), ctx 8192, temp 0.3; ilk brief→result denemesi T7 raporu incelemesi. Gerekçe: FunkGoth B'yi onayladı; lokal GGUF import'u bu ortamda kırık (lessons.md). LOG.md.
 - 2026-10-01 (Oturum 5): "Sistem Değerlendirmesi" bölümü + `metrics/` veri havuzu + Delegation'a otonom sub-agent yetkisi satırı — her worker çalıştırması ölçülür (hız, kaynak, ana modele etki, kalite); 24s'de 1 FunkGoth onaylı öz-değerlendirme (5 bölüm + aksiyon eşikleri). Gerekçe: FunkGoth otonom sub-agent kullanımı + günlük veri tabanlı değerlendirme yetkisi verdi. LOG.md.
 - 2026-10-01 (Oturum 5): metrics şeması genişletildi (VRAM dedicated+shared, RAM free/avail/commit, pagefile, gpu_util) + **light/full örnekleme politikası** (yeni iş tipi ilk + ~1/3 rastgele) + `capture_overhead_s` (ölçüm maliyeti) takibi + capture.ps1 aracı. Gerekçe: FunkGoth genişletilmiş telemetri + ölçüm maliyetinin raporlanması + random ve farklı iş ağırlıklarında örneklem istedi. LOG.md.
+- 2026-10-01 (Oturum 6): Worker B çağrı satırına **`think: false` varsayılanı** eklendi (qwen3 thinking modu varsayılan açık; ölçüm: eval 354→33 tok, wall 41s→3.7s, kalite korundu — runs.csv 03/04/05). Gerekçe: FunkGoth doğrulama isteği sırasında ölçülen ~11x maliyet farkı. LOG.md + lessons.md.
 
 ## Proje Haritası (EmberTale)
 - Proje kökü: E:\Project EmberTale\

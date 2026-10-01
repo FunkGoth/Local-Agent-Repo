@@ -1,12 +1,12 @@
 # STATE — Anlık Durum
-Son güncelleme: 2026-10-01 (Oturum 5)
-> Devir notu (context doluluğu): kayıtlar cf35c5b itibarıyla eksiksiz. **Yeni sohbet aç: PROTOCOL.md'yi oku ve devam et.** İlk iş: ≥2026-10-02 ise oturum başında "Sistem Değerlendirmesi zamanı geldi, yapayım mı?" diye sor.
+Son güncelleme: 2026-10-01 (Oturum 6)
+> İlk iş: ≥2026-10-02 ise oturum başında "Sistem Değerlendirmesi zamanı geldi, yapayım mı?" diye sor.
 
 ## Aktif İş
 | İş | Klasör | Durum |
 |---|---|---|
 | T7 Agent İyileştirme Analizi | work/2026-10-01-agent-iyilestirme-analizi/ | ✅ Rapor + B1–B6 kararları kapalı — kalan: B4/B6 manuel |
-| Delegation Worker B | PROTOCOL (Delegation) + delegation/ | ✅ **Kurulu + ilk test TAMAM** (worker8b; T7 raporu incelemesi) |
+| Delegation Worker B | PROTOCOL (Delegation) + delegation/ | ✅ **Kurulu + ilk test + DOĞRULANDI (Oturum 6)** — CPU-only teyitli; `think:false` varsayılan yapıldı |
 | Sistem Değerlendirmesi | PROTOCOL + metrics/ | ✅ Protokol + veri havuzu KURULDU; ilk tetik ≥2026-10-02 (FunkGoth onayı) |
 
 ## Sıradaki Adım
@@ -22,8 +22,8 @@ Son güncelleme: 2026-10-01 (Oturum 5)
 - Worker runtime: **B ONAYLI + KURULU (2026-10-01)** — worker8b (qwen3:8b, CPU, port 11434)
 
 ## Detay
-- Worker: `ollama ps` → worker8b **100% CPU**, ctx 8192; metrik: ~63 tok/s prompt, ~7 tok/s eval (7800X3D)
+- Worker (Oturum 6 doğrulama): params katmanı = num_gpu 0 / num_ctx 8192 / temp 0.3 ✓; `ollama ps` → **100% CPU**, 6.7 GB; hız: ~71 tok/s prompt, ~10 tok/s eval; **`think:false` → wall 41s→3.7s**, kalite korundu (runs.csv 03–05; full: VRAM ded +30 MB, shared +0, pagefile 0)
 - Brief/result: `delegation/brief-t7-rapor-inceleme.md` + `delegation/result-t7-rapor-inceleme.md` (doğrulama dahil)
 - İş state'i: `work/2026-10-01-agent-iyilestirme-analizi/state.md`
-- Veri havuzu: `metrics/` (runs.csv: 2 kayıt; capture.ps1 + top_proc.ps1; light/full örnekleme + ölçüm maliyeti takibi; pagefile 0); **son_değerlendirme: 2026-10-01 (kurulum)**
+- Veri havuzu: `metrics/` (runs.csv: 5 kayıt — 3'ü Oturum 6 doğrulama; capture.ps1 + top_proc.ps1; light/full örnekleme + ölçüm maliyeti takibi; pagefile 0); **son_değerlendirme: 2026-10-01 (kurulum)**
 - Kaynak dağılımı (top_proc.ps1): ana agent ≈8.3–10.8 GB RAM + GPU 23.7 GB dedicated + shared ≈1 GB (zeminin ~%99'u llama-server); sub agent boşta 0 / aktifken ≈6.7 GB RAM; taşma eşiği = shared delta >128 MB

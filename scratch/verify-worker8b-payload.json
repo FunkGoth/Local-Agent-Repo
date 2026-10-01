@@ -1,0 +1,7 @@
+{
+  "model": "worker8b",
+  "stream": false,
+  "messages": [
+    {"role": "user", "content": "Görev: Aşağıdaki 3 cümleyi TEK cümleye özetle (en fazla 30 kelime). Çıktı yalnızca özet cümlesi olsun.\n\nMetin: \"Delegation Worker B kuruldu. Model qwen3:8b, CPU-only çalışıyor. İlk test T7 raporu incelemesinde başarılı oldu.\""}
+  ]
+}
