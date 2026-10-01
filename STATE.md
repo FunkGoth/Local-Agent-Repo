@@ -9,10 +9,9 @@ Son güncelleme: 2026-10-01 (Oturum 5)
 | Sistem Değerlendirmesi | PROTOCOL + metrics/ | ✅ Protokol + veri havuzu KURULDU; ilk tetik ≥2026-10-02 (FunkGoth onayı) |
 
 ## Sıradaki Adım
-1. FunkGoth cevabı bekleniyor: veri havuzu soruları (tetik mekanizması, ana model veri kaynağı, ilk değerlendirme zamanlaması) — soru/öneri raporu aynı oturumda sunuldu (2026-10-01).
-2. İlk Sistem Değerlendirmesi: ≥2026-10-02, FunkGoth onayıyla tetik → metrics/eval-*.md + LOG + commit.
-3. B4 onayı (scratch temizliği — onay gelince ben silerim) + B6 manuel (LM Studio prompt'u).
-4. EmberTale T1–T6: ayrı sohbet (`E:\Project EmberTale\` kökü, TASKS.md).
+1. İlk Sistem Değerlendirmesi: ≥2026-10-02 (tetik: oturum başında "Değerlendirme zamanı geldi, yapayım mı?" + onay) → metrics/eval-*.md + LOG + commit; içerik = "baseline doğrulama + havuz sağlık kontrolü" (trend yorumu 3–5 run sonrası).
+2. B4 onayı (scratch temizliği — onay gelince ben silerim) + B6 manuel (LM Studio prompt'u).
+3. EmberTale T1–T6: ayrı sohbet (`E:\Project EmberTale\` kökü, TASKS.md).
 
 ## Bekleyen Kararlar (FunkGoth)
 - B2: 128K ctx → **REDDEDİLDİ** (23.6/24 GB + donma) · B3: Q5_K_M → **GERİ ÇEKİLDİ** · B5: Budget → **8192'de kaldı** (16384 dondu)
@@ -25,4 +24,5 @@ Son güncelleme: 2026-10-01 (Oturum 5)
 - Worker: `ollama ps` → worker8b **100% CPU**, ctx 8192; metrik: ~63 tok/s prompt, ~7 tok/s eval (7800X3D)
 - Brief/result: `delegation/brief-t7-rapor-inceleme.md` + `delegation/result-t7-rapor-inceleme.md` (doğrulama dahil)
 - İş state'i: `work/2026-10-01-agent-iyilestirme-analizi/state.md`
-- Veri havuzu: `metrics/` (runs.csv: 2 kayıt; capture.ps1: VRAM dedicated+shared, RAM commit, pagefile; light/full örnekleme + ölçüm maliyeti takibi; baseline: GPU shared ≈1.1 GB, pagefile 0, RAM boş 12.5–16 GB dalgalı); **son_değerlendirme: 2026-10-01 (kurulum)**
+- Veri havuzu: `metrics/` (runs.csv: 2 kayıt; capture.ps1 + top_proc.ps1; light/full örnekleme + ölçüm maliyeti takibi; pagefile 0); **son_değerlendirme: 2026-10-01 (kurulum)**
+- Kaynak dağılımı (top_proc.ps1): ana agent ≈8.3–10.8 GB RAM + GPU 23.7 GB dedicated + shared ≈1 GB (zeminin ~%99'u llama-server); sub agent boşta 0 / aktifken ≈6.7 GB RAM; taşma eşiği = shared delta >128 MB

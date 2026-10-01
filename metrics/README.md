@@ -8,6 +8,7 @@ Sorumlu: ana agent (kayıt + değerlendirme); FunkGoth raporları okur, aksiyonl
 |---|---|
 | runs.csv | Worker çalıştırma kayıtları (append-only; 1 satır/çalıştırma — satır silinmez/değiştirilmez; hata → üstüne yeni satır + not) |
 | capture.ps1 | Sistem ölçüm aracı (1 JSON satırı: RAM free/avail/commit, pagefile, GPU dedicated+shared, util) — `powershell -NoProfile -ExecutionPolicy Bypass -File E:/agent/metrics/capture.ps1` (≈2 sn) |
+| top_proc.ps1 | Kaynak dağılımı (attribution): RAM en büyük 25 süreç + shared GPU PID bazında — ana agent / sub agent / kullanıcı / OS ayrımı (≈2–7 sn) |
 | baseline.md | Sistem baseline'ı; her Sistem Değerlendirmesinde yenilenir |
 | eval-YYYY-MM-DD.md | Sistem Değerlendirmesi raporu (FunkGoth onayıyla üretilir, 24s'de ≤1) |
 
@@ -31,7 +32,7 @@ Sorumlu: ana agent (kayıt + değerlendirme); FunkGoth raporları okur, aksiyonl
 4. runs.csv'ye satır ekle + result dosyasının başlığına run_id yaz + git commit (E:\agent).
 
 ## Yorum kuralları (anomali tespiti)
-- **VRAM tampon/aşım**: dedicated 23.7+/24.5 GB (%96+) ana modelin normal durumu; **çalışma sırasında vram_shared delta >0 = TAŞMA** (anomali, notes'a); delta <128 MB → `none`.
+- **VRAM tampon/aşım**: dedicated 23.7+/24.5 GB (%96+) ana modelin normal durumu; shared zemin ≈1.1 GB'in ~%99'u llama-server'ın kendisi (top_proc.ps1). **Taşma = çalışma sırasında vram_shared delta >128 MB** veya llama-server shared payı delta >256 MB (anomali, notes'a); aksi → `none`.
 - **RAM dalgalanma**: worker resident ≈6.7 GB; çalıştırmada boş RAM <3 GB → baskı riski (paging'e bak).
 - **Paging**: çalıştırmada paging >0 = RAM baskısı (worker + ana + sistem RAM'e sığmıyor) → kaydedilir.
 - **Ana modele etki**: GPU dedicated delta <128 MB ve shared delta 0 → `none`; değilse `minor`/`major` (neden notes'a).
