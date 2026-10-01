@@ -2,7 +2,7 @@
 Son güncelleme: 2026-10-01
 
 ## Aktif
-- (yok — kullanıcı kararı bekleniyor)
+- T7 [aktif] Agent iyileştirme analizi: hafıza yönetimi + Bionic ayar/donanım taraması + model optimizasyonu → `work/2026-10-01-agent-iyilestirme-analizi/`
 
 ## Bekleyen
 > Not (2026-10-01, Oturum 3): T1–T6, FunkGoth'un `E:\Project EmberTale\` kökünde açacağı yeni sohbet içinde işlenecek.

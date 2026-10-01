@@ -1,12 +1,15 @@
 # STATE — Anlık Durum
-Son güncelleme: 2026-10-01 (Oturum 3)
+Son güncelleme: 2026-10-01 (Oturum 4)
 
 ## Aktif İş
 | İş | Klasör | Durum |
 |---|---|---|
-| — | — | Yok (Hafıza Mimarisi ✅ tamamlandı → Arşiv) |
+| Agent İyileştirme Analizi | work/2026-10-01-agent-iyilestirme-analizi/ | 🔄 tarama + araştırma |
 
-## Sıradaki Adım (başka oturumda)
+## Detay
+Aktif işin state'i: `work/2026-10-01-agent-iyilestirme-analizi/state.md`
+
+## EmberTale (bekleyen — başka oturumda)
 - EmberTale T1–T6: FunkGoth bunları `E:\Project EmberTale\` kökünde açacağı yeni sohbet içinde işleyecek.
 - O oturumda yapılacaklar:
   1. E:\agent\ için erişim iste (yetkiler oturum başına)

@@ -18,3 +18,10 @@
 - Bekleyen kararlar: (1) devir testi onayı, (2) T1 yaklaşımı (elme vs satır satır).
 - DEVR TESTİ BAŞARILI: FunkGoth onayladı — "hafızayı esnek kullanmak" ve "hafızayı kullanmak" takdir edildi; şaşırtma (açık soru ile devam) işe yaradı. Hafıza Mimarisi işi TAMAM, TASKS Arşiv'e alındı.
 - EmberTale T1–T6: FunkGoth bunları `E:\Project EmberTale\` kökünde açacağı yeni sohbet içinde işleyecek; bu oturum kapanıyor.
+
+## 2026-10-01 — Oturum 4
+- FunkGoth isteği: hafıza yönetimi iyileştirme önerileri + Bionic ayar/donanım taraması + model optimizasyon analizi.
+- Tarama: Ryzen 7 7800X3D / 32GB RAM / RTX 3090 24GB / Win11 25H2; model Qwen3.8-27B Q4_K_M, 64K ctx slot, tam GPU offload, MTP spekülatif decode aktif.
+- Araştırma: Qwen3.8 KV cache hassasiyeti (min q8), 262K max ctx, NVFP4 Blackwell-only (bizde GGUF rotası), thinking budget.
+- `rapor.md` yazıldı (donanım/ayar taraması + VRAM senaryo tablosu + 7 hafıza önerisi + A/B aksiyon listesi).
+- Bekleyen: FunkGoth onayı (B1–B5); A listesi (PROTOCOL/STATE/TASKS iyileştirmeleri) onay sonrası uygulanacak.
