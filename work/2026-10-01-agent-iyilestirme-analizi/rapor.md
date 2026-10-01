@@ -70,9 +70,9 @@ Tarih: 2026-10-01 · Durum: FunkGoth onayı bekleniyor · İş: `work/2026-10-01
 - A2: Öneri 4'ün ilk turu: lessons'ı distille et (şu an 5 satır — erken ama kalıbı kur)
 
 ### B — FunkGoth onayı gerekir
-- B1: **KV cache tipi** LM Studio arayüzünden doğrulama; q4 ise q8'e ayarlama *(kalite)*
-- B2: Context 64K → 128K (uzun agent oturumları için) *(token payı)*
-- B3: Q5_K_M modeli indir (~19 GB disk) — kalite yükseltmesi, isteğe bağlı *(disk + VRAM)*
+- B1: ~~KV cache tipi doğrulama~~ → **ÇÖZÜLDÜ (2026-10-01): UI'da KV zaten Q8_0 (K+V), Flash Attention açık — değişiklik gerekmedi**
+- B2: Context 64K → 128K (uzun agent oturumları için; 17.74 GB ağırlık ile ~23.5/24 GB, sınırda) *(token payı)*
+- B3: ~~Q5_K_M indir~~ → **GERİ ÇEKİLDİ (2026-10-01): model dosyası 17.74 GB; Q5_K_M ≈ 21 GB + KV + mmproj → 24 GB VRAM'e sığmaz, katmanlar RAM'e taşar → yavaş**
 - B4: `E:\agent\scratch\claude-embertale-md\` geçici kopyasını temizle (T6) *(silme)*
 - B5: Zor görevler için reasoning effort ayarı (Bionic) *(davranış)*
 

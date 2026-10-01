@@ -25,3 +25,7 @@
 - Araştırma: Qwen3.8 KV cache hassasiyeti (min q8), 262K max ctx, NVFP4 Blackwell-only (bizde GGUF rotası), thinking budget.
 - `rapor.md` yazıldı (donanım/ayar taraması + VRAM senaryo tablosu + 7 hafıza önerisi + A/B aksiyon listesi).
 - Bekleyen: FunkGoth onayı (B1–B5); A listesi (PROTOCOL/STATE/TASKS iyileştirmeleri) onay sonrası uygulanacak.
+- FunkGoth ekran görüntüleri + kararlar geldi: A1+A2 ONAYLI; B1 ÇÖZÜLDÜ (UI'da KV zaten Q8_0 K+V, Flash Attention açık — değişiklik gerekmedi); B3 önerisi GERİ ÇEKİLDİ (model dosyası 17.74 GB; Q5_K_M ≈ 21 GB → 24 GB VRAM'e sığmaz); B6 YENİ: LM Studio system prompt'un Claude'dan miras kalan tam protokol kopyası → kısa bootstrap metniyle değiştirme önerisi.
+- A1 UYGULANDI: PROTOCOL.md'ye 5 kural (kapanış, okuma bütçesi, scratch, global dosya bütçesi, distille) + STATE 4 bölüm/≤30 satır + Devir'e "bekleyen karar" kuralı; STATE.md yeni şablona alındı ("Geçmiş" bölümü LOG'da zaten var → kaldırıldı); TASKS.md'ye [tarih] önekleri. Gerekçe: devir maliyeti + 64K context ekonomisi.
+- A2 UYGULANDI: lessons'daki "bekleyen karar → devir" dersi PROTOCOL/Devir'e 1 satır olarak alındı, lessons'a işaret kondu.
+- Doğrulama (FunkGoth sorusu): bu oturumda C:\Users\dumba\.lmstudio veya C:\LM-Models altına hiçbir YAZMA yapılmadı (yalnız okuma). "An instance is using outdated load parameters" uyarısı = yükli instance, kayıtlı konfigürasyondan eski parametrelerle çalışıyor; ayarlar instance yüklenmesinden sonra değiştirildiyse Reload gerekir. settings.json mtime 14:15 (Bionic'in oturum yazıları olabilir).

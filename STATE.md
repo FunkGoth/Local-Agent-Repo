@@ -4,19 +4,20 @@ Son güncelleme: 2026-10-01 (Oturum 4)
 ## Aktif İş
 | İş | Klasör | Durum |
 |---|---|---|
-| Agent İyileştirme Analizi | work/2026-10-01-agent-iyilestirme-analizi/ | 🔄 tarama + araştırma |
+| T7 Agent İyileştirme Analizi | work/2026-10-01-agent-iyilestirme-analizi/ | 🔄 Rapor hazır — FunkGoth kararları bekleniyor |
+
+## Sıradaki Adım
+1. FunkGoth kararları (B2/B4/B5/B6) → onaylananları uygula (B1 çözüldü, B3 geri çekildi).
+2. EmberTale T1–T6: ayrı sohbet (`E:\Project EmberTale\` kökü, TASKS.md).
+
+## Bekleyen Kararlar (FunkGoth)
+- B2: 128K ctx denensin mi? (17.74 GB ağırlık → ~23.5/24 GB, sınırda)
+- B3: Q5_K_M — önerim vazgeç (24 GB'a sığmaz); onay bekleniyor
+- B4: `scratch\claude-embertale-md\` silinsin mi? (onay gelince ben silerim)
+- B5: Reasoning Budget 8192 → 16384?
+- B6: LM Studio system prompt → kısa bootstrap metni (metin hazırlanıyor)
 
 ## Detay
-Aktif işin state'i: `work/2026-10-01-agent-iyilestirme-analizi/state.md`
-
-## EmberTale (bekleyen — başka oturumda)
-- EmberTale T1–T6: FunkGoth bunları `E:\Project EmberTale\` kökünde açacağı yeni sohbet içinde işleyecek.
-- O oturumda yapılacaklar:
-  1. E:\agent\ için erişim iste (yetkiler oturum başına)
-  2. `work/2026-10-01-embertale-vizyon/` klasörünü kur (brief/state/notes)
-  3. T1'e başla: 4 doküman — "elme yaklaşımı" vs satır satır (kullanıcı kararı)
-
-## Geçmiş
-- Oturum 1 (EmberTale projesi): Docs/ değerlendirme + skill oluşturma + hafıza kurulumu → `work/` altında yok (o oturumda henüz work/ yoktu)
-- Oturum 2: Hafıza mimarisi anlaşılması + work/ yapısının kurulması
-- Oturum 3 (bu): devir testinin ta kendisiydi ve BAŞARILI (FunkGoth onayladı, memnun). Hafıza Mimarisi tamamlandı; EmberTale işleri proje klasörü sohbetine devredildi.
+- İş state'i: `work/2026-10-01-agent-iyilestirme-analizi/state.md`
+- Rapor: `work/2026-10-01-agent-iyilestirme-analizi/rapor.md`
+- Geçmiş oturum özeti: LOG.md (STATE'ten kaldırıldı — A1a)
