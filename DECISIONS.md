@@ -3,6 +3,7 @@ Sıralama: en yeni üstte.
 
 | Tarih | Karar | Gerekçe | Karar Veren |
 |---|---|---|---|
+| 2026-10-01 | Otonom sub-agent yetkisi: ana agent worker B'yi verimli işlerde çağrı başı onaysız tetikler (C runtime hâlâ GO ister); her çalıştırma metrics/runs.csv'ye kaydedilir (kaynak, süre, ana modele etki, kalite); 24s'de 1 Sistem Değerlendirmesi — FunkGoth onayıyla tetik, 5 bölüm + ≤3 öneri | FunkGoth yetki verdi (B testini beğendikten sonra): verimli zamanlarda alt agent + günlük veri tabanlı öz-değerlendirme | Kullanıcı (FunkGoth) |
 | 2026-10-01 | Worker runtime B somutlandı: `worker8b` (qwen3:8b) — Ollama port 11434, CPU-only (num_gpu 0), ctx 8192, temp 0.3 | FunkGoth B'yi onayladı (sıfır VRAM; ana 27B GPU'da); lokal GGUF import'u kırık → registry pull + create yolu (lessons.md) | Kullanıcı (FunkGoth) + agent (uygulama) |
 | 2026-10-01 | Claude'un çalışma sistemi (DoD, Katman, Workflow) proje skill'i olarak miras alındı: .agents\skills\embertale-methodology\ | Kullanıcı talimatı; metodoloji skill'e gömülür, context şişmez (kullanıcının "A seçeneği") | Kullanıcı (FunkGoth) |
 | 2026-10-01 | Qwen'in 4 dokümanı (VIZYON/ARCHITECTURE/DECISIONS/ROADMAP) TASLAK/ham girdi sayılır, canon değil | Önceki oturum analizi: sahiplik belirsiz, katman karışık, bazı kararlar tek taraflı | Önceki oturum (analiz), kullanıcıya iletildi |

@@ -6,11 +6,13 @@ Son güncelleme: 2026-10-01 (Oturum 5)
 |---|---|---|
 | T7 Agent İyileştirme Analizi | work/2026-10-01-agent-iyilestirme-analizi/ | ✅ Rapor + B1–B6 kararları kapalı — kalan: B4/B6 manuel |
 | Delegation Worker B | PROTOCOL (Delegation) + delegation/ | ✅ **Kurulu + ilk test TAMAM** (worker8b; T7 raporu incelemesi) |
+| Sistem Değerlendirmesi | PROTOCOL + metrics/ | ✅ Protokol + veri havuzu KURULDU; ilk tetik ≥2026-10-02 (FunkGoth onayı) |
 
 ## Sıradaki Adım
-1. Worker test sonucunu FunkGoth'a raporla (result dosyası: doğrulama + "shared 2.7 GB notu" önerisi).
-2. B4 onayı (scratch temizliği — onay gelince ben silerim) + B6 manuel (LM Studio prompt'u → boşalt veya "E:\README.md'yi oku" tek satırı).
-3. EmberTale T1–T6: ayrı sohbet (`E:\Project EmberTale\` kökü, TASKS.md).
+1. FunkGoth cevabı bekleniyor: veri havuzu soruları (tetik mekanizması, ana model veri kaynağı, ilk değerlendirme zamanlaması) — soru/öneri raporu aynı oturumda sunuldu (2026-10-01).
+2. İlk Sistem Değerlendirmesi: ≥2026-10-02, FunkGoth onayıyla tetik → metrics/eval-*.md + LOG + commit.
+3. B4 onayı (scratch temizliği — onay gelince ben silerim) + B6 manuel (LM Studio prompt'u).
+4. EmberTale T1–T6: ayrı sohbet (`E:\Project EmberTale\` kökü, TASKS.md).
 
 ## Bekleyen Kararlar (FunkGoth)
 - B2: 128K ctx → **REDDEDİLDİ** (23.6/24 GB + donma) · B3: Q5_K_M → **GERİ ÇEKİLDİ** · B5: Budget → **8192'de kaldı** (16384 dondu)
@@ -23,3 +25,4 @@ Son güncelleme: 2026-10-01 (Oturum 5)
 - Worker: `ollama ps` → worker8b **100% CPU**, ctx 8192; metrik: ~63 tok/s prompt, ~7 tok/s eval (7800X3D)
 - Brief/result: `delegation/brief-t7-rapor-inceleme.md` + `delegation/result-t7-rapor-inceleme.md` (doğrulama dahil)
 - İş state'i: `work/2026-10-01-agent-iyilestirme-analizi/state.md`
+- Veri havuzu: `metrics/` (runs.csv: 2 kayıt; baseline: VRAM 23704/24576 MiB, RAM boş 12.8 GB, worker 63/7.1 tok/s); **son_değerlendirme: 2026-10-01 (kurulum)**
