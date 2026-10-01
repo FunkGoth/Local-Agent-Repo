@@ -8,3 +8,11 @@
 - G1–G10 global kararları skill'e gömdüm.
 - git init + ilk commit (E:\agent).
 - Dikkat: Vision.md.md'deki ham girdilerin (VRoid/M-Star/araç BP/öncelik) tamamı VIZYON.md §4.3 ve §8'de zaten karşılığı var → yeni içerik yok, onay turunda teyit yeterli.
+
+## 2026-10-01 — Oturum 2
+- (Log'a yazılmamış; STATE'den: hafıza mimarisi anlaşıldı, work/ yapısı kuruldu, Hafıza Mimarisi brief/state/notes kuruldu, FunkGoth yapıyı onayladı, devir testi bekleniyordu.)
+
+## 2026-10-01 — Oturum 3
+- FunkGoth sordu: "Yarım kalan işler neler?" → PROTOCOL→STATE→TASKS→iş state'i okundu, rapor verildi.
+- Not: Bu oturum, Oturum 2'deki devir testinin fiili karşılığı olabilir (yeni sohbet, hafızadan devam). FunkGoth onaylarsa devir testini başarılı sayıp EmberTale T1'e döneceğiz.
+- Bekleyen kararlar: (1) devir testi onayı, (2) T1 yaklaşımı (elme vs satır satır).
