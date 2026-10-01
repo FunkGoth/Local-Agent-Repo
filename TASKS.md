@@ -4,7 +4,7 @@ Son güncelleme: 2026-10-01 (A1b: satırlara "son dokunma" tarihleri eklendi)
 ## Aktif
 - [2026-10-01] T7 Agent iyileştirme analizi: hafıza yönetimi + Bionic ayar/donanım taraması + model optimizasyonu → `work/2026-10-01-agent-iyilestirme-analizi/` (✅ rapor + B1–B6 kararları kapalı; kalan: B4 onayı, B6 manuel)
 - [2026-10-01] Delegation Worker B: kurulum + ilk brief→result denemesi → `delegation/` (✅ worker8b CPU'da doğrulandı; T7 raporu incelemesi yapıldı, doğrulama result dosyasında)
-- [2026-10-01] Sistem Değerlendirmesi: veri havuzu + günlük öz-değerlendirme → `metrics/` (✅ kurulum: runs.csv 2 kayıt + baseline + protokol; ilk değerlendirme ≥2026-10-02, FunkGoth onayıyla tetiklenir)
+- [2026-10-01] Sistem Değerlendirmesi: veri havuzu + günlük öz-değerlendirme → `metrics/` (✅ kurulum + genişletilmiş telemetri: VRAM shared, RAM commit, pagefile; capture.ps1; light/full örnekleme + ölçüm maliyeti takibi; ilk değerlendirme ≥2026-10-02, FunkGoth onayıyla tetiklenir)
 
 ## Bekleyen
 > Not (2026-10-01, Oturum 3): T1–T6, FunkGoth'un `E:\Project EmberTale\` kökünde açacağı yeni sohbet içinde işlenecek.

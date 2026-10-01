@@ -25,4 +25,4 @@ Son güncelleme: 2026-10-01 (Oturum 5)
 - Worker: `ollama ps` → worker8b **100% CPU**, ctx 8192; metrik: ~63 tok/s prompt, ~7 tok/s eval (7800X3D)
 - Brief/result: `delegation/brief-t7-rapor-inceleme.md` + `delegation/result-t7-rapor-inceleme.md` (doğrulama dahil)
 - İş state'i: `work/2026-10-01-agent-iyilestirme-analizi/state.md`
-- Veri havuzu: `metrics/` (runs.csv: 2 kayıt; baseline: VRAM 23704/24576 MiB, RAM boş 12.8 GB, worker 63/7.1 tok/s); **son_değerlendirme: 2026-10-01 (kurulum)**
+- Veri havuzu: `metrics/` (runs.csv: 2 kayıt; capture.ps1: VRAM dedicated+shared, RAM commit, pagefile; light/full örnekleme + ölçüm maliyeti takibi; baseline: GPU shared ≈1.1 GB, pagefile 0, RAM boş 12.5–16 GB dalgalı); **son_değerlendirme: 2026-10-01 (kurulum)**

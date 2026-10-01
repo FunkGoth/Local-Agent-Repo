@@ -51,7 +51,7 @@ Agent burada özerk yazar; kullanıcı her an okuyup müdahale edebilir.
 
 ## Sistem Değerlendirmesi (24 saatte 1) — 2026-10-01
 - Veri havuzu: `metrics/` — runs.csv (append-only, her worker çalıştırması 1 satır) + `eval-YYYY-MM-DD.md` raporları + baseline.md.
-- Yakalama: her worker çağrısında önce/sonra VRAM + boş RAM + API metrikleri (tok/s, süre) + ana agentın kalite puanı (passed/minor-errors/failed) + accepted kararı.
+- Yakalama: **light** (her çalıştırmada, sıfır ek maliyet: API metrikleri + kalite) / **full** (örnek: VRAM dedicated+shared, RAM free/avail/commit, pagefile — capture.ps1). Örnekleme: yeni iş tipinin ilk çalıştırması + ~1/3 rastgele + anomali sonrası mutlaka. Ölçüm maliyeti (capture_overhead_s) izlenir ve raporlanır; >%10 ise full oranı düşürülür.
 - Tetik: 24 saatte 1, **yalnızca FunkGoth onayıyla**; STATE'teki "son_değerlendirme" >24s ise yeni oturumda kullanıcıya sorulur.
 - İçerik: worker hız/kalite trendi · ana model durumu (server log örnekleri) · GPU/RAM etkileşimi · havuz kalitesi · ≤3 öncelikli öneri → FunkGoth'a rapor.
 - Aksiyon eşikleri: eval <4 tok/s → ara; kalite "failed" ×2 aynı iş tipi → o iş tipini B'den çıkar; VRAM delta >256 MB → num_gpu 0 doğrula.
@@ -79,6 +79,7 @@ Agent burada özerk yazar; kullanıcı her an okuyup müdahale edebilir.
 - 2026-10-01 (Oturum 4): "Delegation" bölümü + `delegation/` klasörü — ana agent (yönetici) + worker context havuzları; VRAM kuralı (sıralı, tek worker) + brief/result protokolü + runtime seçenekleri (A/B/C). Gerekçe: ana sohbetin context ekonomisi + 24 GB tavan (donma kanıtıyla). LOG.md.
 - 2026-10-01 (Oturum 5): Delegation Runtime B somutlaştı — `worker8b` (qwen3:8b) Ollama port 11434, CPU-only (`num_gpu 0`), ctx 8192, temp 0.3; ilk brief→result denemesi T7 raporu incelemesi. Gerekçe: FunkGoth B'yi onayladı; lokal GGUF import'u bu ortamda kırık (lessons.md). LOG.md.
 - 2026-10-01 (Oturum 5): "Sistem Değerlendirmesi" bölümü + `metrics/` veri havuzu + Delegation'a otonom sub-agent yetkisi satırı — her worker çalıştırması ölçülür (hız, kaynak, ana modele etki, kalite); 24s'de 1 FunkGoth onaylı öz-değerlendirme (5 bölüm + aksiyon eşikleri). Gerekçe: FunkGoth otonom sub-agent kullanımı + günlük veri tabanlı değerlendirme yetkisi verdi. LOG.md.
+- 2026-10-01 (Oturum 5): metrics şeması genişletildi (VRAM dedicated+shared, RAM free/avail/commit, pagefile, gpu_util) + **light/full örnekleme politikası** (yeni iş tipi ilk + ~1/3 rastgele) + `capture_overhead_s` (ölçüm maliyeti) takibi + capture.ps1 aracı. Gerekçe: FunkGoth genişletilmiş telemetri + ölçüm maliyetinin raporlanması + random ve farklı iş ağırlıklarında örneklem istedi. LOG.md.
 
 ## Proje Haritası (EmberTale)
 - Proje kökü: E:\Project EmberTale\
