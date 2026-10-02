@@ -1,4 +1,4 @@
-# STATE — Anlık Durum (2026-10-02, Oturum 22 — **O22: UE teorik oturum**; devir soruşturması ✅ `work/2026-10-02-ue-oturum/devir-sorusturmasi.md`; sıradaki = teorik kapasite tartışması (FunkGoth ile))
+# STATE — Anlık Durum (2026-10-03, Oturum 22 — **O22: UE teorik oturum**; devir soruşturması ✅ + **agentic araştırma ✅** `work/2026-10-03-agentic-arastirma/arastirma.md`; sıradaki = FunkGoth kararları: 3 kaldıraç (reasoning seviyesi, MTP, pencere 128k) + UE kapsamı)
 
 ## Aktif İş
 | İş | Klasör | Durum |
@@ -9,9 +9,10 @@
 | O21 10-09 hazırlık denetimi | work/2026-10-02-context-devami/ | ✅ BİTTİ: denetim + boşluk listesi + yürütme sırası; ledger **28** (26 değil — denetim bulgusu) |
 | Delegation Worker B | PROTOCOL + delegation/ | ✅ operasyonel; runs.csv 12 kayıt; Mod A CPU (varsayılan) + Mod B GPU (break-even ≈200–250 tok) |
 | EmberTale T1–T6 | Project EmberTale/ | 🕐 ayrı sohbet (FunkGoth kök `E:\Bionic\Project EmberTale\` ile açacak) |
+| O22 agentic araştırma | work/2026-10-03-agentic-arastirma/ | ✅ BİTTİ: model yeteneği + donanım + karmaşıklık tavanı + optimizasyon analizi (literatürle örtüşme kanıtlı); 3 kaldıraç önerisi FunkGoth'ta |
 
 ## Sıradaki Adım
-0. **O22**: (b) devir soruşturması ✅ BİTTİ (kesin 2 vaka: O6→O7 LOG + O20 62k-durma = FunkGoth ekran görüntüsü, kayıtlarda yoktu; ~5 sebep-kayıtsız devir; O19 boot hatası ayrı — detay yukarıdaki dosya). Sıradaki: **(a) UE teorik oturum** — FunkGoth'un büyük UE işinin kapsamıyla kapasite hesabı; soruşturma raporu FunkGoth'a sunuldu.
+0. **O22**: (b) devir soruşturması ✅ BİTTİ (kesin 2 vaka: O6→O7 LOG + O20 62k-durma = FunkGoth ekran görüntüsü, kayıtlarda yoktu; ~5 sebep-kayıtsız devir; O19 boot hatası ayrı — detay yukarıdaki dosya). Sıradaki: **(a) UE teorik oturum** (kapsam: FunkGoth) + **3 kaldıraç kararı (FunkGoth)**: (1) reasoning seviyesi rutin=low/karar=high (2) Bionic MTP desteği kontrolü (3) pencere 64k→128k KV ölçümü.
 1. **10-09 gözden geçirme**: K verileri kriterlerle yeniden kontrol (context-benchmark.md arşiv + snapshots/ledger/runs.csv) + **FAZ 2 raporu** (paralel kapasite, iş tipi haritası, routing teyidi) + **Ö3** (ana model hızı yeniden örnekleme → baseline.md bant). Hazırlık: work/2026-10-02-context-devami/hazirlik-1009.md (boşluklar: kullanıcı compaction sayıları, FAZ 2 unattended ölçüm, Ö3, routing boşluğu).
 2. Ö3 her Sistem Değerlendirmede (ana model ~32 tok API örneği → baseline.md).
 3. Sub-agent entegrasyon çalışması (zaman: FunkGoth'un kararı — muhtemelen 10-09 sonrası).
