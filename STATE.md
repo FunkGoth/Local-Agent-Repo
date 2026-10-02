@@ -1,4 +1,4 @@
-# STATE — Anlık Durum (2026-10-02, Oturum 15 — W1 warm teyidi BİTTİ)
+# STATE — Anlık Durum (2026-10-02, Oturum 15 — DEVİR; W1 warm BİTTİ, sıradaki = 317.7s anomali + Mod B eşiği)
 
 ## Aktif İş
 | İş | Klasör | Durum |
@@ -13,7 +13,7 @@
 | EmberTale T1–T6 | Project EmberTale/ | 🕐 ayrı sohbet |
 
 ## Sıradaki Adım (YENİ SOHBET — devir)
-> **DEVİR (Oturum 15 sonu):** yeni sohbet → README → PROTOCOL → STATE; ilk iş = **1 317.7s JIT reload anomali tartışması** (disk elendi, W1 warm bitti).
+> **DEVİR (Oturum 15 sonu):** yeni sohbet → README → PROTOCOL → STATE; ilk iş = **1 317.7s JIT reload anomali tartışması** (güçlü hipotez: VRAM çakışması/kısmi CPU offload; doğrulama testi önerisi FunkGoth'ta) + **Mod B eşiği kararı** (≈4300 tok/batch) — ikisi de FunkGoth'ta bekliyor.
 
 1. ✅ **3 Disk testi** (Oturum 14): disk 317.7s'i açıklamıyor → `work/…/disk-testi.md`.
 2. ✅ **2 W1 warm teyidi** (Oturum 15): warm 103.2→108.1 tok/s; cold fresh load yalnız 4.12s.
