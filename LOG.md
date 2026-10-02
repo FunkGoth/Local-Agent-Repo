@@ -179,3 +179,9 @@
 - **SIRADAKİ**: **1 317.7s JIT reload anomali tartışması** (disk elendi; kalan hipotezler: VRAM çakışması / istek→ilk-token wall-time / CPU-RAM thrashing) + **Mod B eşiği kararı** (~4300 output tok/batch) hâlâ FunkGoth'ta açık.
 - **ANOMALİ TARTIŞMASI AÇILDI (rapor FunkGoth'a verildi)**: güçlü hipotez = **VRAM çakışması** (L1-B reload sırasında worker8b 6.3 GB VRAM'deydi → 27B kısmi CPU offload); doğrulama testi önerisi: worker evict + VRAM tamamen boşken clean reload → ~10s ise hipotez 1 kanıtlanır, ~5 dk ise CPU-side (thrashing). **GO + Mod B eşiği kararı FunkGoth'ta bekleniyor.**
 - **DEVİR (FunkGoth: "oturumu devredelim")**: hafıza güncel + commit atıldı; yeni sohbet → README → PROTOCOL → STATE → TASKS; ilk iş = **1 317.7s anomali (doğrulama testi GO bekleniyor) + Mod B eşiği kararı**.
+
+## 2026-10-02 — Oturum 16 (devir alındı)
+- Devir yüklendi (README → PROTOCOL → STATE → TASKS). Sıradaki = 317.7s anomali doğrulama testi (GO) + Mod B eşiği kararı; ikisi de FunkGoth'ta açık.
+- Anomali analizi netleştirildi (disk-testi.md + runs.csv 02/04/05): disk elendi (C: 3.6 GB/s → 4.5s); güçlü hipotez **VRAM çakışması** — L1-B reload sırasında worker8b `size_vram=6.3 GB`'da oturuyordu (Ollama /api/ps kanıtı) → 6.3+23 > 24 GB → 27B kısmi CPU offload → ilk-token wall-time şişmesi. W1 warm teyidi (15) ayrıca W1 18.5'i kuyruk artifact'i olarak açıkladı (sıralı cold 103.2).
+- Doğrulama testi önerisi tekrar FunkGoth'a (VRAM tamamen boşken clean timed reload) + Mod B eşiği kararı (≈4300 output tok/batch; a/b/c seçenekleri). GO + karar bekleniyor.
+- Kayıtlar: STATE (Oturum 16, 30 satır), TASKS (anomali satırı güncel + Mod B eşiği yeni Aktif satır), bu LOG; git commit.
