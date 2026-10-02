@@ -128,3 +128,13 @@
 - **YENİ PARALEL KONU: "oto-devir"** (auto-devir) → TASKS Aktif'e eklendi; yeni sohbette Aşama 1 testi ile paralel konuşulacak.
 - Kayıtlar: DECISIONS (üst satır), STATE (L1 + sıradaki adım + beklenen kararlar + detay), TASKS (oto-devir + L1 + Aşama 1), cerceve.md (mimari ONAYLI + L1 düzeltmesi + çelişki notu revize + FAZ satırı), bu LOG. git commit.
 - **DEVİR**: yeni sohbet → README → PROTOCOL → STATE → TASKS; ilk iş = Aşama 1 testi (FunkGoth gözlemleyecek) + oto-devir konusu.
+
+## 2026-10-02 — Oturum 12
+- Devir yüklendi (README → PROTOCOL → STATE → TASKS). İlk iş = Aşama 1 testi (FunkGoth hazır).
+- **Aşama 1 testi ÇALIŞTIRILDI (3 adım, runs.csv 2026-10-02-01):**
+  - Adım 1 (boşta baz): VRAM **23.234/24.576 MiB dolu**, llama-server (27B) GPU'da, 311W.
+  - Adım 2 (worker başlat): worker8b Ollama/CPU, 13.3s (cold load 7.8s, eval 50 tok ≈10.7 tok/s, kalite PASS). **VRAM DÜŞMEDİ (23.2→23.1 GB)** — 27B resident kaldı; worker (PID 14120) 27B ile aynı anda yaşadı. Dün gördüğümüz 23→2–3 GB düşüşü bu koşullarda (Bionic müdahalesiz, yalnız curl→Ollama) **tekrarlamadı** → tetikleyici büyük olasılıkla worker'ın kendisi DEĞİL (Bionic UI modeli değiştirme / sohbet kapanışı / LM Studio tarafı adayı).
+  - Adım 3 (uyanma maliyeti — YÜKLÜ BAZ): 27B TTFB **0.21s**. (27B boşalmadığı için bu "reload" değil, resident baz; gerçek reload ölçümü boşaltma tetiklenince yapılıyor.)
+  - Teknik not: nvidia-smi `--query-gpu=gpu_util` bu sürümde geçersiz → örnekleyici memory.used ile sınırlı kaldı; 2 sn aralıklı log (scratchpad).
+- Açık soru (FunkGoth): dünki düşüş anında ne yapıyordun? (Bionic model seçici / sohbet aç-kapa / LM Studio UI?) → attribüsyon için kritik; ardından tetikleyici tekrar üretme turu.
+- Beklenen: (a) attribüsyon cevabı; (b) oto-devir konusu; (c) auto-unload ayarının bulunması (devir notu); (d) veri haftası yürütme.

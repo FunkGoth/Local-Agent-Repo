@@ -1,11 +1,11 @@
 # STATE — Anlık Durum
-Son güncelleme: 2026-10-02 (Oturum 11)
+Son güncelleme: 2026-10-02 (Oturum 12)
 
 ## Aktif İş
 | İş | Klasör | Durum |
 |---|---|---|
 | Kaynak bağımsızlığı + model geçişi | work/2026-10-02-… + model-hafiza.md | 🔄 **FAZ 1 v3: AMAÇ ONAYLI** (27B ana KALIYOR; hedef = paralel iş + verimlilik + kullanım hafızası + context ekonomisi); FAZ 1.5 testleri kuyrukta |
-| Aşama 1 testi (VRAM attribüsyon + reload maliyeti) | work/…/cerceve.md | 🕐 FunkGoth hazır olduğunda (O gözlemleyecek) |
+| Aşama 1 testi (VRAM attribüsyon + reload maliyeti) | work/…/cerceve.md | 🔄 3 adım ÇALIŞTI (runs.csv …-01): **VRAM DÜŞMEDİ (23.2→23.1 GB)**, TTFB 0.21s; dünki düşüş tekrarlamadı → **attribüsyon açık** |
 | L1 boşta boşaltma (ONAYLI) | Bionic yaşam-döngüsü + PROTOCOL | ⚠️ DÜZELTME: JIT=Auto-Load(KAPALI)≠boşaltma; asıl=Idle TTL/Auto-Evict; AMA JIT KAPALI→27B manuel→**muaf(#2051)→ayar boşaltmaz**; asıl kaldıraç=Bionic yaşam-döngüsü; Aşama 1 attribüsyon+reload ölçecek |
 | Full veri toplama haftası | metrics/ | 🔄 2026-10-02→10-09: ~%50 full, hedef ≥3; hafta sonu rapor |
 | Delegation Worker B | PROTOCOL + delegation/ | ✅ operasyonel; runs.csv 6 kayıt |
@@ -13,7 +13,7 @@ Son güncelleme: 2026-10-02 (Oturum 11)
 | EmberTale T1–T6 | E:\Bionic\Project EmberTale\ | 🕐 ayrı sohbet |
 
 ## Sıradaki Adım (YENİ SOHBET — devir)
-1. **Aşama 1 testi** (FunkGoth gözlemleyecek): (1) boşta baz — nvidia-smi VRAM dolu teyidi; (2) worker başlat (bilinen iş, ~1–2 dk, runs.csv) — VRAM düşüş ANI + **tetikleyici attribüsyonu (Bionic mi, LM Studio mu)**; (3) uyanma maliyeti — worker bitince 27B'ye istek, ilk token'a kadar süre = reload bedeli.
+1. **Aşama 1 attribüsyon turu**: FunkGoth'a sor — dünki 23→2–3 GB düşüş anında ne yapıyordun? (Bionic model seçici / sohbet aç-kapa / LM Studio UI?) → cevapla tetikleyiciyi tekrar üret + gerçek reload maliyeti ölçümü.
 2. **Oto-devir konusunu konuş** (FunkGoth başlattı, YENİ PARALEL İŞ) — kapsamı o anlatacak (muhtemelen: context dolunca/oturum kapanınca hafıza devrinin otomatikleştirilmesi).
 3. **Auto-unload sorusuna cevap hazır** (bu oturumda verildi): JIT=Auto-Load(KAPALI)≠boşaltma; asıl boşaltma=Idle TTL/Auto-Evict; AMA manuel yüklenen (27B) muaf (#2051) → asıl kaldıraç=Bionic yaşam-döngüsü.
 4. **Veri haftası** (→10-09): policy'ye göre full (run_id çift; yeni iş tipi daima); hafta sonu rapor + mekanizma tartışması.
@@ -21,7 +21,7 @@ Son güncelleme: 2026-10-02 (Oturum 11)
 6. **Ö3**: sonraki Sistem Değerlendirmesinde ana model ~32 tok API örneği → baseline bandı.
 
 ## Beklenen Kararlar (FunkGoth)
-- Aşama 1 testi zamanı (o gözlemleyecek).
+- Aşama 1 attribüsyon: dünki düşüş anında ne yapıyordu? (yukarıdaki soru).
 - **Oto-devir** konusu kapsamı + önceliği (yeni paralel iş).
 - Auto-unload ayarını bulup soracak (cevap bu oturumda hazır: JIT=Auto-Load KAPALI; asıl=Idle TTL/Auto-Evict; ama 27B manuel→muaf #2051→asıl kaldıraç=Bionic).
 - Mimari: **ONAYLI** (Oturum 11 kapanışı, c maddesi).
