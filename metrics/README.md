@@ -15,9 +15,10 @@ Sorumlu: ana agent (kayıt + değerlendirme); FunkGoth raporları okur, aksiyonl
 ## Örnekleme politikası (FunkGoth: random + farklı iş ağırlıkları)
 - **light (her çalıştırmada, sıfır ek maliyet)**: prompt/eval tok + tok/s, süre, load (API yanıt JSON'ından) + kalite puanı + accepted.
 - **full (örnekleme)**: light + çağrının **önce/sonra** capture.ps1 (VRAM dedicated+shared, RAM free/avail/commit, pagefile, GPU util).
-  - Her **yeni iş tipinin ilk** çalıştırması full (farklı iş ağırlıklarını yakala);
-  - sonrası **~1/3 rastgele** (deterministik karşılığı: run_id son iki hâlinin %3==0 → full);
+  - **run <~30s → light varsayılan; full yalnız yeni iş tipinin ilk çalıştırması veya anomali şüphesi** (FunkGoth onaylı Ö1, 2026-10-02 — eval §4: run 04 %14 > %10 eşiği; kısa runlarda full maliyeti %100'ü aşar);
+  - run ≥~30s: her **yeni iş tipinin ilk** çalıştırması full + sonrası **~1/3 rastgele** (deterministik karşılığı: run_id son iki hâlinin %3==0 → full);
   - önceki çalıştırmada `main_model_impact ≠ none` ise sonraki **mutlaka** full;
+  - **Hedef: ≥3 yapılandırılmış full örnek** biriktir (Ö2, onay bekliyor) → etkileşim trend yorumu için.
   - FunkGoth her çalıştırmada light/full açıkça isteyebilir.
 - **Ölçüm maliyeti**: full çalıştırmada capture çağrı süreleri `capture_overhead_s`'e yazılır → maliyet izlenir ve raporlanır.
 

@@ -7,6 +7,7 @@ Son güncelleme: 2026-10-02 (Oturum 7 kapanışı: 3 onaylı madde TAMAM — ski
 - [2026-10-01] Sistem Değerlendirmesi: veri havuzu + günlük öz-değerlendirme → `metrics/` (✅ kurulum + genişletilmiş telemetri: VRAM shared, RAM commit, pagefile; capture.ps1; light/full örnekleme + ölçüm maliyeti takibi; **ilk değerlendirme TAMAM 2026-10-02 — eval-2026-10-02.md, 3 öneri FunkGoth'ya raporlandı**)
 
 ## Bekleyen
+- [2026-10-02] **E:\Bionic\ kök migrasyonu** (Karar kayıtlı, **işlem onayı bekleniyor**): `E:\agent\` + agent'ın tüm çalışma dosyaları → `E:\Bionic\` altına; gerekçe: Ollama/Claude Code gibi harness'lar E:\'de kendi çalışma alanlarını kuracak. B6 (LM Studio global prompt) bu tartışmayla birlikte ele alınacak. Kapsam/harita taslağı: FunkGoth onayıyla.
 > Not (2026-10-01, Oturum 3): T1–T6, FunkGoth'un `E:\Project EmberTale\` kökünde açacağı yeni sohbet içinde işlenecek.
 
 - [2026-10-01] T1 [kullanıcı kararı] 4 doküman: elme yaklaşımı vs satır satır birlikte gözden geçirme.

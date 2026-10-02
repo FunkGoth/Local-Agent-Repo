@@ -72,3 +72,9 @@
 - **Sistem Değerlendirmesi ÇALIŞTIRILDI:** metrics/eval-2026-10-02.md (5 bölüm + 3 öneri). Bulgular: worker eval ~10 tok/s stabil; think:false 11x doğrulandı; etkileşim none (run 04); ana model ≈17 tok/s ilk örnek; **runs.csv şema hatası** (satırlar 16 kolon, header 31 — full verisi notlarda) → run 04 düzeltme satırı + README kuralı.
 - Ana model tok/s: LM Studio log standart konumlarda bulunamadı → API ile 32 tok örneklemesi (≈17 tok/s, thinking ON) — baseline dolduruldu.
 - lessons'a: "fiilen çalışan davranışı kurala dönüştürme" ilkesi + runs.csv 31 kolon dersi. STATE/TASKS/DECISIONS güncellendi. git commit.
+
+## 2026-10-02 — Oturum 8
+- FunkGoth kararları: **Ö1 ONAY + UYGULANDI** (metrics/README örnekleme politikası: run <~30s → light varsayılan; full yalnız yeni iş tipi ilk/anomali şüphesi; ≥~30s'te eski politika; ≥3 full örnek hedefi notu eklendi). Ö2 + Ö3: FunkGoth'a açıklandı (Ö2 = ≥3 yapılandırılmış full örnek biriktir → worker→ana model etkileşim TREND yorumu; Ö3 = her değerlendirmede ~32 tok API örnekleme, wall-time + eval tok/s, baseline bant olarak güncellenir) — onay bekleniyor.
+- **E:\Bionic\ kök migrasyonu kararı KAYDEDİLDİ (işlem bekletiliyor)**: agent hafızası + tüm çalışma dosyaları E:\ kökünden `E:\Bionic\` altına taşınacak; gerekçe: Ollama/Claude Code gibi harness'lar da E:\'de kendi çalışma alanlarını kuracak. B6 (LM Studio global prompt) bu tartışma kapsamına alındı. Kayıtlar: TASKS "Bekleyen" + DECISIONS (en üst) + bu LOG. İşleme başlamadan FunkGoth onayı şart.
+- EmberTale T1–T6: "önce diğer işleri halledelim" → ertelendi (ayrı sohbet, `E:\Project EmberTale\` kökü).
+- lessons'a: ölçüm sistemi ilk gerçek bulgusunu üretti (Ö1) — maliyet takibi gerçek bir denetim döngüsü. git commit.
