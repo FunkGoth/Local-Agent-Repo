@@ -118,3 +118,13 @@
 - **Yeni dosya: `agent/model-hafiza.md`** (tohum: 27b ana / 8b worker sonuçları / 26b aday) — kural: runs.csv=ham, bu dosya=distille; her run + her yeni model işlenir; routing buraya bakar.
 - Kayıtlar: STATE (30 satır, yeni aktif işler + sıradaki adım), TASKS (Aşama 1 testi + L1 boşta boşaltma yeni Aktif işler; kaynak bağımsızlığı satırı v3'e güncellendi), DECISIONS (amaç netleşmesi üst satır), bu LOG. git commit.
 - Beklenen: (a) Aşama 1 testi — FunkGoth hazır olduğunda (o gözlemleyecek); (b) auto-unload ayarı — FunkGoth arıyor; (c) mimari önerisi onayı; (d) veri haftası →10-09; (e) kütüphaneye model geldikçe model-hafiza + benchmark beklenti.
+
+## 2026-10-02 — Oturum 11 (kapanış — devir öncesi)
+- FunkGoth "bunlar olabilir mi?" (JIT + CORS ekran görüntüsü) + dürüst düzeltme: "Auto-Unload değil, **Auto-Load** olarak anladım" (kanıt: yeni sohbette modelin önce yüklenmesi).
+- **KAVRAM DÜZELTMESİ**: Ben "Auto-Unload" derken karıştırmışım. LM Studio'da **JIT loading = Auto-LOAD** (boşken istekle YÜKLEME; FunkGoth'ta **KAPALI**); **asıl boşaltma = Idle TTL + Auto-Evict** (Developer→Server Settings içinde; Behavior panelinde DEĞİL; varsayılan TTL 60 dk); **CORS ilgisiz** (tarayıcı HTTP erişimi).
+- **KRİTİK BULGU (resmi doküman + bug-tracker #2051)**: JIT KAPALI → 27B "manuel yüklenen" model → **manuel yüklenen modeller Auto-Evict/Idle TTL'den muaftır ("manually loaded models stay forever")** → **auto-unload ayarını açsak bile 27B büyük olasılıkla VRAM'den boşalmaz**.
+- **Asıl kaldıraç = Bionic'in model yaşam-döngüsü yönetimi** (kanıt: yeni sohbette modelin önce yüklenmesi + worker başlayınca VRAM 23→2-3 GB) → Aşama 1 testi bu attribüsyonu + reload maliyetini ölçecek.
+- **FunkGoth kararları (a/b/c)**: (a) Aşama 1 testi YAPILACAK ama context doluluğu → **DEVR** (yeni sohbetin ilk işi); (b) auto-unload ayarının yerini **aktif arıyor** + bulduğunu soracak; (c) **GPU zaman paylaşımı döngü mimarisi ONAYLI**.
+- **YENİ PARALEL KONU: "oto-devir"** (auto-devir) → TASKS Aktif'e eklendi; yeni sohbette Aşama 1 testi ile paralel konuşulacak.
+- Kayıtlar: DECISIONS (üst satır), STATE (L1 + sıradaki adım + beklenen kararlar + detay), TASKS (oto-devir + L1 + Aşama 1), cerceve.md (mimari ONAYLI + L1 düzeltmesi + çelişki notu revize + FAZ satırı), bu LOG. git commit.
+- **DEVİR**: yeni sohbet → README → PROTOCOL → STATE → TASKS; ilk iş = Aşama 1 testi (FunkGoth gözlemleyecek) + oto-devir konusu.

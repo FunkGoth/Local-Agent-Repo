@@ -21,9 +21,9 @@ Donanım: Ryzen 7 7800X3D / 32 GB RAM / RTX 3090 24 GB
 3. LM Studio auto-unload: **KAPALI** (gözlemi: işlem yokken VRAM dolu kalıyor, sadece kullanım/fan düşüyor). Ayarın yerine o bakacak.
 4. Boşta boşaltma: **EVET** — boşalan ~23.7 GB VRAM'i devredilen/parçalanan işlerin alt ajanları için kullan.
 
-> Çelişki notu (testte çözülecek): auto-unload kapalıyken worker testinde VRAM'in 2–3 GB'a düşmesi bir boşaltma olayı demek. Tetikleyici kim? (LM Studio VRAM baskı koruması mı, manuel mi, zaman aşımı mı?) → Aşama 1 testi.
+> Çelişki notu (REVİZE — Oturum 11 kapanışı): "auto-unload kapalı" iddiası Auto-Load/Unload karışıklığındandı. Asıl bulgu: 27B **manuel yüklenen → muaf (#2051)** → LM Studio ayarı onu boşaltmaz. Worker başlayınca VRAM 23→2–3 GB düşmesi → tetikleyici büyük olasılıkla **Bionic yaşam-döngüsü** → Aşama 1 testi attribüsyon + reload maliyeti ölçecek.
 
-## Mimari: GPU Zaman Paylaşımı (öneri — onayda)
+## Mimari: GPU Zaman Paylaşımı (ONAYLI — Oturum 11 kapanışı, c maddesi)
 GPU 24 GB = ortak havuz. 27B aktifken yanına kimse sığmıyor (23.6/24 freeze kanıtı, Oturum 4). Ama 27B boşaltılırsa ~22 GB worker'lara açılır.
 Döngü:
 1. **İşleme fazı** — 27B aktif (delege eder, sonucu işler, seninle konuşur) → GPU'da ~23.7 GB.
@@ -53,18 +53,20 @@ Kaynaklar (görev bazlı skor): Chatbot Arena (lmarena.ai), Artificial Analysis 
 Süreç: FunkGoth model indirir → model-hafiza'ya önce benchmark satırı (beklenti) → test işinde sonuç → beklenti vs gerçek karşılaştırması. İlk skor çekimi web ile (hız/VRAM/kalite).
 
 ## Aşama 1 Testi (FunkGoth gözlemleyecek)
-1. **Boşta baz**: nvidia-smi → VRAM dolu (27B yüklü) + GPU kullanım düşük. (auto-unload kapalı iddiasının teyidi)
+1. **Boşta baz**: nvidia-smi → VRAM dolu (27B yüklü) + GPU kullanım düşük. (27B'nin manuel yüklenen/muaf olduğunu teyit et)
 2. **Worker başlat**: bilinen iş (T7 tarzı özet, ~1–2 dk); FunkGoth Task Manager'da GPU BELLEK + KULLANIM'ı izler; ben zaman damgası + LM Studio `/v1/models` durumu kaydeder. → VRAM düşüşünün tetikleyicisi + anı.
 3. **Uyanma maliyeti**: worker bitince hemen 27B'ye istek → ilk token'a kadar süre = reload maliyeti (boşta-boşaltma kararının bedeli).
-Sonuç: attribüsyon kapanır + L1'in bedeli ölçülür.
+Sonuç: attribüsyon kapanır (BIONIC mi LM STUDIO mu 27B'yi boşaltıyor?) + L1'in bedeli (reload) ölçülür.
 
 ## L1 Boşta Boşaltma (ONAYLI — uygulama)
 - FunkGoth: EVET (4. cevap). Boşalan VRAM → worker'lara.
-- Adımlar: (a) LM Studio auto-unload ayarını aç + timeout (FunkGoth ayarın yerini buluyor); (b) Aşama 1 testi → reload maliyeti; (c) maliyet kabul edilebilirse PROTOCOL'e "boşta faz" kuralı + worker GPU opsiyonu.
-- Not: worker testinde VRAM zaten düşmüştü → bir boşaltma tetikleyicisi var; testte kimin tetiklediğini bul.
+- ⚠️ **KAVRAM DÜZELTMESİ (Oturum 11 kapanışı)**: "Auto-Unload" derken karıştırdık. LM Studio'da **JIT loading = Auto-LOAD** (boşken istekle YÜKLEME; FunkGoth'ta **KAPALI**) — bu, boşaltma DEĞİL. **Asıl boşaltma = Idle TTL + Auto-Evict** (Developer→Server Settings içinde; Behavior panelinde DEĞİL; varsayılan TTL 60 dk). **CORS ilgisiz.**
+- **KRİTİK (resmi doküman + bug-tracker #2051)**: JIT KAPALI → 27B "manuel yüklenen" → **manuel yüklenen modeller Auto-Evict/Idle TTL'den muaftır ("stay forever")** → **ayar açılsa bile 27B büyük olasılıkla boşalmaz**.
+- **Asıl kaldıraç = Bionic'in model yaşam-döngüsü yönetimi** (kanıt: yeni sohbette modelin önce yüklenmesi + worker başlayınca VRAM 23→2-3 GB).
+- Adımlar: (a) Aşama 1 testi → attribüsyon (Bionic mi LM Studio mu) + reload maliyeti; (b) FunkGoth auto-unload ayarını arıyor+soracak; (c) maliyet kabul edilebilirse PROTOCOL'e "boşta faz" kuralı + worker GPU opsiyonu.
 
 ## FAZ Planı (v3)
-- **FAZ 1 (çerçeve)**: ✅ v3 — amaç onaylı; mimari/hafıza/test planı taslak (onayda).
+- **FAZ 1 (çerçeve)**: ✅ v3 — amaç onaylı; **mimari ONAYLI (Oturum 11 kapanışı)**; hafıza/test planı hazır.
 - **FAZ 1.5 (bu hafta)**: (1) Aşama 1 testi (attribution + reload maliyeti); (2) auto-unload aç; (3) model-hafiza.md tohum (✅ bu oturum); (4) veri toplama haftası (→10-09) devam.
 - **FAZ 2 (10-09 sonrası)**: veri raporu + iş tipi haritası + **paralel kapasite ölçümü (2×GPU worker denemesi)** + FAZ 2 raporu + benchmark ön bilgi derlemesi.
 - **FAZ 3 (ileride)**: paralel ajan yönetimi mekanizması (self-wake, sonuç toplama, işlenmiş veri akışı) — kütüphane + offload oturduktan sonra.
