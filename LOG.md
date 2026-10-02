@@ -198,3 +198,8 @@
 - **FUNKGOTH NOTU**: "Çalışma metodumuzla ilgili testler için data toplanmaya devam etmesini istiyorum. Metodun verimliliği hala teste tabi." → full veri haftası (→10-09) + FAZ 2 raporu ile teyit; yeni eylem gerekmez.
 - Kayıtlar: yukarıdaki 6 dosya + bu LOG; git commit.
 - **DEVİR (FunkGoth: "devir yapalım")**: hafıza güncel + commit `f4f1342` atıldı. Açık karar YOK; sıradaki = full veri haftası (→10-09, doğal akış) + FAZ 2 raporu (10-09 sonrası). Yeni sohbet → README → PROTOCOL → STATE → TASKS.
+
+## 2026-10-02 — Oturum 17
+- Yeni sohbet açıldı (devir zinciri: README → PROTOCOL → STATE → TASKS); hafıza okundu, git temiz (son commit `e7ee816`).
+- Durum teyidi: açık karar YOK; full veri haftası (10-02→10-09) DOĞAL AKIŞTA — worker çalıştırması olduğunda ~%50 full örnekleme (run_id çift → full; hedef ≥3), hafta sonu rapor. FAZ 2 raporu 10-09 sonrası.
+- Sıradaki eylem: FunkGoth'un isteğine göre iş; yoksa full veri haftası için delegasyon işi beklenir (her run → runs.csv + full capture).

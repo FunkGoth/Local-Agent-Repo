@@ -1,4 +1,4 @@
-# STATE — Anlık Durum (2026-10-02, Oturum 16 — 317.7s anomali ✅ KANITLI; **Mod B ✅ (b) ONAYLI**; sıradaki = full veri haftası →10-09)
+# STATE — Anlık Durum (2026-10-02, Oturum 17 — devir zinciri OK; açık karar YOK; **sıradaki = full veri haftası →10-09 (doğal akış)** + FAZ 2 raporu (10-09 sonrası))
 
 ## Aktif İş
 | İş | Klasör | Durum |
@@ -12,7 +12,7 @@
 | Delegation Worker B | PROTOCOL + delegation/ | ✅ operasyonel; runs.csv 12 kayıt |
 | EmberTale T1–T6 | Project EmberTale/ | 🕐 ayrı sohbet |
 
-## Sıradaki Adım (Oturum 16)
+## Sıradaki Adım (Oturum 17)
 1. **Full veri haftası →10-09** (doğal akış: ~%50 full, hedef ≥3; hafta sonu rapor) — FunkGoth: metodun verimliliği hâlâ teste tabi.
 2. FAZ 2 raporu (10-09 sonrası): paralel kapasite + iş tipi haritası + routing → Mod B metodunun verimliliği verilerle teyit edilecek.
 3. Ö3 devam (ana model hız ölçümü).
