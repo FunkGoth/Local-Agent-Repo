@@ -1,4 +1,4 @@
-# STATE — Anlık Durum (2026-10-02, Oturum 20 — nihai karar oturumu TAMAM + **DEVR HAZIR** (veriler commit `1b5480b`); sıradaki oturum: context optimizasyonuna DEVAM — **10-09 gözden geçirme** (K verisi + FAZ 2 + Ö3))
+# STATE — Anlık Durum (2026-10-02, Oturum 21 — context optimizasyonu DEVAM: **10-09 hazırlık denetimi ✅** work/2026-10-02-context-devami/hazirlik-1009.md; veri **50 nokta** (K9 kriteri tam); sıradaki = 10-09 gözden geçirme)
 
 ## Aktif İş
 | İş | Klasör | Durum |
@@ -6,11 +6,12 @@
 | Nihai karar oturumu (O20) | work/2026-10-02-nihai-karar-oturumu/ | ✅ BİTTİ (tam yetki): rapor 76 satır; PROTOCOL 92 satır; handbook.md 49 (yeni); K1–K9 nihai (KAL×6 · DÜZELT K6/K9 · K8→K9) |
 | Kaynak bağımsızlığı + model geçişi | work/2026-10-02-… + model-hafiza.md | 🔄 FAZ 1 v3 ONAYLI (27B ana KALIYOR); FAZ 2 →10-09 sonrası |
 | K1–K9 context ekonomisi | metrics/ + PROTOCOL | ✅ KAPANDI (O20, erken): kararlar nihai; 10-09 = gözden geçirme noktası |
+| O21 10-09 hazırlık denetimi | work/2026-10-02-context-devami/ | ✅ BİTTİ: denetim + boşluk listesi + yürütme sırası; ledger **28** (26 değil — denetim bulgusu) |
 | Delegation Worker B | PROTOCOL + delegation/ | ✅ operasyonel; runs.csv 12 kayıt; Mod A CPU (varsayılan) + Mod B GPU (break-even ≈200–250 tok) |
 | EmberTale T1–T6 | Project EmberTale/ | 🕐 ayrı sohbet (FunkGoth kök `E:\Bionic\Project EmberTale\` ile açacak) |
 
 ## Sıradaki Adım
-1. **10-09 gözden geçirme**: K verileri kriterlerle yeniden kontrol (context-benchmark.md arşiv + snapshots/ledger/runs.csv) + **FAZ 2 raporu** (paralel kapasite, iş tipi haritası, routing teyidi) + **Ö3** (ana model hızı yeniden örnekleme → baseline.md bant).
+1. **10-09 gözden geçirme**: K verileri kriterlerle yeniden kontrol (context-benchmark.md arşiv + snapshots/ledger/runs.csv) + **FAZ 2 raporu** (paralel kapasite, iş tipi haritası, routing teyidi) + **Ö3** (ana model hızı yeniden örnekleme → baseline.md bant). Hazırlık: work/2026-10-02-context-devami/hazirlik-1009.md (boşluklar: kullanıcı compaction sayıları, FAZ 2 unattended ölçüm, Ö3, routing boşluğu).
 2. Ö3 her Sistem Değerlendirmede (ana model ~32 tok API örneği → baseline.md).
 3. Sub-agent entegrasyon çalışması (zaman: FunkGoth'un kararı — muhtemelen 10-09 sonrası).
 4. EmberTale T1–T6: AYRI sohbet (FunkGoth açacak; karıştırma).
@@ -18,6 +19,7 @@
 ## Beklenen Kararlar / Onaylar (FunkGoth)
 - **Nihai K kararları UYGULANDI (tam yetki, O20 onayı)** — FunkGoth revize edebilir; 10-09 = gözden geçirme noktası (yeni karar turu değil).
 - Mimari ONAYLI: GPU=1 kiracı; **Mod A** = interaktif (27B resident + workers CPU, sıfır geçiş), **Mod B** = unattended paralel batch (evict→`lms unload`→2×GPU→JIT ~17s).
+- **YENİ (O21)**: compaction sayıları O19–O21 = FunkGoth girer (agent sayamaz — K6 sınırlılığı) → K2 kriterinin eksik yarısı.
 
 ## Detay
 - **K2c (yeni, O20)**: append-only CSV → shell `>>` (edit_file DEĞİL) — sıfır yansıma (kanıt: edit ~400–600 tok/tur yansıtıyordu).

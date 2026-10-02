@@ -8,3 +8,4 @@ ts_iso,session,task,ctx_start,ctx_end,delta,deg,note
 2026-10-02T22:15+03:00,O20,boot + "devam edelim",,19074,,0,ilk snapshot O20 (yeni oturum); boot okumalari (README/PROTOCOL/STATE/TASKS) dahil ~19k; deg=0 (K1 sinyali yok)
 2026-10-02T22:19+03:00,O20,niha karar oturumu — sorun/beklenti teyidi,19074,28552,9478,0,O20 2. snapshot; delta = kullanicu promptu + durum ozeti + snapshot altyapisi; deg=0
 2026-10-02T23:15+03:00,O20,nihai karar oturumu — kararlar + dosya uygulamalari,28552,42032,13480,0,nihai karar turu: rapor+PROTOCOL distille+handbook+defter; shell-append (K2c) ilk kullanimi
+2026-10-02T23:24+03:00,5eb12d70,context optimizasyonu devam (O21),,25907,,0,O21 ilk snapshot; boot okumalari + K6 altyapisi; deg=0

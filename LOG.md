@@ -239,3 +239,9 @@
 - **PROTOCOL distille 101→92 satır** + **handbook.md YENİ** (49 satır, boot'ta okunmaz → ~2–3k tok/oturum tasarruf): delegation runtime tablosu + Mod B prosedürü + hız tablosu + değerlendirme detayı + K deney arşivi + Bionic/LM Studio gerçekleri.
 - **UYGULANAN (12 adımlık planın 10'u bu blokta)**: rapor `work/2026-10-02-nihai-karar-oturumu/rapor.md` (76) · PROTOCOL (92) · handbook.md (49) · DECISIONS (+1 O20) · TASKS (K1–K9 + nihai karar → Arşiv; 10-09 gözden geçirme → Aktif) · STATE (O20 rewrite) · lessons (+2) · context-benchmark.md (DURUM: KAPANDI) · snapshots.csv + ledger.csv (shell `>>` — K2c'nin ilk kullanımı) · git commit.
 - **DEVR (FunkGoth isteği)**: verilerin kaydı TAMAM (commit `1b5480b`, git clean) — snapshots 9 satır + ledger 28 olay + runs 12 + baseline/eval/benchmark (ARŞİV) + rapor; sıradaki oturum = **context optimizasyonuna devam (10-09 gözden geçirme)**; devir mesajı TAM YOL ile (O19 dersi).
+
+## Oturum 21 — 2026-10-02 (context optimizasyonu DEVAM — 10-09 hazırlık)
+- FunkGoth: "Context optimizasyonuna devam et" (10-09 review planlı; bu oturum = veri toplama + denetim + hazırlık).
+- K6: 25.9k snapshot (shell >> — K2c). 10-09 hazırlık denetimi: work/2026-10-02-context-devami/hazirlik-1009.md — veri **50 nokta** (snap 10 + ledger 28 + runs 12) = K9 kriteri DOĞRUDAN TAM; deg 2 GERÇEK (O18/O19); K kriterleri anlık kontrol (beklenti 9/9 KAL — 10-09'da yeniden sayım); boşluklar: kullanıcı compaction sayıları, FAZ 2 ölçümü (unattended), Ö3 yeniden örnekleme, routing boşluğu.
+- Denetim bulgusu: STATE "ledger 26" → gerçek **28** (O20 gec kayıtları) — STATE düzeltildi.
+- Git: bu tur sonrası commit.

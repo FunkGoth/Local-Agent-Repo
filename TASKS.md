@@ -1,8 +1,8 @@
 # TASKS — Sıra
-Son güncelleme: 2026-10-02 (Oturum 20 — nihai karar oturumu: K1–K9 erken kapatıldı + kararlar uygulandı; rapor `work/2026-10-02-nihai-karar-oturumu/rapor.md`)
+Son güncelleme: 2026-10-02 (Oturum 21 — context optimizasyonu devam: 10-09 hazırlık denetimi `work/2026-10-02-context-devami/hazirlik-1009.md`; veri 50 nokta = K9 kriteri tam)
 
 ## Aktif
-- [2026-10-02] **10-09 gözden geçirme** (O20'de planlandı): K verileri kriterlerle yeniden kontrol (`metrics/context-benchmark.md` arşiv + snapshots/ledger/runs.csv) + **FAZ 2 raporu** (paralel kapasite, iş tipi haritası, routing teyidi) + **Ö3** (ana model hızı yeniden örnekleme → `metrics/baseline.md` bant). → `metrics/`
+- [2026-10-02] **10-09 gözden geçirme** (O20'de planlandı): K verileri kriterlerle yeniden kontrol (`metrics/context-benchmark.md` arşiv + snapshots/ledger/runs.csv) + **FAZ 2 raporu** (paralel kapasite, iş tipi haritası, routing teyidi) + **Ö3** (ana model hızı yeniden örnekleme → `metrics/baseline.md` bant). · hazırlık denetimi hazır (O21: 50 veri noktası, K kriterleri anlık kontrol, boşluk listesi, yürütme sırası) → `metrics/`
 - [2026-10-02] **Kaynak bağımsızlığı + model geçişi yeteneği** (AMAÇ ONAYLI — Oturum 11): 27B ana model KALIYOR. FAZ 1 (çerçeve) ✅ v3 + FAZ 1.5 (Aşama 1 ✅, L1 ✅) tamam. **FAZ 2 (→10-09 sonrası)**: paralel kapasite ölçümü (2×GPU worker) + rapor (iş tipi haritası, routing, paralel kapasite, iş-başı öngörü). **FAZ 3**: paralel ajan yönetimi. **Sub-agent entegrasyon çalışması (FunkGoth hatırlatma, Oturum 18)**: context-paralel teknikler + görev öncesi tahmin + iş→agent/model routing haritası (veri: runs.csv; BOŞLUK: 27B'de kendim yaptığım işler kayıtta yok). → `metrics/` + `delegation/` + `work/2026-10-02-kaynak-bagimsizligi-cercevesi/`
 
 ## Bekleyen
