@@ -30,6 +30,7 @@ Agent burada özerk yazar; kullanıcı her an okuyup müdahale edebilir.
 - Öğren: hata yaptıysan veya işe yarayan bir yöntem bulduysan lessons.md'ye bir satır ekle.
 - Ölç: her ~10 tool çağrısında kendine sor: "Tekrar ediyor muyum, talimatları unutuyor muyum, dosyalar çok mu okundu?" Evetse devir yap.
 - Kapanış: iş bitince iş state.md'sine "TAMAM" yaz, TASKS.md Arşiv'e tek satır taşı; 30+ dosyaya ulaşan işi alt klasöre böl.
+- **Arama kökü (O19, 2026-10-02)**: kullanıcı mesajında adı geçen disk yolu = BİRİNCİL arama kökü (gerekirse önce erişim izni iste); orada yoksa kapsamı genişlet + LOG'a neden. Varsayılan workspace/home sapması bu kuralın altındadır.
 - Okuma bütçesi: aynı oturumda okuduğun dosyayı yeniden okuma; önce STATE.md, sonra yalnızca gerekli parça.
 - Scratch: yalnızca geçici dosyalar; iş kapanışında "temizlenebilir mi?" sorusu + kullanıcı onayıyla silinir.
 - Global dosya bütçesi: PROTOCOL+STATE+TASKS+DECISIONS+LOG+lessons toplamı ~300 satırı geçmesin; taşarsa detayı ilgili work/ iş dosyasına it.
@@ -38,7 +39,7 @@ Agent burada özerk yazar; kullanıcı her an okuyup müdahale edebilir.
 ## Devir
 - STATE.md'yi eksiksiz güncelle (durum, sıradaki adım, açık sorular).
 - STATE'e "Beklenen Kararlar" satırlarını ekle — devir bu satırlar üzerinden kendiliğinden gerçekleşir (2026-10-01 devir testi doğruladı).
-- "Yeni sohbet aç: PROTOCOL.md'yi oku ve devam et" yaz ve dur.
+- "Yeni sohbet aç: E:\Bionic\agent\PROTOCOL.md'yi oku ve devam et" yaz ve dur. (**TAM YOL** — O19, 2026-10-02: yol'suz isim sıfır-context yeni oturumda çapasız arama göreviydi)
 
 ## Delegation (context havuzu yönetimi) — 2026-10-01
 - Ana agent = yönetici sohbet (bu tip); ağır okuma/taslak/özet/çıkarım worker agent'lara delege edilir (ayrı context havuzları).
@@ -90,7 +91,7 @@ FunkGoth onaylı (Oturum 18). Süreli deney: veri (metrics/context-benchmark.md 
 ## Protokol Değişiklikleri
 > Geçmiş: LOG.md ("Protokol" ara) — her değişiklik gerekçesiyle LOG'da kayıtlıdır (Sabit Kural). Bu bölüm yalnız yapısal özet.
 - 2026-10-01 (O4): Çalışma Döngüsü 5 kural + STATE 4 bölüm + Devir "beklenen karar" · (O4) Çoklu Proje İskeleti + README giriş noktası · (O4) Delegation + VRAM kuralı + brief/result + runtime A/B/C · (O5) worker8b CPU-only kurulumu · (O5) Sistem Değerlendirmesi + otonom sub-agent yetkisi · (O5) light/full örnekleme + capture_overhead_s · (O6) `think:false` varsayılanı (~11x maliyet kanıtı)
-- 2026-10-02 (O16): Mod B kuralı (önce unload; reload öncesi daima evict — 317.7s vs 17.44s kanıtı) · (O18) K1–K7 + context-benchmark.md (süreli deney →10-09) · (O8) Kök migrasyonu → `E:\Bionic\` · (O18) LOG=arşiv kuralı + Protokol Değişiklikleri'nin budanması · (O18) K9 context defteri + K8=echo_bytes + batch edit (K2 alt-kuralı) + K1 "kullanıcı düzeltme" sinyali (2026-10-02 onay)
+- 2026-10-02 (O16): Mod B kuralı (önce unload; reload öncesi daima evict — 317.7s vs 17.44s kanıtı) · (O18) K1–K7 + context-benchmark.md (süreli deney →10-09) · (O8) Kök migrasyonu → `E:\Bionic\` · (O18) LOG=arşiv kuralı + Protokol Değişiklikleri'nin budanması · (O18) K9 context defteri + K8=echo_bytes + batch edit (K2 alt-kuralı) + K1 "kullanıcı düzeltme" sinyali (2026-10-02 onay) · (O19) Devir şablonu TAM YOL + Arama kökü kuralı (boot kapsam hatası analizi; öneri 3 = README boot'a ek RED)
 
 ## Proje Haritası (EmberTale)
 - Proje kökü: E:\Bionic\Project EmberTale\
