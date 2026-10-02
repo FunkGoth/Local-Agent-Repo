@@ -2,6 +2,8 @@
 Son güncelleme: 2026-10-02 (Oturum 7 kapanışı: 3 onaylı madde TAMAM — skill çerçeveleme, B4 silme, ilk Sistem Değerlendirmesi)
 
 ## Aktif
+- [2026-10-02] **Full veri toplama haftası** (Ö2 genişletilmiş, ONAYLI): 2026-10-09'a kadar worker run'larında full örnekleme rastgele yoğun (~%50, run_id çift → full; yeni iş tipi daima full; hedef ≥3). Hafta sonu: veri raporu + ölçüm mekanizması optimizasyon tartışması. → `metrics/`
+- [2026-10-02] **Kaynak bağımsızlığı + model geçişi yeteneği** (ONAYLI hedef, veri haftasına bağlı): iş tipi → kaynak/süre/kalite haritasını runs.csv'den çıkar; raporla (a) küçük modele geçiş önerisi, (b) paralel sub-agent kapasitesi, (c) iş-başı KAYNAK ÖNGÖRÜSÜ raporu (kullanıcının kalan kaynağı planlayabileceği biçimde). → `metrics/` + `delegation/`
 - [2026-10-02] **E:\Bionic\ kök migrasyonu** (ONAYLI): taşıma TAMAM (agent, Project EmberTale, Project Tale, README → `E:\Bionic\`); **kalan: yol referans güncelleme + git commit + Ö2/Ö3 açıklaması + B6 prompt önerisi**. Gerekçe: Ollama/Claude Code gibi harness'lar E:\'de kendi alanlarını kuracak.
 - [2026-10-01] T7 Agent iyileştirme analizi: hafıza yönetimi + Bionic ayar/donanım taraması + model optimizasyonu → `work/2026-10-01-agent-iyilestirme-analizi/` (✅ rapor + B1–B6 kapalı; B4 TAMAM 2026-10-02; kalan: B6 manuel)
 - [2026-10-01] Delegation Worker B: kurulum + ilk brief→result denemesi → `delegation/` (✅ worker8b CPU'da doğrulandı; T7 raporu incelemesi yapıldı; **Oturum 6: uçtan uca doğrulama PASS — CPU-only, hız, kalite; `think:false` varsayılan kabul edildi**)
