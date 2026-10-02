@@ -91,3 +91,7 @@
 
 ## 2026-10-02 — Oturum 9 (devam 2)
 - **Ö3 ONAY + B6 TAMAM**: FunkGoth Ö3'ü onayladı (her değerlendirmede ana model ~32 tok API ölçümü → baseline bandı) + B6 prompt'unu LM Studio'ya kendisi yazdı (tek satır) → kapanış. Kayıtlar: DECISIONS üst satır, STATE (bekleyen kararlar boş), TASKS (B6 TAMAM), metrics/README (Ö3 uygulaması maddesi), bu LOG. FunkGoth'a API/agentik çalışma eğitimi verildi (LLM sunucusu = HTTP servisi, OpenAI-uyumlu uç nokta, JSON istek/yanıt, token sayaçları, agentic döngü).
+
+## 2026-10-02 — Oturum 9 (kapanış)
+- **Toplama haftası BAŞLADI (doğal akış — FunkGoth seçimi A)**: tohum run'ı yok; 2026-10-09'a kadar gelen her worker run'ında metrics/README politikası geçerli (run_id çift → full; yeni iş tipi daima full; hedef ≥3). Hafta sonu: verimlilik raporu + mekanizma optimizasyon tartışması + kaynak haritası taslağı (model geçişi / paralel sub-agent / kaynak öngörüsü).
+- Bekleyen karar: YOK. Bekleyen iş: EmberTale T1–T6 (ayrı sohbet, `E:\Bionic\Project EmberTale\` kökü). Devir talimatı: yeni sohbet → README → PROTOCOL → STATE; sıradaki adım 1 (toplama haftası yürütme).

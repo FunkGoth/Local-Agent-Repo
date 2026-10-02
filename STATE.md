@@ -13,10 +13,9 @@ Son güncelleme: 2026-10-02 (Oturum 9 devam)
 | EmberTale T1–T6 | E:\Bionic\Project EmberTale\ | 🕐 ayrı sohbette (önce diğer işler — FunkGoth) |
 
 ## Sıradaki Adım
-1. **Ö3 ve B6 kararları FunkGoth'tan hâlâ ALINMADI → sormak.**
-2. Veri toplama haftası (2026-10-09'a): her worker run'ında policy'ye göre full (~%50, run_id çift); hafta sonu verimlilik raporu + mekanizma tartışması.
-3. Ö3 uygulaması: sonraki Sistem Değerlendirmesinde ana model ~32 tok API ölçümü → baseline bandı.
-4. EmberTale T1–T6: `E:\Bionic\Project EmberTale\` kökünde ayrı sohbet (FunkGoth: önce diğer işler).
+1. Veri toplama haftası (2026-10-02 → 10-09, BAŞLADI — doğal akış): gelen her worker run'ında policy'ye göre full (~%50, run_id çift; yeni iş tipi daima full); hafta sonu verimlilik raporu + mekanizma tartışması. Tohum run'ı yok (FunkGoth: A — doğal akış).
+2. Ö3 uygulaması: sonraki Sistem Değerlendirmesinde ana model ~32 tok API ölçümü → baseline bandı.
+3. EmberTale T1–T6: `E:\Bionic\Project EmberTale\` kökünde ayrı sohbet (FunkGoth: önce diğer işler).
 
 ## Bekleyen Kararlar (FunkGoth)
 - YOK — Ö3 ONAY (2026-10-02), B6 TAMAM (kullanıcı prompt'u uyguladı). Kalan: worker B operasyonel; B2 RED · B3 geri çekildi · B5 8192 (kapalı).
