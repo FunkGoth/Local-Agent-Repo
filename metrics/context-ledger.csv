@@ -9,3 +9,10 @@ ts_iso,session,dosya,islem,okunan_satir,toplam_satir,bytes,tok_tahmini,kural,ger
 2026-10-02T20:31+03:00,s8,TASKS.md,edit,33,33,~9200,~2500 (tam dosya yansima),K2-batch OK (tek coklu-edit),K1-K9 birlesme + nihai karar oturumu satiri
 2026-10-02T20:31+03:00,s8,STATE.md,edit,30,30,~1100,~300 (tek coklu-edit),K2-batch OK (tek coklu-edit),K1-K9 + nihai karar + bütçe/LOG tutarlik notu
 2026-10-02T21:25+03:00,s8,context-snapshots.csv,edit,5,5,~1400,~400 (pencere),-,K6 4. snapshot (32612) + self-audit bu satiri
+2026-10-02T21:35+03:00,s9,PROTOCOL.md,read,120,120,~15000,~4000,boot,oturum baslangici (PROTOCOL→STATE→TASKS)
+2026-10-02T21:36+03:00,s9,STATE.md,read,30,30,~1400,~350,boot,-
+2026-10-02T21:36+03:00,s9,TASKS.md,read,33,33,~9200,~2300,boot,-
+2026-10-02T21:50+03:00,s9,STATE.md,edit,~1,30,~300,~300 (pencere),-,baslik→Oturum 19 + devir-sablonu onerisi
+2026-10-02T21:50+03:00,s9,LOG.md,edit,~7,226+,~900,~300 (pencere),-,Oturum 19 boot hatasi analizi
+2026-10-02T21:50+03:00,s9,lessons.md,edit,~1,19,~500,~200 (pencere),-,boot kapsam hatasi dersi
+2026-10-02T21:50+03:00,s9,context-snapshots.csv,edit,~1,6,~500,~250 (pencere),-,K6 O19 snapshot (deg=1)
