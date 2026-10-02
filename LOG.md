@@ -166,3 +166,14 @@
 - Hafıza güncellendi (STATE/TASKS/LOG); commit atıldı.
 - **SIRADAKİ**: FunkGoth GO ile **2 W1 warm teyidi** (worker8b GPU cold 18.5 → warm ~100 tok/s, ~5 dk), ardından **1 317.7s anomali tartışması** (disk elendi).
 - **DEVİR (FunkGoth: "oturum devir yapıyoruz")**: hafıza güncel + commit atıldı; yeni sohbet → README → PROTOCOL → STATE → TASKS; ilk iş = **2 W1 warm teyidi** (ONAYLI, GO bekleniyor) → ardından **1 317.7s anomali tartışması**.
+
+## 2026-10-02 — Oturum 15 (W1 warm teyidi BİTTİ)
+- FunkGoth "Kaldığımız yerden devam edelim" → **GO kabul edildi**, W1 warm teyidi başlatıldı (Oturum 14'te ONAYLI'dı).
+- **1. çalıştırma HATALI BİTTİ**: test scripti'nde `Set-Content -Value` iki kez kullanılmış → parametre hatası; script en başta durdu, adım uygulanmadı, 27B boşaltılmadı (risk gerçekleşmedi). Hata düzeltildi.
+- **2. çalıştırma TAMAM** (`scratchpads/41/w1warm-results.txt`): baseline 23332 → `lms unload` → **1330 MiB** → Ollama boş (worker evict'li başlangıç) →
+  - **R1 (cold, fresh load)**: load **4.12s** + eval 160 tok / 1.55s = **103.2 tok/s** (wall 6.06s).
+  - **R2 (warm — HEDEF)**: 160 tok / 1.48s = **108.1 tok/s** (wall 1.87s). **KARAR: warm ~100 tok/s TEYİT EDİLDİ** (L1-B W2 101.9 ile uyumlu; CPU 10.7'nin ~10×).
+  - **YENİ BULGU**: L1-B W1 18.5 tok/s'in asıl nedeni cold-decode DEĞİL, **paralel kuyruk artifact'i** — sıralı çalıştırmada fresh cold bile 103.2 tok/s. (runs.csv 02 satırı notu bu yönde güncellenebilir.)
+- **KAPATMA (2 hata, çözüldü)**: (1) JIT reload 1. deneme **http=415** — `curl -d @file` varsayılan form content-type; `-H "Content-Type: application/json"` ile http=200. (2) Reload sırasında worker8b hâlâ VRAM'deydi → `keep_alive:0` ile evict (size_vram→0, CPU'ya) + 27B geri; **final 22800/24576 MiB, oturum ayakta**.
+- Kayıtlar: runs.csv +2 satır (2026-10-02-04 full / 05 light — çift→full kuralı), STATE (30 satır), TASKS (W1 satırları ✅), bu LOG; git commit.
+- **SIRADAKİ**: **1 317.7s JIT reload anomali tartışması** (disk elendi; kalan hipotezler: VRAM çakışması / istek→ilk-token wall-time / CPU-RAM thrashing) + **Mod B eşiği kararı** (~4300 output tok/batch) hâlâ FunkGoth'ta açık.
