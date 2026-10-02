@@ -185,3 +185,12 @@
 - Anomali analizi netleştirildi (disk-testi.md + runs.csv 02/04/05): disk elendi (C: 3.6 GB/s → 4.5s); güçlü hipotez **VRAM çakışması** — L1-B reload sırasında worker8b `size_vram=6.3 GB`'da oturuyordu (Ollama /api/ps kanıtı) → 6.3+23 > 24 GB → 27B kısmi CPU offload → ilk-token wall-time şişmesi. W1 warm teyidi (15) ayrıca W1 18.5'i kuyruk artifact'i olarak açıkladı (sıralı cold 103.2).
 - Doğrulama testi önerisi tekrar FunkGoth'a (VRAM tamamen boşken clean timed reload) + Mod B eşiği kararı (≈4300 output tok/batch; a/b/c seçenekleri). GO + karar bekleniyor.
 - Kayıtlar: STATE (Oturum 16, 30 satır), TASKS (anomali satırı güncel + Mod B eşiği yeni Aktif satır), bu LOG; git commit.
+- **317.7s ANOMALİ DOĞRULAMA TESTİ ÇALIŞTIRILDI (FunkGoth: "Testi yapman için izin veriyorum" = GO)** — sıralama: worker evict → 27B unload → VRAM teyidi → timed JIT reload:
+  - [1] Baz: VRAM **23067/24576 MiB** (27B resident).
+  - [2] worker8b evict (`keep_alive:0`): Ollama `done_reason: unload`, /api/ps boş ✓.
+  - [3] `lms unload`: 27B boşaldı → VRAM **1038–1404 MiB** (tamamen boş).
+  - [4] 1. deneme `POST /api/v1/chat/completions` → **http=404** "Unexpected endpoint" — AMA JIT load yine tetiklendi (async, VRAM 23372).
+  - [5] 2. deneme (temiz) `POST /api/v0/chat/completions` (JSON Content-Type) → **http=200, time_total=17.44s** (tümü ilk-byte'a kadar; eval 16 tok ihmal), final VRAM **23368 MiB**, **oturum ayakta** (5. unload+reload; hiç kırılmadı).
+  - **SONUÇ: VRAM ÇAKIŞMASI HİPOTEZİ KANITLI** — 317.7s (worker 6.3 GB VRAM'deyken) → 17.44s (VRAM boş). **Mod B'nin gerçek geçiş maliyeti ≈17–20s** → break-even ≈4300'den ≈**200–250 output tok/batch**'a düştü. Kural adayı: "reload öncesi daima worker evict".
+- Kayıtlar: runs.csv 06 (31 kolon), STATE (29 satır), TASKS (anomali ✅ KANITLI + Mod B eşiği YENİ sayı), lessons (+1), cerceve.md (Durum), bu LOG; git commit.
+- **SIRADAKİ**: FunkGoth'a rapor + **Mod B eşiği kararı (YENİ break-even ≈200–250 tok; a/b/c)** + "reload öncesi worker evict" kuralı onayı.
