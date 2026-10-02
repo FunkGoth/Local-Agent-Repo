@@ -1,4 +1,4 @@
-# Sistem Baseline (2026-10-01 ölçüldü)
+# Sistem Baseline (2026-10-01 ölçüldü; son değerlendirme 2026-10-02 — eval-2026-10-02.md)
 "Sistemin normalde nasıl" referansı — her Sistem Değerlendirmesinde yeniden örneklenir, fark varsa açıklanır.
 
 | Metrik | Değer | Not |
@@ -13,8 +13,8 @@
 | Ölçüm aracı | capture.ps1 ≈2 sn/çağrı | light çalıştırma = sıfır ek maliyet; full = 2 çağrı ≈4 sn |
 | RAM | 31.1 GB toplam / 12.8 GB boş | worker8b ≈ 6.7 GB resident → rahat sığar |
 | Worker prefill | ~63 tok/s | run 2026-10-01-02 (7800X3D) |
-| Worker eval | ~7.1 tok/s | run 2026-10-01-02; DDR5 bant genişliği tavanına yakın → thread/ayarla anlamlı iyileşme yok |
-| Ana model (27B) tok/s | (ilk örneklenmede dolacak) | LM Studio server log'dan; salt okunur |
+| Worker eval | ~7–10.4 tok/s | run 02: 7.1 (thinking ON, 585 tok); runs 03–05: 10.2–10.4; DDR5 tavanına yakın → thread/ayarla anlamlı iyileşme yok |
+| Ana model (27B) tok/s | ≈17 tok/s (ilk örnek, 2026-10-02) | 32 tok API örneği (wall-time, ~460 tok prefill dahil; thinking ON, 32/32 reasoning; MTP draft 38/kabul 17). LM Studio log yolu standart konumlarda yok → API örneklemesi; her değerlendirmede yeniden örneklenecek |
 
 ## Kaynak dağılımı (attribution) — 2026-10-01, top_proc.ps1 ile 2 örneklem
 | Yığın | RAM | GPU | Not |

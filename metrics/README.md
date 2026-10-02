@@ -30,6 +30,7 @@ Sorumlu: ana agent (kayıt + değerlendirme); FunkGoth raporları okur, aksiyonl
 2. **full**: çağrı **önce** capture.ps1 (JSON'ı sakla) → çağrı → **sonra** capture.ps1 (JSON'ı sakla) → diff'ler CSV'ye.
 3. **Kalite**: ana agent result'ı doğrular → `quality_verdict` + `accepted`.
 4. runs.csv'ye satır ekle + result dosyasının başlığına run_id yaz + git commit (E:\agent).
+5. **Her satır 31 kolonluk header ile yazılır** (light veya full fark etmez); N/A alanlar boş bırakılır — eski 16 kolonlu düzen KULLANILMAZ (2026-10-02 şema hatası dersi, eval-2026-10-02.md §4).
 
 ## Yorum kuralları (anomali tespiti)
 - **VRAM tampon/aşım**: dedicated 23.7+/24.5 GB (%96+) ana modelin normal durumu; shared zemin ≈1.1 GB'in ~%99'u llama-server'ın kendisi (top_proc.ps1). **Taşma = çalışma sırasında vram_shared delta >128 MB** veya llama-server shared payı delta >256 MB (anomali, notes'a); aksi → `none`.

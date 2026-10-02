@@ -64,3 +64,11 @@
 - **Skill yeniden çerçeveleme PLANI** (yapılmadı, onay bekleniyor): embertale-methodology "L0 sabit metodoloji (nasıl çalıştığımızın sabit kuralları)" → "EmberTale proje bağlamı + anlaşmalar" (referans; agent'ın çalışma sistemi E:\agent'ta). Korunacak: G1–G7, dosya haritası, kanon kuralı, katman yapı, seçilen DoD pratikleri. Gerekçe: FunkGoth 2026-10-02 talimatı (bağlayıcılık kaldırıldı). FunkGoth "önce planı anlat" dedi → plan sunuldu, onay bekleniyor.
 - Hafıza: DECISIONS'a ilke (en üst), STATE (Oturum 7 + tetik düştü + B4 durumu), TASKS (T6 + değerlendirme satırı + arşiv), lessons'a seçici alım dersi. git commit.
 - AÇIK: (a) scratch miras kopya silme — FunkGoth'tan "sil" bekleniyor; (b) Sistem Değerlendirmesi tetiği düştü (2026-10-02, runs.csv 5 kayıt) — FunkGoth'a soru iletildi; (c) B6 manuel (LM Studio prompt'u).
+
+## 2026-10-02 — Oturum 7 (devam — devir sonrası)
+- FunkGoth 3 maddeyi onayladı: (1) kurallaştırma **RED** — "halihazırda böyle çalışıyorsan kural yapma; rahat çalışma standartlarını kendin optimize et, ben sadece denetimciyim" → PROTOCOL'e kural EKLENMEDİ; (2) B4 silme izni; (3) Sistem Değerlendirmesi izni.
+- **B4 UYGULANDI:** scratch\claude-embertale-md\ (4 miras dosya) + 5 worker test dosyası (verify-*.json, cap-*.json) silindi.
+- **Skill yeniden çerçevelendi:** embertale-methodology "L0 sabit metodoloji" → "Proje Bağlamı ve Anlaşmalar" (90→76 satır; description 141 karakter ≤150). Atıldı: 40KB kuralı, "Sohbet Özeti ver" komutu, Project Knowledge ayrımı, §4 oturum akışı.
+- **Sistem Değerlendirmesi ÇALIŞTIRILDI:** metrics/eval-2026-10-02.md (5 bölüm + 3 öneri). Bulgular: worker eval ~10 tok/s stabil; think:false 11x doğrulandı; etkileşim none (run 04); ana model ≈17 tok/s ilk örnek; **runs.csv şema hatası** (satırlar 16 kolon, header 31 — full verisi notlarda) → run 04 düzeltme satırı + README kuralı.
+- Ana model tok/s: LM Studio log standart konumlarda bulunamadı → API ile 32 tok örneklemesi (≈17 tok/s, thinking ON) — baseline dolduruldu.
+- lessons'a: "fiilen çalışan davranışı kurala dönüştürme" ilkesi + runs.csv 31 kolon dersi. STATE/TASKS/DECISIONS güncellendi. git commit.
