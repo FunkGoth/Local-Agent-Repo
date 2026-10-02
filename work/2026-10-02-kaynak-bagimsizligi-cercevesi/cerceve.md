@@ -92,8 +92,8 @@ Sonuç: attribüsyon kapanır (BIONIC mi LM STUDIO mu 27B'yi boşaltıyor?) + L1
 ## Durum
 - FAZ 1: ✅ çerçeve v3 (amaç onaylı); mimari ONAYLI (Oturum 11)
 - Aşama 1 + L1-B: ✅ BİTTİ — koexist kanıtlı; unload 23574→1500 MiB; 2×GPU 18.5/101.9 tok/s; JIT reload çalışıyor
-- **Reload gerçek maliyeti: 17.44s (Oturum 16 KANIT)** — 317.7s = worker8b 6.3 GB VRAM'deyken çakışma artifact'i (disk elenmişti: 4.5s okuma). Kural adayı: reload öncesi daima worker evict
-- **Mod B eşiği: 🔄 FunkGoth'ta** — YENİ break-even ≈**200–250 output tok/batch** (17.4s reload ile; eski ~4300 çürütüldü); a/b/c seçenekleri açık
+- **Reload gerçek maliyeti: 17.44s (Oturum 16 KANIT)** — 317.7s = worker8b 6.3 GB VRAM'deyken çakışma artifact'i (disk elenmişti: 4.5s okuma). **Kural (ONAYLI): reload öncesi daima worker evict**
+- **Mod B: ✅ KARAR VERİLDİ (Oturum 16, FunkGoth)** — **(b) unattended her zaman B, eşik yok** (break-even ≈200–250 output tok; 17.4s reload ile; eski ~4300 çürütüldü). **Metodun verimliliği hâlâ teste tabi (FunkGoth): veri haftası →10-09 + FAZ 2 raporuyla teyit**
 - Veri toplama haftası: 🔄 → 10-09
 - model-hafiza.md: ✅ tohumlandı (bu oturum)
 <EOF>

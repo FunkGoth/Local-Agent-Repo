@@ -1,4 +1,4 @@
-# STATE — Anlık Durum (2026-10-02, Oturum 16 — 317.7s anomali ✅ KANITLI; sıradaki = Mod B eşiği kararı)
+# STATE — Anlık Durum (2026-10-02, Oturum 16 — 317.7s anomali ✅ KANITLI; **Mod B ✅ (b) ONAYLI**; sıradaki = full veri haftası →10-09)
 
 ## Aktif İş
 | İş | Klasör | Durum |
@@ -13,15 +13,16 @@
 | EmberTale T1–T6 | Project EmberTale/ | 🕐 ayrı sohbet |
 
 ## Sıradaki Adım (Oturum 16)
-1. **Mod B eşiği kararı (FunkGoth'ta)** — YENİ VERİYLE: gerçek geçiş maliyeti ≈**17–20s** (318s DEĞİL) → break-even ≈**200–250 output tok/batch** (eski ~4300). Seçenekler: (a) eşiğe tabi (b) unattended sürede her zaman B (c) başka. Kural adayı: **reload öncesi daima worker evict**.
-2. Karar gelince: PROTOCOL/Delegation'a 1 satır kural + model-hafiza notu.
-3. Veri haftası →10-09 (doğal akış); FAZ 2 raporu 10-09 sonrası; Ö3 devam.
+1. **Full veri haftası →10-09** (doğal akış: ~%50 full, hedef ≥3; hafta sonu rapor) — FunkGoth: metodun verimliliği hâlâ teste tabi.
+2. FAZ 2 raporu (10-09 sonrası): paralel kapasite + iş tipi haritası + routing → Mod B metodunun verimliliği verilerle teyit edilecek.
+3. Ö3 devam (ana model hız ölçümü).
 
 ## Beklenen Kararlar / Onaylar (FunkGoth)
-- **Mod B eşiği**: ≈200–250 output tok/batch makul mu? unattended kuralı? + "reload öncesi worker evict" kuralı onayı.
+- **Mod B eşiği: ✅ KARAR VERİLDİ (Oturum 16)** — (b) unattended her zaman B, eşik yok + reload öncesi daima worker evict. PROTOCOL'e kayıtlı; metodun verimliliği hâlâ teste tabi (FunkGoth).
 - Mimari ONAYLI (Oturum 11): GPU=1 kiracı; **Mod A** = interaktif (27B resident + workers CPU), **Mod B** = paralel batch (evict → unload → 2×GPU worker → JIT reload ~17s + entegre).
 
 ## Detay
+- **Mod B kuralı (ONAYLI)**: GPU worker'a devir = önce `lms unload`; unattended eşik yok; reload öncesi daima evict (`keep_alive:0`). Kanıt: 317.7s vs 17.44s (runs.csv 06).
 - **317.7s KANITI (Oturum 16, GO)**: worker8b evict (`keep_alive:0`, /api/ps boş) → `lms unload` (VRAM 23067→1038–1404 MiB) → 1. deneme `/api/v1` **404** (ama async JIT load tetiklendi) → 2. deneme `/api/v0/chat/completions` **http=200, 17.44s** (TTFB≈total, eval 16 tok ihmal), final **23368 MiB, oturum ayakta** (5. unload+reload; hiç kırılmadı). runs.csv 06.
 - **Bionic API**: model yönetimi **`/api/v0/…`** (`/api/v0/models` 200; v1 chat 404); JSON `Content-Type` zorunlu (415 dersi). Endpoint yanlış bile olsa istek JIT load'u async tetikliyor.
 - **W1 warm (Oturum 15)**: R1 cold fresh load 4.12s + 103.2 tok/s; R2 warm 108.1 tok/s. runs.csv 04/05.

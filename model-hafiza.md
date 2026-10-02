@@ -20,7 +20,8 @@ Kural:
   - T7 raporu incelemesi (10-01): kalite kabul (2 sapma, ana agent düzeltti), 7.1 tok/s, 148 s
   - Kısa özet (10-01): 10.2–10.4 tok/s, 41 s, PASS
   - think:false (10-01): 11x hız (41 s → 3.7 s), kalite korundu
-- Karar: hafif işler (tarama/özet/tek adım) ✅ · derin agentic ❌
+  - GPU solo (10-02, L1-B + W1): warm **~102–108 tok/s** (CPU 10.7'nin ~10x); VRAM'de 6.3 GB (evict = `keep_alive:0`)
+- Karar: hafif işler (tarama/özet/tek adım) ✅ · derin agentic ❌ · **Mod B (ONAYLI 10-02): GPU devri = önce `lms unload`, unattended eşik yok; reload öncesi daima evict**
 
 ## gemma4:26b (Q4_K_M)
 - Konum: Ollama :11434 | Boyut: 18.7 GB | 27B ile aynı VRAM sınıfı (maliyet avantajı yok)

@@ -194,3 +194,6 @@
   - **SONUÇ: VRAM ÇAKIŞMASI HİPOTEZİ KANITLI** — 317.7s (worker 6.3 GB VRAM'deyken) → 17.44s (VRAM boş). **Mod B'nin gerçek geçiş maliyeti ≈17–20s** → break-even ≈4300'den ≈**200–250 output tok/batch**'a düştü. Kural adayı: "reload öncesi daima worker evict".
 - Kayıtlar: runs.csv 06 (31 kolon), STATE (29 satır), TASKS (anomali ✅ KANITLI + Mod B eşiği YENİ sayı), lessons (+1), cerceve.md (Durum), bu LOG; git commit.
 - **SIRADAKİ**: FunkGoth'a rapor + **Mod B eşiği kararı (YENİ break-even ≈200–250 tok; a/b/c)** + "reload öncesi worker evict" kuralı onayı.
+- **RAPOR VERİLDİ + MOD B KARARI ✅ (FunkGoth)**: seçilen **(b) — unattended her zaman B, eşik yok** + kural: **reload öncesi daima worker evict (`keep_alive:0`)**. Kaydedildi: PROTOCOL/Delegation + Protokol Değişiklikleri + TASKS (satır ✅ KAPANDI) + STATE + model-hafiza (worker8b satırı) + DECISIONS (yeni satır) + cerceve.md (Durum).
+- **FUNKGOTH NOTU**: "Çalışma metodumuzla ilgili testler için data toplanmaya devam etmesini istiyorum. Metodun verimliliği hala teste tabi." → full veri haftası (→10-09) + FAZ 2 raporu ile teyit; yeni eylem gerekmez.
+- Kayıtlar: yukarıdaki 6 dosya + bu LOG; git commit.
