@@ -15,12 +15,12 @@ Son güncelleme: 2026-10-02 (Oturum 9 devam)
 ## Sıradaki Adım
 1. **Ö3 ve B6 kararları FunkGoth'tan hâlâ ALINMADI → sormak.**
 2. Veri toplama haftası (2026-10-09'a): her worker run'ında policy'ye göre full (~%50, run_id çift); hafta sonu verimlilik raporu + mekanizma tartışması.
-3. EmberTale T1–T6: `E:\Bionic\Project EmberTale\` kökünde ayrı sohbet (FunkGoth: önce diğer işler).
+3. Ö3 uygulaması: sonraki Sistem Değerlendirmesinde ana model ~32 tok API ölçümü → baseline bandı.
+4. EmberTale T1–T6: `E:\Bionic\Project EmberTale\` kökünde ayrı sohbet (FunkGoth: önce diğer işler).
 
 ## Bekleyen Kararlar (FunkGoth)
-- **Ö3**: her değerlendirmede ana model ~32 tok API hız örnekleme — açıklama yapıldı, **karar hâlâ yok**
-- **B6**: LM Studio global prompt tek satır: `Workspace: E:\Bionic\ — E:\Bionic\README.md'yi oku ve uygula.` — öneri sunuldu, **manuel uygulama hâlâ yok**
-- Worker: B kurulu (2026-10-01); B2 RED · B3 geri çekildi · B5 8192 (kapalı)
+- YOK — Ö3 ONAY (2026-10-02), B6 TAMAM (kullanıcı prompt'u uyguladı). Kalan: worker B operasyonel; B2 RED · B3 geri çekildi · B5 8192 (kapalı).
+- Ö3 uygulaması: her Sistem Değerlendirmesinde ana model ~32 tok API örneği → baseline.md bant.
 
 ## Detay
 - Oturum 9 devam: **E:\Bionic\ migrasyonu TAMAM + commit `97b7374`** (tüm yol referansları güncel; geçmiştarihli kayıtlar aynen korundu). **Ö2 kararını FunkGoth GENİŞLETİP ONAYLADI** (1 hafta rastgele full + kaynak bağımsızlığı/model geçişi vizyonu) → DECISIONS/TASKS/metrics/README kaydedildi. Ö3 + B6 hâlâ açık. FunkGoth cevabında sorulacak.

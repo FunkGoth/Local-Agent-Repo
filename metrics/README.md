@@ -21,6 +21,7 @@ Sorumlu: ana agent (kayıt + değerlendirme); FunkGoth raporları okur, aksiyonl
   - **Hedef: ≥3 yapılandırılmış full örnek** biriktir (Ö2 — ONAYLI 2026-10-02, genişletilmiş: 1 hafta rastgele full) → etkileşim trend yorumu + kaynak haritası için.
   - FunkGoth her çalıştırmada light/full açıkça isteyebilir.
 - **Ölçüm maliyeti**: full çalıştırmada capture çağrı süreleri `capture_overhead_s`'e yazılır → maliyet izlenir ve raporlanır.
+- **Ö3 (ONAYLI 2026-10-02)**: her Sistem Değerlendirmesinde ana model hızı ~32 tok API örneğiyle ölçülür (wall-time + eval tok/s, thinking modu not edilir) → `baseline.md` tek nokta yerine **bant** olarak güncellenir. Yol: LM Studio yerel sunucusu, OpenAI-uyumlu API (`localhost:1234/v1/chat/completions`).
 
 ## runs.csv alanları
 - light: run_id, date, task, model, runtime, prompt_tok, prompt_tps, eval_tok, eval_tps, duration_s, load_s, sample_type, main_model_impact, quality_verdict, accepted, notes
