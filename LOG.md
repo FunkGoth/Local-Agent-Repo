@@ -159,3 +159,9 @@
   - **RAPOR VERİLDİ (2026-10-02)**: bulgular + break-even (~4300 output tok/batch) + 3 soru FunkGoth'a.
   - **Beklenen kararlar (FunkGoth)**: (1) Mod B eşiği (~4300 tok makul mu / unattended kuralı?); (2) W1 warm teyiti onayı (~5 dk, deneysel); (3) disk hızı ölçümü izni (reload 5.3 dk'nın disk kaynaklı olup olmadığını teyit).
   - **DEVİR (FunkGoth: "devir yapalım")**: hafıza güncel + commit atıldı; yeni sohbet → README → PROTOCOL → STATE → TASKS; ilk iş = yukarıdaki 3 karara göre ilerleme.
+
+## 2026-10-02 — Oturum 14 (FunkGoth sırası 3→2→1: disk → W1 warm → 317.7s anomali)
+- FunkGoth sırasını verdi: **3 disk testi → 2 W1 warm teyidi → 1 317.7s anomali tartışması**. Disk testi şimdi (onaylı, C/D hızlı M.2 SSD, diskspd indir/kur izni var).
+- **3 DISK TESTİ TAMAM** (PowerShell in-process benchmark; diskspd gerekmedi): C 980 PRO (W 937 / R-warm 9471 MB/s — RAM cache), D VP4300L (W 1687), **E SPCC (W 323 / R 417 MB/s — en yavaş, boş)**. Model GGUF (15.66 GB, C:) tam okuma **3.6 GB/s → 4.5s**; en yavaş disk (E:, 417 MB/s) bile ~38s. **SONUÇ: 317.7s JIT reload DISK DEĞİL.** Oturum-13 "17.7 GB disk okuması sınırlı" attribüsyonu düzeltilmeli. Kalan hipotezler: (a) VRAM çakışması — 2 worker8b VRAM'deyken 27B reload → kısmi CPU offload; (b) 317.7s = istek→ilk-token wall-time (queue + load + first decode); (c) CPU/RAM thrashing. → `work/2026-10-02-kaynak-bagimsizligi-cercevesi/disk-testi.md`
+- Hafıza güncellendi (STATE/TASKS/LOG); commit atıldı.
+- **SIRADAKİ**: FunkGoth GO ile **2 W1 warm teyidi** (worker8b GPU cold 18.5 → warm ~100 tok/s, ~5 dk), ardından **1 317.7s anomali tartışması** (disk elendi).
