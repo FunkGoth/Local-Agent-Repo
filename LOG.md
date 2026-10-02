@@ -197,3 +197,4 @@
 - **RAPOR VERİLDİ + MOD B KARARI ✅ (FunkGoth)**: seçilen **(b) — unattended her zaman B, eşik yok** + kural: **reload öncesi daima worker evict (`keep_alive:0`)**. Kaydedildi: PROTOCOL/Delegation + Protokol Değişiklikleri + TASKS (satır ✅ KAPANDI) + STATE + model-hafiza (worker8b satırı) + DECISIONS (yeni satır) + cerceve.md (Durum).
 - **FUNKGOTH NOTU**: "Çalışma metodumuzla ilgili testler için data toplanmaya devam etmesini istiyorum. Metodun verimliliği hala teste tabi." → full veri haftası (→10-09) + FAZ 2 raporu ile teyit; yeni eylem gerekmez.
 - Kayıtlar: yukarıdaki 6 dosya + bu LOG; git commit.
+- **DEVİR (FunkGoth: "devir yapalım")**: hafıza güncel + commit `f4f1342` atıldı. Açık karar YOK; sıradaki = full veri haftası (→10-09, doğal akış) + FAZ 2 raporu (10-09 sonrası). Yeni sohbet → README → PROTOCOL → STATE → TASKS.
