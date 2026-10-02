@@ -244,4 +244,5 @@
 - FunkGoth: "Context optimizasyonuna devam et" (10-09 review planlı; bu oturum = veri toplama + denetim + hazırlık).
 - K6: 25.9k snapshot (shell >> — K2c). 10-09 hazırlık denetimi: work/2026-10-02-context-devami/hazirlik-1009.md — veri **50 nokta** (snap 10 + ledger 28 + runs 12) = K9 kriteri DOĞRUDAN TAM; deg 2 GERÇEK (O18/O19); K kriterleri anlık kontrol (beklenti 9/9 KAL — 10-09'da yeniden sayım); boşluklar: kullanıcı compaction sayıları, FAZ 2 ölçümü (unattended), Ö3 yeniden örnekleme, routing boşluğu.
 - Denetim bulgusu: STATE "ledger 26" → gerçek **28** (O20 gec kayıtları) — STATE düzeltildi.
-- Git: bu tur sonrası commit.
+- Git: bu tur sonrası commit (`004feac`, `5726b8b`).
+- **FUNKGOTH DEVR (10-02)**: sonraki oturum (O22) = **Unreal Engine projesi — teorik oturum**: büyük işin context dolması sebebiyle yarıda bırakılmadan ne kadarının yapılabileceği (teorik). **DEVRİ SORUŞTURMASI (devri alır almaz başla)**: "İşlem sırasında context dolması yüzünden durmam sebebiyle kaç defa kullanıcı benden yeni prompt ile kaldığım işe devam etmemi istedi?" — kaynaklar: LOG/snapshots/sessions; **kayıt bulunamazsa veya durumlar raporlanmadıysa → FunkGoth'a açıkça belirt**. (TASKS Aktif + STATE güncellendi)
