@@ -1,4 +1,4 @@
-# STATE — Anlık Durum (2026-10-02, Oturum 18 — **K1–K7 context deneyi BAŞLADI (→10-09)** + full veri haftası (→10-09); 10-09'da: K kararı + hafta sonu rapor)
+# STATE — Anlık Durum (2026-10-02, Oturum 18 — **K1–K9 context ekonomisi + full veri haftası BAŞLADI (→10-09)**; 10-09'da: K kararı + hafta sonu rapor; sonraki adım: **nihai karar oturumu**)
 
 ## Aktif İş
 | İş | Klasör | Durum |
@@ -8,14 +8,13 @@
 | W1 warm teyidi | metrics/ | ✅ BİTTİ (15): R1 cold 103.2 / R2 warm **108.1 tok/s** → ~100 TEYİT; W1 18.5 = kuyruk artifact'i (04/05) |
 | Disk hızı ölçümü | work/…/disk-testi.md | ✅ BİTTİ: model 4.5s okunur → 317.7s DISK DEĞİL |
 | 317.7s anomali | metrics/runs.csv 06 | ✅ **KANITLI (16)**: VRAM çakışması — VRAM boşken clean JIT reload **17.44s** vs worker VRAM'deyken 317.7s |
-| Full veri haftası | metrics/ | 🔄 10-02→10-09: ~%50 full, hedef ≥3; hafta sonu rapor |
-| K1–K7 context deneyi | metrics/ + PROTOCOL | 🔄 BAŞLADI (18): kurallar uygulandı; veri → context-snapshots.csv; karar 10-09 (kriterler: context-benchmark.md) |
+| K1–K9 context ekonomisi + full veri | metrics/ + PROTOCOL | 🔄 BAŞLADI (18): ~%50 full (hedef ≥3); K9 defter (context-ledger.csv, 10-02'den); 1. gerçek veri: tepe 59k → compaction **−44.4k**; karar 10-09 (kriterler: context-benchmark.md) |
 | Delegation Worker B | PROTOCOL + delegation/ | ✅ operasyonel; runs.csv 12 kayıt |
 | EmberTale T1–T6 | Project EmberTale/ | 🕐 ayrı sohbet |
 
 ## Sıradaki Adım (Oturum 18)
-1. **K1–K7 deney haftası →10-09**: her prompt sonunda context snapshot (K6 → context-snapshots.csv); K1 sinyali → rapor + deg satırı; 10-09: K başına KAL/DÜZELT/TERK (context-benchmark.md; FunkGoth onayıyla).
-2. Full veri haftası →10-09 (doğal akış: ~%50 full, hedef ≥3; hafta sonu rapor) — FunkGoth: metodun verimliliği hâlâ teste tabi.
+1. **Nihai karar oturumu (FunkGoth: sonraki adım)**: veri toplama mekanizmasının faydası + multi-agent/CPU worker katkı/eksikler → nihai K kararları. Veri: context-ledger.csv (10-02'den aktif), context-snapshots.csv, runs.csv.
+2. **Deney haftası disiplini →10-09**: K6 snapshot her prompt; K9 defter: 100+ satır okuma + her edit_file → ledger satırı (defterin kendi yazıları yazılmaz; turn sonu self-audit); K1 sinyal → devir teklifi; batch edit (aynı dosyaya çoklu düzenleme = tek çoklu-edit çağrısı); full örnekleme ~%50 (hedef ≥3).
 3. FAZ 2 raporu (10-09 sonrası): paralel kapasite + iş tipi haritası + routing → Mod B metodunun verimliliği verilerle teyit edilecek.
 4. Ö3 devam (ana model hız ölçümü).
 5. **Sub-agent entegrasyon çalışması (HATIRLATMA — FunkGoth, Oturum 18)**: context-paralel teknikler + görev öncesi tahmin + iş→agent/model routing haritası; veri: runs.csv (BOŞLUK: 27B'de kendim yaptığım işler kayıtta YOK). Zaman: FunkGoth (muhtemelen 10-09 sonrası).
@@ -23,6 +22,7 @@
 ## Beklenen Kararlar / Onaylar (FunkGoth)
 - Mimari ONAYLI (Oturum 11): GPU=1 kiracı; **Mod A** = interaktif (27B resident + workers CPU), **Mod B** = paralel batch (evict → unload → 2×GPU worker → JIT reload ~17s + entegre).
 - **K1/K6 geçici varsayılanlar (agent, Oturum 18)**: K1 eşiği = ≥1 sinyal (yalnız DEĞİŞMEDİĞİ bilinen dosya okuması sayılır); K6 = prompt başına 1 snapshot (uzun işte başlangıç da). FunkGoth revize edebilir.
+- **Tutarlılık notu (Oturum 18 devam)**: global dosya bütçesi (~300 satır) vs LOG=arşiv (LOG 226 satır) — öneri: LOG bütçeden çıkarılsın (arşiv bootstrap'ta okunmuyor); karara FunkGoth (nihai karar oturumu).
 
 ## Detay
 - **Mod B kuralı (O16 ONAY (b))**: unattended her zaman B; GPU devir = önce `lms unload`; reload öncesi daima evict (`keep_alive:0`). Kanıt: worker VRAM'deyken 317.7s / boşken **17.44s** (runs.csv 06; detay LOG).

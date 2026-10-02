@@ -62,12 +62,13 @@ Agent burada özerk yazar; kullanıcı her an okuyup müdahale edebilir.
 ## Context Ekonomisi & Devir Kalitesi (K1–K7) — 2026-10-02, SÜRELİ DENEY (→10-09)
 FunkGoth onaylı (Oturum 18). Süreli deney: veri (metrics/context-benchmark.md + context-snapshots.csv) faydayı göstermezse veya maliyetliyse TERKEDİLİR (karar 10-09).
 - K1 (degradasyon sinyali): aynı oturumda (a) DEĞİŞMEDİĞİNİ BİLDİĞİN bir dosyayı yeniden okuma, (b) biten adımı yeniden yapma, (c) yol/kısıt karıştırma, (d) STATE.md ile çelişme → derhal "compaction-degradasyon şüphesi" bildir + checkpoint öner + devir teklif et. Compaction SAYACI YOK (agent compaction'ı sayamaz — sınırlılık).
-- K2 (çıktı hijyeni): varsayılan = `search_file_line` / dar satır aralığı / log kuyruğu (son N satır + hatalar); tam dosya okuması istisna ve gerekçeli.
+- K2 (çıktı hijyeni): varsayılan = `search_file_line` / dar satır aralığı / log kuyruğu (son N satır + hatalar); tam dosya okuması istisna ve gerekçeli. **Batch edit (FunkGoth, 2026-10-02): aynı dosyaya çoklu düzenleme = tek çoklu-edit çağrısı (N yansıma → 1); %30+ değişim = replace_file** — edit aracı her çağrıda içeriği context'e yansıtıyor (KANIT: 3× STATE edit ≈ 3× ~300 tok).
 - K4 (büyük üretim): 50+ satırlık üretilen çıktı (rapor/analiz/tablo) → `work/` dosyası; context'e özet + yol.
 - K5 (prompt sınırı): bir prompt içinde K1 ≥1 kez tetiklendiyse → prompt bitiminde devir teklifi.
 - K6 (ölçüm): her kullanıcı prompt sonunda `introspection.read_session` → "Current context" → `metrics/context-snapshots.csv` satırı; deg bayrağı + oturum sonunda GERÇEK/SAHTE sınıflandırma (LOG).
 - K7 (worker özetleme): 100+ satırlık okuma/özetleme → Worker B — **varsayılan = delege et, okuma** (FunkGoth, Oturum 18: CPU worker Mod A = sıfır geçiş maliyeti; yalnız decode hızı ~10 tok/s maliyet). Küçük dosyalarda YOK. Mod B (GPU) yalnız unattended batch.
 - K3 (checkpoint kalitesi): Çalışma Döngüsü / Kaydet satırı.
+- **K9 (context defteri — FunkGoth onayı, 2026-10-02)**: her 100+ satırlık okuma ve her `edit_file` çağrısından sonra `metrics/context-ledger.csv`'ye 1 satır (dosya, işlem, okunan satır, bytes, tok tahmini, kural, gerekçe). Defterin kendi yazıları deftere yazılmaz. Turn sonu self-audit: her önemli okuma/edit defterde var mı? (K3 denetimi). **K8 = defterin `echo_bytes` ölçümü** (edit yansıma maliyeti; karar 10-09). Terk kriteri: olay başına maliyet >300 tok veya 3 gün >%30 turda kayıt eksik → sadeleştir/terk.
 - Tasarım + terminasyon kriterleri: `metrics/context-benchmark.md`.
 
 ## Sabit Kurallar (değiştirilemez)
@@ -89,7 +90,7 @@ FunkGoth onaylı (Oturum 18). Süreli deney: veri (metrics/context-benchmark.md 
 ## Protokol Değişiklikleri
 > Geçmiş: LOG.md ("Protokol" ara) — her değişiklik gerekçesiyle LOG'da kayıtlıdır (Sabit Kural). Bu bölüm yalnız yapısal özet.
 - 2026-10-01 (O4): Çalışma Döngüsü 5 kural + STATE 4 bölüm + Devir "beklenen karar" · (O4) Çoklu Proje İskeleti + README giriş noktası · (O4) Delegation + VRAM kuralı + brief/result + runtime A/B/C · (O5) worker8b CPU-only kurulumu · (O5) Sistem Değerlendirmesi + otonom sub-agent yetkisi · (O5) light/full örnekleme + capture_overhead_s · (O6) `think:false` varsayılanı (~11x maliyet kanıtı)
-- 2026-10-02 (O16): Mod B kuralı (önce unload; reload öncesi daima evict — 317.7s vs 17.44s kanıtı) · (O18) K1–K7 + context-benchmark.md (süreli deney →10-09) · (O8) Kök migrasyonu → `E:\Bionic\` · (O18) LOG=arşiv kuralı + Protokol Değişiklikleri'nin budanması (bu satır)
+- 2026-10-02 (O16): Mod B kuralı (önce unload; reload öncesi daima evict — 317.7s vs 17.44s kanıtı) · (O18) K1–K7 + context-benchmark.md (süreli deney →10-09) · (O8) Kök migrasyonu → `E:\Bionic\` · (O18) LOG=arşiv kuralı + Protokol Değişiklikleri'nin budanması · (O18) K9 context defteri + K8=echo_bytes + batch edit (K2 alt-kuralı) + K1 "kullanıcı düzeltme" sinyali (2026-10-02 onay)
 
 ## Proje Haritası (EmberTale)
 - Proje kökü: E:\Bionic\Project EmberTale\

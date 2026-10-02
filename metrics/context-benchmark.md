@@ -19,8 +19,11 @@ K uygulamaları (a) compaction sonrası görev-ortası degradasyonu, (b) oturum 
    `ts_iso, session, task, ctx_start, ctx_end, delta, deg, note`
    Kaynak: `introspection.read_session --project self --session self --limit 1` → header "Current context: N tokens".
    `deg` = o prompt'ta K1 sinyali tetiklendiyse 1; oturum sonunda sınıflandırma: GERÇEK / SAHTE (gerekçe LOG'a).
+   **K1 sinyal genişletme (FunkGoth, 2026-10-02)**: "kullanıcı düzeltmesi" (agent hatayı üretti, kullanıcı yakaladı) = deg=1 (1. vaka: 20122→14604 yanlış çerçeveleme — FunkGoth yakaladı).
+   **K6 limitasyonu (2026-10-02)**: compaction öncesi tepe agent tarafından YAKALANAMIYOR (otomatik compaction → hemen öncesi snapshot alınamaz); en iyi "önce" = compaction'dan önceki son snapshot. Kullanıcı UI gözlemini verirse csv'ye yaz (vaka: **59k** → K6'nın ilk gerçek veri noktası: compaction etkisi **−44.4k**).
 2. **Compaction sayısı = KULLANICI sayar** (agent sayamaz — sınırlılık, rapor §3). Kullanıcı sayıyı LOG oturum satırına yazar.
 3. K7 maliyeti: mevcut `runs.csv` (zaten append-only).
+4. `metrics/context-ledger.csv` (K9, FunkGoth onayı 2026-10-02): her 100+ satırlık okuma ve her `edit_file` çağrısından sonra 1 satır: `ts_iso,session,dosya,islem,okunan_satir,toplam_satir,bytes,tok_tahmini,kural,gerekce`. **K8 = `echo_bytes`** (edit çıktısının context'e yansıyan maliyeti; ölçüm, karar 10-09). Defterin kendi yazıları deftere yazılmaz. Terk kriteri: olay başına maliyet >300 tok veya 3 gün >%30 turda kayıt eksik.
 
 ## Maliyet muhasebesi (haftalık)
 - K6: prompt başına 1–2 introspection çağrısı (sn'ler, VRAM YOK — Bionic tarafı).
@@ -39,6 +42,8 @@ K uygulamaları (a) compaction sonrası görev-ortası degradasyonu, (b) oturum 
 | K5 | K1 ile birlikte (alt küme) | K1'e tabi |
 | K6 | 10-09'da veri bir karar üretti | kesinti >%5 veya veri hiç kullanılmadı |
 | K7 | ≥3 run/hafta ve runs.csv'de net tasarruf | mevcut runs.csv aksiyon eşiklerine tabi |
+| K8 | edit yansıma maliyeti nicellendi (ledger echo_bytes); batch-edit kuralı etkili (yansıma/tur azaldı) | olay başına maliyet yüksek + kural işe yaramadı → ölçümü TERK, kuralı KALDIR |
+| K9 (defter) | 10-09'da K2/K7/K8 kararları ≥50 veri noktasına dayandı; ≥1 kaçırılmış delegasyon veya ≥1 compaction uyarısı yakalandı | olay başına maliyet >300 tok veya 3 gün >%30 turda kayıt eksik → sadeleştir/terk |
 
 ## Karar protokolü (10-09)
 1. context-snapshots.csv + LOG deg sınıflandırmaları + kullanıcı compaction sayıları → tek rapor.

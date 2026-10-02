@@ -2,8 +2,8 @@
 Son güncelleme: 2026-10-02 (Oturum 18: bitmiş işler Arşiv'e taşındı — detaylar LOG/work dosyalarında; Aktif yalnız devam eden işler)
 
 ## Aktif
-- [2026-10-02] **K1–K7 context deney haftası** (FunkGoth ONAY — Oturum 18): 1 hafta (→10-09) K kurallarının benchmark'ı; veri `metrics/context-snapshots.csv`; kriterler + karar protokolü `metrics/context-benchmark.md`; 10-09: K başına KAL/DÜZELT/TERK.
-- [2026-10-02] **Full veri toplama haftası** (ONAYLI; BAŞLADI, doğal akış): →10-09 worker run'larında ~%50 full örnekleme (run_id çift → full; yeni iş tipi daima full; hedef ≥3); hafta sonu veri raporu + ölçüm mekanizması optimizasyonu. → `metrics/`
+- [2026-10-02] **K1–K9 context ekonomisi + full veri haftası** (FunkGoth ONAY — Oturum 18): SÜRELİ DENEY (→10-09): K kuralları benchmark'ı + worker run'larında ~%50 full örnekleme (hedef ≥3); veri: `metrics/context-snapshots.csv` + `metrics/context-ledger.csv` (K9 defteri, 10-02'den aktif) + runs.csv; kriterler `metrics/context-benchmark.md`; **1. gerçek veri noktası: tepe 59k (kullanıcı gözlemi) → compaction −44.4k**; 10-09: K başına KAL/DÜZELT/TERK.
+- [2026-10-02] **Nihai karar oturumu (FunkGoth: sonraki adım)**: veri toplama mekanizmasının faydası + multi-agent/CPU worker katkı/eksikler → nihai K kararları; veri: ledger, snapshots, runs.csv. → `metrics/`
 - [2026-10-02] **Kaynak bağımsızlığı + model geçişi yeteneği** (AMAÇ ONAYLI — Oturum 11): 27B ana model KALIYOR. FAZ 1 (çerçeve) ✅ v3 + FAZ 1.5 (Aşama 1 ✅, L1 ✅) tamam. **FAZ 2 (→10-09 sonrası)**: paralel kapasite ölçümü (2×GPU worker) + rapor (iş tipi haritası, routing, paralel kapasite, iş-başı öngörü). **FAZ 3**: paralel ajan yönetimi. **Sub-agent entegrasyon çalışması (FunkGoth hatırlatma, Oturum 18)**: context-paralel teknikler + görev öncesi tahmin + iş→agent/model routing haritası (veri: runs.csv; BOŞLUK: 27B'de kendim yaptığım işler kayıtta yok). → `metrics/` + `delegation/` + `work/2026-10-02-kaynak-bagimsizligi-cercevesi/`
 
 ## Bekleyen

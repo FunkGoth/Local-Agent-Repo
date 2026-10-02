@@ -1,0 +1,10 @@
+ts_iso,session,dosya,islem,okunan_satir,toplam_satir,bytes,tok_tahmini,kural,gerekce
+2026-10-02T20:05+03:00,768b9104,STATE.md,edit,30,30,~1100,~900 (3x ~300 tam dosya yansima),K2-batch İHLAL,veri hijyeni duzenlemesi — 3 ayri edit tek coklu-edit olabilirdi (~600 tok fazla)
+2026-10-02T20:06+03:00,768b9104,TASKS.md,edit,33,33,~9200,~2500 (tam dosya yansima),-,arsiv tasima + aktif guncelleme
+2026-10-02T20:08+03:00,768b9104,LOG.md,edit,~10,221,~300,~250 (pencere),-,veri duzeltme kaydi
+2026-10-02T20:09+03:00,768b9104,context-snapshots.csv,edit,4,4,~600,~250 (tam dosya),-,59k tepe guncellemesi
+2026-10-02T20:20+03:00,768b9104,PROTOCOL.md,read,99,99,~13400,~3500,K2 istisna (edite gerek),K2/K9 kural ekleri icin tam okuma
+2026-10-02T20:20+03:00,768b9104,context-benchmark.md,read,34,34,~3900,~1000,K2 istisna (edite gerek),K1/K6/K8-K9 ekleri icin tam okuma
+2026-10-02T20:30+03:00,s8,LOG.md,edit,~6,221,~250 (pencere),~250,K9 self-audit,59k tepe + 4 madde onay + tutarlik notu + SIRADAKI kaydi
+2026-10-02T20:31+03:00,s8,TASKS.md,edit,33,33,~9200,~2500 (tam dosya yansima),K2-batch OK (tek coklu-edit),K1-K9 birlesme + nihai karar oturumu satiri
+2026-10-02T20:31+03:00,s8,STATE.md,edit,30,30,~1100,~300 (tek coklu-edit),K2-batch OK (tek coklu-edit),K1-K9 + nihai karar + bütçe/LOG tutarlik notu
