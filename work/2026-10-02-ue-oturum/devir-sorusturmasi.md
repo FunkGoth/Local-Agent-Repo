@@ -12,7 +12,8 @@
 ### A) Açıkça "context doluluğu" sebebiyle kapanıp yeni prompt ile devam (KESİN KAYITLI)
 | # | Vaka | Kanıt |
 |---|---|---|
-| 1 | O6 → O7 | LOG s.50: "OTURUM KAPANDI (context doluluğu, FunkGoth)" → O7 başlığı "devam — devir sonrası". **Tek açıkça sebep kayıtlı vaka.** |
+| 1 | O6 → O7 | LOG s.50: "OTURUM KAPANDI (context doluluğu, FunkGoth)" → O7 başlığı "devam — devir sonrası". |
+| 2 | O20 (nihai karar turu) | **FunkGoth ekran görüntüsü (10-03, soruşturmaya kanıt olarak sunuldu)**: 62k context'te çalışma durmuş, FunkGoth "62k context sebebiyle durdun, çalışmaya devam et" promptu vermiş. LOG/CSV'de KAYIT YOK — snapshot'lar 42k'ta kesiliyor (42k→62k aralığı ölçülmemiş). Kaynağ: kullanıcı kanıtı. |
 
 ### B) FunkGoth'un "devir yapalım / devam" diye yeni oturum açtığı vakalar (sebep KAYITLI DEĞİL)
 | # | Vaka | Not |
@@ -30,11 +31,12 @@
 - Yeni oturum açıldı ama sebep context doluluğu DEĞİLDİ: agent E:\ kökünü bulamadı, FunkGoth yönlendirmek zorunda kaldı (K1 kullanıcı-düzeltme sinyali, deg=1). Devam-promptu sayılır ama kök nedeni farklı.
 
 ## Net Sayım
-- **"Context doldu → kullanıcı yeni prompt ile devam istedi" KESİN KAYITLI: 1 vaka (O6→O7).**
+- **"Context doldu → kullanıcı yeni prompt ile devam istedi" KESİN: 2 vaka** — O6→O7 (LOG kayıtlı) + O20 (kullanıcı ekran görüntüsü; kayıtlarda yoktu, 10-03'te soruşturma sırasında ortaya çıktı). Diğer benzer vakalar kayıtlarda yoksa bilinmiyor — sayı alt sınırdır.
 - FunkGoth'un başlattığı toplam yeni-oturum/devir zinciri: **~6** (O7, O14, O16, O18-zinciri, O20, O22) — bunların hangisinin sebebinin context doluluğu olduğu **kayıtlarda açıkça belirtilmemiş**.
 - Otomatik compaction: **2** (O18) — ikisi de oturumu durdurmadı.
 
 ## Sınırlılık (dürüst beyan)
 1. Devir kayıtları "neden devir?" alanı tutmuyordu — yukarıdaki B listesindeki sebepler **varsayım değil, kayıtsızlık** olarak raporlanıyor.
 2. Compaction sayısını agent sayamaz (K6 sınırlılığı); O18 sayısı FunkGoth kaydı.
-3. Öneri: LOG şablonuna "devir sebebi" alanı eklenebilir (PROTOCOL değişikliği → gerekçe + onay gerekir; şimdi uygulanmadı).
+3. O20 vakası (62k durması) metriklerde KAYIT DIŞI — K6 snapshot'u durma anını yakalayamamış (42k→62k arası kör nokta).
+4. Öneri: LOG şablonuna "devir sebebi" alanı + durma/dolma olayları ledger'a shell-append (PROTOCOL değişikliği → gerekçe + onay gerekir; şimdi uygulanmadı).
