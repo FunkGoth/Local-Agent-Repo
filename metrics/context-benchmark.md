@@ -50,3 +50,6 @@ K uygulamaları (a) compaction sonrası görev-ortası degradasyonu, (b) oturum 
 2. K başına: KAL / DÜZELT (yeni versiyon notu) / TERK (PROTOCOL'den çıkar + lessons'a gerekçe).
 3. Her değişiklik FunkGoth onayıyla (Sabit Kural 2).
 4. Bu dosya + csv: deney bitince arşiv; kalan karar DECISIONS'a taşınır.
+
+---
+**DURUM: KAPANDI 10-02 (erken)** — nihai kararlar: PROTOCOL/Context Ekonomisi + DECISIONS (2026-10-02 O20 satırı) + `work/2026-10-02-nihai-karar-oturumu/rapor.md`. Bu dosya + csv = **ARŞİV**; 10-09 = gözden geçirme noktası (yeni karar turu değil, kriterlerle yeniden kontrol).

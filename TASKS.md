@@ -1,9 +1,8 @@
 # TASKS — Sıra
-Son güncelleme: 2026-10-02 (Oturum 18: bitmiş işler Arşiv'e taşındı — detaylar LOG/work dosyalarında; Aktif yalnız devam eden işler)
+Son güncelleme: 2026-10-02 (Oturum 20 — nihai karar oturumu: K1–K9 erken kapatıldı + kararlar uygulandı; rapor `work/2026-10-02-nihai-karar-oturumu/rapor.md`)
 
 ## Aktif
-- [2026-10-02] **K1–K9 context ekonomisi + full veri haftası** (FunkGoth ONAY — Oturum 18): SÜRELİ DENEY (→10-09): K kuralları benchmark'ı + worker run'larında ~%50 full örnekleme (hedef ≥3); veri: `metrics/context-snapshots.csv` + `metrics/context-ledger.csv` (K9 defteri, 10-02'den aktif) + runs.csv; kriterler `metrics/context-benchmark.md`; **1. gerçek veri noktası: tepe 59k (kullanıcı gözlemi) → compaction −44.4k**; 10-09: K başına KAL/DÜZELT/TERK.
-- [2026-10-02] **Nihai karar oturumu (FunkGoth: sonraki adım)**: veri toplama mekanizmasının faydası + multi-agent/CPU worker katkı/eksikler → nihai K kararları; veri: ledger, snapshots, runs.csv. → `metrics/`
+- [2026-10-02] **10-09 gözden geçirme** (O20'de planlandı): K verileri kriterlerle yeniden kontrol (`metrics/context-benchmark.md` arşiv + snapshots/ledger/runs.csv) + **FAZ 2 raporu** (paralel kapasite, iş tipi haritası, routing teyidi) + **Ö3** (ana model hızı yeniden örnekleme → `metrics/baseline.md` bant). → `metrics/`
 - [2026-10-02] **Kaynak bağımsızlığı + model geçişi yeteneği** (AMAÇ ONAYLI — Oturum 11): 27B ana model KALIYOR. FAZ 1 (çerçeve) ✅ v3 + FAZ 1.5 (Aşama 1 ✅, L1 ✅) tamam. **FAZ 2 (→10-09 sonrası)**: paralel kapasite ölçümü (2×GPU worker) + rapor (iş tipi haritası, routing, paralel kapasite, iş-başı öngörü). **FAZ 3**: paralel ajan yönetimi. **Sub-agent entegrasyon çalışması (FunkGoth hatırlatma, Oturum 18)**: context-paralel teknikler + görev öncesi tahmin + iş→agent/model routing haritası (veri: runs.csv; BOŞLUK: 27B'de kendim yaptığım işler kayıtta yok). → `metrics/` + `delegation/` + `work/2026-10-02-kaynak-bagimsizligi-cercevesi/`
 
 ## Bekleyen
@@ -16,6 +15,8 @@ Son güncelleme: 2026-10-02 (Oturum 18: bitmiş işler Arşiv'e taşındı — d
 - [2026-10-01] T5 [ilk sistem başlatılınca] DoD durum tablosunu doldurmaya başla (şu an "henüz sistem yok").
 
 ## Arşiv
+- [2026-10-02] ✅ **Nihai karar oturumu (O20, tam yetki)**: K1–K9 erken kapatıldı — K1/K2(+K2c)/K3/K4/K5/K7 KAL · K6/K9 DÜZELT · K8→K9 birleşti; full örnekleme override düşürüldü (run<30s→light); LOG bütçeden çıktı; PROTOCOL 92 satır + handbook.md (49) + DECISIONS/TASKS/STATE/LOG/lessons/benchmark güncel; **rapor: `work/2026-10-02-nihai-karar-oturumu/rapor.md`**
+- [2026-10-02] ✅ **K1–K9 context ekonomisi + full veri haftası** (O18 açıldı, O20'de erken kapatıldı): veri = snapshots (8) + ledger (26) + runs (12); 59k tepe → compaction −44.4k; 2 GERÇEK deg=1; defter self-audit'i O18 batch ihlalini yakaladı — rapor yukarıda
 - [2026-10-02] ✅ Aşama 1 testi (O12): VRAM düşmedi (23.2→23.1 GB), worker 27B ile koexist (runs.csv 01); TTFB 0.21s — `work/…/cerceve.md`
 - [2026-10-02] ✅ L1 boşta boşaltma testi (O13): unload 23574→1500 MiB (kanıt); 2×worker8b GPU: W2 101.9 tok/s (warm solo) — `work/…/cerceve.md`
 - [2026-10-02] ✅ Disk hızı ölçümü (O14): model 4.5s okunur → 317.7s DISK DEĞİL; E: 323 MB/s (SPCC) — `work/…/disk-testi.md`
