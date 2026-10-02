@@ -156,4 +156,6 @@
   - [5] **JIT reload ÇALIŞTI**: http=200, **time_total=317.7s (~5.3 dk)** — önceki 10–30 s tahmini ÇOK iyimserdi; 17.7 GB disk okuması sınırlı. Bu Mod B'nin ana maliyeti. [6] Final VRAM **23082 MiB** (27B geri, **oturum KIRILMADI** — başlıca risk gerçekleşmedi).
   - Verimlilik hesabı (raporda): Mod A (CPU worker 10.7 tok/s) vs Mod B (GPU ~102 tok/s + ~360 s geçiş) → break-even ≈ **~4300 output token/batch**; mod B uzun batch veya unattended sürede kârlı.
   - Kayıtlar: runs.csv +2 satır (2026-10-02-02/03), STATE, TASKS, bu LOG; git commit.
-  - **Beklenen (FunkGoth)**: (a) rapor + Mod B eşiği kararı; (b) isteğe bağlı W1 warm-state tekrarı (18.5→? tok/s teyidi, ~5 dk).
+  - **RAPOR VERİLDİ (2026-10-02)**: bulgular + break-even (~4300 output tok/batch) + 3 soru FunkGoth'a.
+  - **Beklenen kararlar (FunkGoth)**: (1) Mod B eşiği (~4300 tok makul mu / unattended kuralı?); (2) W1 warm teyiti onayı (~5 dk, deneysel); (3) disk hızı ölçümü izni (reload 5.3 dk'nın disk kaynaklı olup olmadığını teyit).
+  - **DEVİR (FunkGoth: "devir yapalım")**: hafıza güncel + commit atıldı; yeni sohbet → README → PROTOCOL → STATE → TASKS; ilk iş = yukarıdaki 3 karara göre ilerleme.

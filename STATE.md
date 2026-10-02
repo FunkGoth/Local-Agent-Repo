@@ -14,7 +14,7 @@ Son güncelleme: 2026-10-02 (Oturum 13)
 | EmberTale T1–T6 | Project EmberTale/ | 🕐 ayrı sohbet |
 
 ## Sıradaki Adım (YENİ SOHBET — devir)
-1. **L1-B raporu + karar**: sonuç raporu FunkGoth'a (2026-10-02) → **Mod B eşiği kararı** (reload ≈5.3 dk → break-even ≈4300 output tok/batch); isteğe bağlı W1 warm teyidi (onay).
+1. **L1-B kararları (rapor VERİLDİ 2026-10-02)**: FunkGoth'tan — (1) **Mod B eşiği** (reload ≈5.3 dk → break-even ≈4300 output tok/batch; unattended kuralı?); (2) **W1 warm teyidi** onayı (~5 dk, deneysel); (3) **disk hızı ölçümü** izni (yavaş disk mi?).
 2. **Veri haftası** (→10-09): policy'ye göre full (run_id çift; yeni iş tipi daima); hafta sonu rapor + mekanizma tartışması.
 3. **Ö3**: sonraki Sistem Değerlendirmesinde ana model ~32 tok API örneği → baseline bandı.
 4. **FAZ 2 raporu** (→10-09 sonrası): iş tipi haritası, routing, paralel kapasite, iş-başı öngörü (GPU worker verisi besleyecek).
