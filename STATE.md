@@ -18,15 +18,13 @@
 2. Full veri haftası →10-09 (doğal akış: ~%50 full, hedef ≥3; hafta sonu rapor) — FunkGoth: metodun verimliliği hâlâ teste tabi.
 3. FAZ 2 raporu (10-09 sonrası): paralel kapasite + iş tipi haritası + routing → Mod B metodunun verimliliği verilerle teyit edilecek.
 4. Ö3 devam (ana model hız ölçümü).
+5. **Sub-agent entegrasyon çalışması (HATIRLATMA — FunkGoth, Oturum 18)**: context-paralel teknikler + görev öncesi tahmin + iş→agent/model routing haritası; veri: runs.csv (BOŞLUK: 27B'de kendim yaptığım işler kayıtta YOK). Zaman: FunkGoth (muhtemelen 10-09 sonrası).
 
 ## Beklenen Kararlar / Onaylar (FunkGoth)
-- **Mod B eşiği: ✅ KARAR VERİLDİ (Oturum 16)** — (b) unattended her zaman B, eşik yok + reload öncesi daima worker evict. PROTOCOL'e kayıtlı; metodun verimliliği hâlâ teste tabi (FunkGoth).
 - Mimari ONAYLI (Oturum 11): GPU=1 kiracı; **Mod A** = interaktif (27B resident + workers CPU), **Mod B** = paralel batch (evict → unload → 2×GPU worker → JIT reload ~17s + entegre).
 - **K1/K6 geçici varsayılanlar (agent, Oturum 18)**: K1 eşiği = ≥1 sinyal (yalnız DEĞİŞMEDİĞİ bilinen dosya okuması sayılır); K6 = prompt başına 1 snapshot (uzun işte başlangıç da). FunkGoth revize edebilir.
 
 ## Detay
-- **Mod B kuralı (ONAYLI)**: GPU worker'a devir = önce `lms unload`; unattended eşik yok; reload öncesi daima evict (`keep_alive:0`). Kanıt: 317.7s vs 17.44s (runs.csv 06).
-- **317.7s KANITI (Oturum 16, GO)**: worker8b evict (`keep_alive:0`, /api/ps boş) → `lms unload` (VRAM 23067→1038–1404 MiB) → 1. deneme `/api/v1` **404** (ama async JIT load tetiklendi) → 2. deneme `/api/v0/chat/completions` **http=200, 17.44s** (TTFB≈total, eval 16 tok ihmal), final **23368 MiB, oturum ayakta** (5. unload+reload; hiç kırılmadı). runs.csv 06.
-- **Bionic API**: model yönetimi **`/api/v0/…`** (`/api/v0/models` 200; v1 chat 404); JSON `Content-Type` zorunlu (415 dersi). Endpoint yanlış bile olsa istek JIT load'u async tetikliyor.
-- **Boşaltma**: `lms unload` / `POST localhost:1234/api/v0/models/unload` / UI Eject; **Bionic JIT reload AÇIK**. **Ollama worker8b**: CPU ≈10.7, GPU solo ≈102–108 tok/s; evict = `keep_alive:0`; GPU'da size_vram 6.3 GB.
+- **Mod B kuralı (O16 ONAY (b))**: unattended her zaman B; GPU devir = önce `lms unload`; reload öncesi daima evict (`keep_alive:0`). Kanıt: worker VRAM'deyken 317.7s / boşken **17.44s** (runs.csv 06; detay LOG).
+- **Bionic API + Boşaltma**: `/api/v0/…` (v1 404); JSON `Content-Type` zorunlu (415 dersi); yanlış endpoint bile JIT load'u tetikliyor; `lms unload` / UI Eject; JIT reload AÇIK. worker8b: CPU ≈10.7, GPU solo ≈102–108 tok/s; size_vram 6.3 GB.
 - **Model**: `C:\LM-Models\…\Qwen3.8-27B-Q4_K_M.gguf` (15.66 GB, C: 980 PRO). Disk W: C 937 / D 1687 / E 323 MB/s. model-hafiza.md = distille; runs.csv = ham.

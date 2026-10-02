@@ -211,3 +211,11 @@
 - Kurulum detayı: `introspection.read_session --project self --session self --limit 1` → header "Current context: N tokens" (K6'nın mekanizması); compaction sayacı agent tarafında İMKÂNSIZ (sınırlılık) → sayıyı kullanıcı tutacak.
 - Geçici varsayılanlar (agent): K1 eşiği ≥1 sinyal (yalnız değişmediği bilinen dosya); K6 = prompt başına 1 snapshot. Beklenen Kararlar'a yazıldı; FunkGoth revize edebilir.
 - Kayıtlar: PROTOCOL (3 düzenleme), lessons (+1), STATE (18), TASKS (yeni Aktif), context-benchmark.md + context-snapshots.csv (yeni), bu LOG; git commit.
+
+## 2026-10-02 — Oturum 18 (devam — veri hijyeni turu)
+- FunkGoth: yeni oturumlar context'i hızlı dolduruyor (bootstrap ~7k + LOG ~11k + tool çıktıları); agentic işi bozmadan optimize et + self-kontrol mekanizması önerdim.
+- FUNKGOTH KARARLARI: (2) LOG aşırı okuma → **hemen uygula, onay turu yok**; (3) PROTOCOL zayıflatma **ONAY** ("sistem dallanıp budaklanıyor, PROTOCOL kullanışlılaşıyor"); (5) TASKS'tan bitmiş işler LOG/çalışma dosyalarına; (4) görev tahmini → sub-agent entegrasyon çalışmasına (HATIRLAT); (1) sub-agent'ı neden az kullandığım üzerine konuşma (CPU neredeyse hiç görülmüyor).
+- UYGULANAN: PROTOCOL → Oturum Başlangıcı'na **LOG=ARŞİV** kuralı (tam okuma yok, search-on-demand) + K7 güçlendirildi (varsayılan = delege et) + Protokol Değişiklikleri budandı (9 uzun satır → 2 özet satır; geçmiş LOG'da); TASKS → Aktif 3 iş, bitmiş 11 iş tek satırlık Arşiv'e; STATE → sub-agent entegrasyon hatırlatması + detay budaması.
+- SUB-AGENT KAÇINMA ANALİZİ (raporda): nedenler = hız (CPU 10.7 vs 27B 100+ tok/s), kalite endişesi, doğrulama çift-maliyeti, yanlış maliyet modeli (worker≈Mod B sanmak). Düzeltme: CPU worker = **Mod A, sıfır geçiş maliyeti** (koexist kanıtlı, runs.csv 01); gerçek maliyet yalnız decode hızı.
+- ROUTING BOŞLUĞU (KANIT): runs.csv yalnız worker'a giden işleri kaydediyor; 27B'de kendim yaptığım (kaçırılan) routing kararlarının kaydı YOK → entegrasyon çalışmasında routing alanı eklenecek.
+- SIRADAKİ: git commit + K6 snapshot.

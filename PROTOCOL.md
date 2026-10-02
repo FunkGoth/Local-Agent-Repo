@@ -21,6 +21,7 @@ Agent burada özerk yazar; kullanıcı her an okuyup müdahale edebilir.
 1. PROTOCOL.md → STATE.md → TASKS.md sırasıyla oku.
 2. Yeni kullanıcı isteği varsa: önce TASKS.md'ye ekle, sonra işe başla.
 3. STATE.md'deki "Sıradaki Adım" satırından devam et.
+4. **LOG.md = ARŞİV** (FunkGoth, 2026-10-02): oturum başlangıcında TAM OKUNMAZ; spesifik geçmiş olay gerekiyorsa `search_file_line`. Çalışır durum kaynağı yalnız STATE.md.
 
 ## Çalışma Döngüsü
 - Al: TASKS.md'den sıradaki işi seç.
@@ -65,7 +66,7 @@ FunkGoth onaylı (Oturum 18). Süreli deney: veri (metrics/context-benchmark.md 
 - K4 (büyük üretim): 50+ satırlık üretilen çıktı (rapor/analiz/tablo) → `work/` dosyası; context'e özet + yol.
 - K5 (prompt sınırı): bir prompt içinde K1 ≥1 kez tetiklendiyse → prompt bitiminde devir teklifi.
 - K6 (ölçüm): her kullanıcı prompt sonunda `introspection.read_session` → "Current context" → `metrics/context-snapshots.csv` satırı; deg bayrağı + oturum sonunda GERÇEK/SAHTE sınıflandırma (LOG).
-- K7 (worker özetleme): 100+ satırlık okuma/özetleme → Worker B (Mod B kuralları geçerli); küçük dosyalarda YOK.
+- K7 (worker özetleme): 100+ satırlık okuma/özetleme → Worker B — **varsayılan = delege et, okuma** (FunkGoth, Oturum 18: CPU worker Mod A = sıfır geçiş maliyeti; yalnız decode hızı ~10 tok/s maliyet). Küçük dosyalarda YOK. Mod B (GPU) yalnız unattended batch.
 - K3 (checkpoint kalitesi): Çalışma Döngüsü / Kaydet satırı.
 - Tasarım + terminasyon kriterleri: `metrics/context-benchmark.md`.
 
@@ -86,16 +87,9 @@ FunkGoth onaylı (Oturum 18). Süreli deney: veri (metrics/context-benchmark.md 
 - Taşıma/yeniden yapılandırma: yalnızca `move` (silme yok); tüm referanslar (skill, doc, uygulama kökü) güncellenmeden taşınmaz; LOG'a gerekçeli kayıt.
 
 ## Protokol Değişiklikleri
-- 2026-10-01 (Oturum 4): A1/A2 uygulandı — Çalışma Döngüsü'ne 5 kural (kapanış, okuma bütçesi, scratch, global dosya bütçesi, distille), STATE 4 bölüm/≤30 satır, Devir'e "beklenen karar" kuralı. Gerekçe: LOG.md.
-- 2026-10-01 (Oturum 4): "Çoklu Proje İskeleti" bölümü + `E:\README.md` giriş noktası eklendi. Gerekçe: FunkGoth çok proje/çok uygulama/çok model planı; global prompt proje-bağımsız kalmalı. LOG.md.
-- 2026-10-01 (Oturum 4): "Delegation" bölümü + `delegation/` klasörü — ana agent (yönetici) + worker context havuzları; VRAM kuralı (sıralı, tek worker) + brief/result protokolü + runtime seçenekleri (A/B/C). Gerekçe: ana sohbetin context ekonomisi + 24 GB tavan (donma kanıtıyla). LOG.md.
-- 2026-10-01 (Oturum 5): Delegation Runtime B somutlaştı — `worker8b` (qwen3:8b) Ollama port 11434, CPU-only (`num_gpu 0`), ctx 8192, temp 0.3; ilk brief→result denemesi T7 raporu incelemesi. Gerekçe: FunkGoth B'yi onayladı; lokal GGUF import'u bu ortamda kırık (lessons.md). LOG.md.
-- 2026-10-01 (Oturum 5): "Sistem Değerlendirmesi" bölümü + `metrics/` veri havuzu + Delegation'a otonom sub-agent yetkisi satırı — her worker çalıştırması ölçülür (hız, kaynak, ana modele etki, kalite); 24s'de 1 FunkGoth onaylı öz-değerlendirme (5 bölüm + aksiyon eşikleri). Gerekçe: FunkGoth otonom sub-agent kullanımı + günlük veri tabanlı değerlendirme yetkisi verdi. LOG.md.
-- 2026-10-01 (Oturum 5): metrics şeması genişletildi (VRAM dedicated+shared, RAM free/avail/commit, pagefile, gpu_util) + **light/full örnekleme politikası** (yeni iş tipi ilk + ~1/3 rastgele) + `capture_overhead_s` (ölçüm maliyeti) takibi + capture.ps1 aracı. Gerekçe: FunkGoth genişletilmiş telemetri + ölçüm maliyetinin raporlanması + random ve farklı iş ağırlıklarında örneklem istedi. LOG.md.
-- 2026-10-01 (Oturum 6): Worker B çağrı satırına **`think: false` varsayılanı** eklendi (qwen3 thinking modu varsayılan açık; ölçüm: eval 354→33 tok, wall 41s→3.7s, kalite korundu — runs.csv 03/04/05). Gerekçe: FunkGoth doğrulama isteği sırasında ölçülen ~11x maliyet farkı. LOG.md + lessons.md.
-- 2026-10-02 (Oturum 16): Delegation'a **Mod B kuralı** eklendi — GPU worker'a devir = önce unload, eşik yok (unattended); reload öncesi daima worker evict (`keep_alive:0`). Gerekçe: 317.7s anomali KANITLI (VRAM çakışması; clean reload 17.44s) → break-even ≈200–250 tok; FunkGoth (b) seçeneğini + evict kuralını onayladı. LOG.md + runs.csv 06.
-- 2026-10-02 (Oturum 18): "Context Ekonomisi & Devir Kalitesi" bölümü (K1–K7) + Kaydet satırına checkpoint kriteri (K3) + `metrics/context-benchmark.md` (deneysel tasarım + terminasyon kriterleri) + `metrics/context-snapshots.csv` (K6 verisi). Süreli deney (→10-09); maliyetli/faydasızsa terkedilecek. Gerekçe: FunkGoth K1–K7'yi ONAYLADI + benchmark düzenek istedi. LOG.md.
-- 2026-10-02 (Oturum 8): **Kök migrasyonu** — tüm E:\ içeriği (agent, Project EmberTale, Project Tale, README) → `E:\Bionic\` altına taşındı; tüm yol referansları güncellendi; Sabit Kural 1 "E:\Bionic\" kapsamına daraltıldı. Gerekçe: E:\ diski Ollama/Claude Code gibi diğer harness'lara da ayrılacak (FunkGoth kararı). LOG.md.
+> Geçmiş: LOG.md ("Protokol" ara) — her değişiklik gerekçesiyle LOG'da kayıtlıdır (Sabit Kural). Bu bölüm yalnız yapısal özet.
+- 2026-10-01 (O4): Çalışma Döngüsü 5 kural + STATE 4 bölüm + Devir "beklenen karar" · (O4) Çoklu Proje İskeleti + README giriş noktası · (O4) Delegation + VRAM kuralı + brief/result + runtime A/B/C · (O5) worker8b CPU-only kurulumu · (O5) Sistem Değerlendirmesi + otonom sub-agent yetkisi · (O5) light/full örnekleme + capture_overhead_s · (O6) `think:false` varsayılanı (~11x maliyet kanıtı)
+- 2026-10-02 (O16): Mod B kuralı (önce unload; reload öncesi daima evict — 317.7s vs 17.44s kanıtı) · (O18) K1–K7 + context-benchmark.md (süreli deney →10-09) · (O8) Kök migrasyonu → `E:\Bionic\` · (O18) LOG=arşiv kuralı + Protokol Değişiklikleri'nin budanması (bu satır)
 
 ## Proje Haritası (EmberTale)
 - Proje kökü: E:\Bionic\Project EmberTale\
