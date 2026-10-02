@@ -49,3 +49,12 @@
 - Aynı dosyaya çoklu düzenleme = TEK çoklu-edit çağrısı; %30+ değişim = replace_file.
 - Boot: kök README → agent\PROTOCOL → STATE → TASKS · **bu dosya = O25 devri (STATE'ten referanslı)**.
 - LOG yumuşak tavan 300 satır, 350'de FunkGoth'a sor (sessiz silme yok) · Dil: Türkçe.
+
+## 6) O26 GÜNCELLEME (2026-10-03, Oturum 26) — bu devir
+**Onaylar (FunkGoth)**: isim **"Project Optim" ✅** · sessiz-stop mekanizması ✅ (DATA-POLICY §6 — sıradaki oturumdan itibaren aktif; ayrı test gerekmez) · **⏳ canon + 3 kaldıraç = KARAR BEKLENİYOR** (açıklama/ayar listesi O26'da verildi — detay: LOG O26 bloğu + TASKS Aktif O26 satırı).
+**O26 kayıtları (✅ tamam)**: STATE/TASKS/DECISIONS (+O26 satırı) · DEVR §2.1 DURUM notu · ledger +3 satır (K9) · snapshots +O26 (**47561 tok**, K6) · git: agent `7ce2814` · Project Optim `d406a36` · LOG O26 bloğu.
+**KALANLAR (sıradaki oturum, sırayla):**
+1. **FunkGoth kararları**: (a) **canon** — öneri: `Docs\PROTOCOL-optim.md` + `Docs\DATA-POLICY.md` canon ilan edilsin; `Docs\ARSIV\` her senaryoda arşiv (kanıt statüsü); `agent\PROTOCOL.md` zaten agent hafızası (canon kararı gerektirmez). (b) **3 kaldıraç** — 1. reasoning effort: rutin=low/karar=high (mevcut durum **Medium**); 2. MTP: ayar değişimi YOK — teyit yeterli (zaten aktif, baseline draft 38/kabul 17); 3. 128K: **slot 4→2 ÖNCE → context 64K→128K SONRA**, tek ayarda bir (B2 reddi geçmişi + donma riski); ölçüm = capture.ps1 VRAM + tok/s + normal bir tur.
+2. **§2.2 REFERANS GÜNCELLEME** (7 dosya — liste yukarıda) + **§2.3 KAYIT TAMAMLAMA**: DECISIONS +**O23 satırı** (Project Optim kuruluşu; operatif K1–K9 PROTOCOL'de KALDI) · ledger +**O23/O24 telafi satırları** (O23 okuma turu ~9 dosya ~1100 satır + "K9 İHLAL: O23 ilk turunda defter satırı kalmadı — telafi") · snapshots +**O25 satırı** (62.2k = kullanıcı tarafı değer; not = K6 sınırlılığı — introspection değeri yok).
+3. **UE teorik oturum** (O22a): kapsam = FunkGoth'tan (dosya sayısı, C++/blueprint) → kapasite hesabı.
+4. **10-09 gözden geçirme**: K verileri kriterle + FAZ 2 raporu + Ö3 (hazırlık: `Docs\ARSIV\2026-10-02-context-devami\hazirlik-1009.md`).

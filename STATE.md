@@ -23,7 +23,7 @@
 - O21: compaction sayıları O19–O21 = FunkGoth girer (K6 sınırlılığı); "sessiz stop" vakası kayıtlarda YOK (alt sınır 2 + ~5 kayıtsız + O21).
 
 ## Detay
-- **O25 DEVR**: `E:\Bionic\agent\DEVR.md` — doğrulanmış durum + kalan iş listesi + FunkGoth verisi (48 dk / 4 compaction / 62.2k).
+- **O25/O26 DEVR**: `E:\Bionic\agent\DEVR.md` (§6 = O26: onaylar ✅/⏳ + kalan iş sırası) — doğrulanmış durum + FunkGoth verisi (48 dk / 4 compaction / 62.2k).
 - **O23 bölüşümü**: K1–K9 operatif metni PROTOCOL'de KALIYOR (O19 dersi: boot çökmesin); proje = SPEK + veri + politika + arşiv.
 - **K2c**: append-only CSV → shell `>>`; routing: 27B karar/diyalog · worker8b CPU 100+ satır · Mod B unattended. Detay: handbook.md.
 - **Model**: 27B ana (C:\LM-Models, 15.66 GB); worker8b CPU ≈10.2–10.4, GPU solo ≈102–108 tok/s; JIT reload 17.44s.
