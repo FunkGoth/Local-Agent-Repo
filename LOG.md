@@ -150,3 +150,10 @@
 - **MODEL ENVANTERİ (Ollama)**: worker8b:latest (5.2 GB), qwen3:8b (5.2 GB), gemma4:26b (18 GB). GPU worker testi için worker8b yeterli (2×8B ≈ 10.4 GB + KV, 24 GB'a sığar) → **yeni model indirme GEREKMEZ** (FunkGoth indirme teklif etti → "gerek yok" cevabı verilecek).
 - **LM Studio klasik KURULMAYACAK** (FunkGoth sorusu): 27B Bionic'in modeli; klasik LM Studio'nun TTL/Auto-Evict'i Bionic modellerine uygulanmaz; kurulum faydasız + çakışma riski. Manuel boşaltma zaten çalışıyor.
 - **Beklenen**: FunkGoth'tan unload→GPU testine GO (test = unload → VRAM teyidi → 2×worker8b GPU paralel → JIT reload+TTFB → runs.csv + rapor).
+- **L1-B TESTİ ÇALIŞTIRILDI + BİTTİ (FunkGoth: "İzin veriyorum, test başlasın. GO")** — sonuçlar `C:\Users\dumba\.lmstudio\scratchpads\kn\l1b-results.txt` (TAM):
+  - [0] Baseline: VRAM **23574/24576 MiB** (27B resident). [1] `lms unload` → 27B boşaldı → VRAM **23574 → 1500 MiB** (~22 GB serbest) — **boşaltma KANITLANDI**. (Aşama 1'de model asla boşaltılmamıştı; FunkGoth'un "VRAM düştü" gözlemi gerçekti — tetikleyici gerçek unload'dı.)
+  - [3] 2×worker8b GPU: W1 wall=48.81s/160 tok/**18.5 tok/s**; W2 wall=50.41s/160 tok/**101.9 tok/s**. Ollama /api/ps: worker8b **size_vram=6.3 GB → tamı VRAM'de**, TEK instance (2 istek aynı modelde batch/queue). Yorum: 101.9 = GPU solo hız (CPU 10.7'nin ~9.5×); 18.5 = cold-load + cold decode + kuyruk artifact'i → **warm-state tekrarıyla teyit edilecek** (onay bekleniyor).
+  - [5] **JIT reload ÇALIŞTI**: http=200, **time_total=317.7s (~5.3 dk)** — önceki 10–30 s tahmini ÇOK iyimserdi; 17.7 GB disk okuması sınırlı. Bu Mod B'nin ana maliyeti. [6] Final VRAM **23082 MiB** (27B geri, **oturum KIRILMADI** — başlıca risk gerçekleşmedi).
+  - Verimlilik hesabı (raporda): Mod A (CPU worker 10.7 tok/s) vs Mod B (GPU ~102 tok/s + ~360 s geçiş) → break-even ≈ **~4300 output token/batch**; mod B uzun batch veya unattended sürede kârlı.
+  - Kayıtlar: runs.csv +2 satır (2026-10-02-02/03), STATE, TASKS, bu LOG; git commit.
+  - **Beklenen (FunkGoth)**: (a) rapor + Mod B eşiği kararı; (b) isteğe bağlı W1 warm-state tekrarı (18.5→? tok/s teyidi, ~5 dk).
