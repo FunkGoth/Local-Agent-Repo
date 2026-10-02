@@ -25,7 +25,7 @@ Agent burada özerk yazar; kullanıcı her an okuyup müdahale edebilir.
 ## Çalışma Döngüsü
 - Al: TASKS.md'den sıradaki işi seç.
 - Yap: işi küçük adımlarla ilerlet.
-- Kaydet: her adımdan sonra STATE.md'ye ne yaptığını ve sıradaki adımı yaz.
+- Kaydet: her adımdan sonra STATE.md'ye ne yaptığını ve sıradaki adımı yaz. Checkpoint kriteri (K3): biten adımlar + açık dosya/bölüm + bekleyen sorular + bir sonraki somut eylem; test = yeni oturum yalnızca STATE + iş dosyasıyla, yeniden okumadan devam edebilmeli.
 - Öğren: hata yaptıysan veya işe yarayan bir yöntem bulduysan lessons.md'ye bir satır ekle.
 - Ölç: her ~10 tool çağrısında kendine sor: "Tekrar ediyor muyum, talimatları unutuyor muyum, dosyalar çok mu okundu?" Evetse devir yap.
 - Kapanış: iş bitince iş state.md'sine "TAMAM" yaz, TASKS.md Arşiv'e tek satır taşı; 30+ dosyaya ulaşan işi alt klasöre böl.
@@ -58,6 +58,17 @@ Agent burada özerk yazar; kullanıcı her an okuyup müdahale edebilir.
 - Aksiyon eşikleri: eval <4 tok/s → ara; kalite "failed" ×2 aynı iş tipi → o iş tipini B'den çıkar; VRAM delta >256 MB → num_gpu 0 doğrula.
 - Gerekçe: FunkGoth (2026-10-01) sub-agent otonom kullanım + günlük veri tabanlı öz-değerlendirme yetkisi verdi (tetik onaylı).
 
+## Context Ekonomisi & Devir Kalitesi (K1–K7) — 2026-10-02, SÜRELİ DENEY (→10-09)
+FunkGoth onaylı (Oturum 18). Süreli deney: veri (metrics/context-benchmark.md + context-snapshots.csv) faydayı göstermezse veya maliyetliyse TERKEDİLİR (karar 10-09).
+- K1 (degradasyon sinyali): aynı oturumda (a) DEĞİŞMEDİĞİNİ BİLDİĞİN bir dosyayı yeniden okuma, (b) biten adımı yeniden yapma, (c) yol/kısıt karıştırma, (d) STATE.md ile çelişme → derhal "compaction-degradasyon şüphesi" bildir + checkpoint öner + devir teklif et. Compaction SAYACI YOK (agent compaction'ı sayamaz — sınırlılık).
+- K2 (çıktı hijyeni): varsayılan = `search_file_line` / dar satır aralığı / log kuyruğu (son N satır + hatalar); tam dosya okuması istisna ve gerekçeli.
+- K4 (büyük üretim): 50+ satırlık üretilen çıktı (rapor/analiz/tablo) → `work/` dosyası; context'e özet + yol.
+- K5 (prompt sınırı): bir prompt içinde K1 ≥1 kez tetiklendiyse → prompt bitiminde devir teklifi.
+- K6 (ölçüm): her kullanıcı prompt sonunda `introspection.read_session` → "Current context" → `metrics/context-snapshots.csv` satırı; deg bayrağı + oturum sonunda GERÇEK/SAHTE sınıflandırma (LOG).
+- K7 (worker özetleme): 100+ satırlık okuma/özetleme → Worker B (Mod B kuralları geçerli); küçük dosyalarda YOK.
+- K3 (checkpoint kalitesi): Çalışma Döngüsü / Kaydet satırı.
+- Tasarım + terminasyon kriterleri: `metrics/context-benchmark.md`.
+
 ## Sabit Kurallar (değiştirilemez)
 1. Yalnızca E:\Bionic\ içinde yaz/sil. (2026-10-02: kök migrasyonu; E:\ diski diğer harness'lara da ayrılır)
 2. Kullanıcı onayı olmadan silme / geri alınamaz işlem yok.
@@ -83,6 +94,7 @@ Agent burada özerk yazar; kullanıcı her an okuyup müdahale edebilir.
 - 2026-10-01 (Oturum 5): metrics şeması genişletildi (VRAM dedicated+shared, RAM free/avail/commit, pagefile, gpu_util) + **light/full örnekleme politikası** (yeni iş tipi ilk + ~1/3 rastgele) + `capture_overhead_s` (ölçüm maliyeti) takibi + capture.ps1 aracı. Gerekçe: FunkGoth genişletilmiş telemetri + ölçüm maliyetinin raporlanması + random ve farklı iş ağırlıklarında örneklem istedi. LOG.md.
 - 2026-10-01 (Oturum 6): Worker B çağrı satırına **`think: false` varsayılanı** eklendi (qwen3 thinking modu varsayılan açık; ölçüm: eval 354→33 tok, wall 41s→3.7s, kalite korundu — runs.csv 03/04/05). Gerekçe: FunkGoth doğrulama isteği sırasında ölçülen ~11x maliyet farkı. LOG.md + lessons.md.
 - 2026-10-02 (Oturum 16): Delegation'a **Mod B kuralı** eklendi — GPU worker'a devir = önce unload, eşik yok (unattended); reload öncesi daima worker evict (`keep_alive:0`). Gerekçe: 317.7s anomali KANITLI (VRAM çakışması; clean reload 17.44s) → break-even ≈200–250 tok; FunkGoth (b) seçeneğini + evict kuralını onayladı. LOG.md + runs.csv 06.
+- 2026-10-02 (Oturum 18): "Context Ekonomisi & Devir Kalitesi" bölümü (K1–K7) + Kaydet satırına checkpoint kriteri (K3) + `metrics/context-benchmark.md` (deneysel tasarım + terminasyon kriterleri) + `metrics/context-snapshots.csv` (K6 verisi). Süreli deney (→10-09); maliyetli/faydasızsa terkedilecek. Gerekçe: FunkGoth K1–K7'yi ONAYLADI + benchmark düzenek istedi. LOG.md.
 - 2026-10-02 (Oturum 8): **Kök migrasyonu** — tüm E:\ içeriği (agent, Project EmberTale, Project Tale, README) → `E:\Bionic\` altına taşındı; tüm yol referansları güncellendi; Sabit Kural 1 "E:\Bionic\" kapsamına daraltıldı. Gerekçe: E:\ diski Ollama/Claude Code gibi diğer harness'lara da ayrılacak (FunkGoth kararı). LOG.md.
 
 ## Proje Haritası (EmberTale)

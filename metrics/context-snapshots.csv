@@ -1,0 +1,2 @@
+ts_iso,session,task,ctx_start,ctx_end,delta,deg,note
+2026-10-02T19:21+03:00,768b9104,K1-K7 uygulama + benchmark kurulumu,,,43450,0,ilk snapshot; compaction sonrasi tek prompt'ta 5 dosya okumasiyla context ~30k artti (K2'nin en dogrudan kaniti; baz degeri tam bilinmiyor)
