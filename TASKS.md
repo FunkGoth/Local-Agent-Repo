@@ -1,9 +1,9 @@
 # TASKS — Sıra
-Son güncelleme: 2026-10-02 (Oturum 9 kapanışı: Ö2 genişletilmiş+onaylı, Ö3 onaylı, B6 tam; kök migrasyonu tam; toplama haftası başladı — doğal akış)
+Son güncelleme: 2026-10-02 (Oturum 10: Kaynak Bağımsızlığı FAZ 1 (çerçeve) BAŞLADI — FunkGoth B seçti; açık sorular cevaplarda)
 
 ## Aktif
 - [2026-10-02] **Full veri toplama haftası** (Ö2 genişletilmiş, ONAYLI; **BAŞLADI 2026-10-02 — doğal akış, FunkGoth**): 2026-10-09'a kadar worker run'larında full örnekleme rastgele yoğun (~%50, run_id çift → full; yeni iş tipi daima full; hedef ≥3). Hafta sonu: veri raporu + ölçüm mekanizması optimizasyon tartışması. → `metrics/`
-- [2026-10-02] **Kaynak bağımsızlığı + model geçişi yeteneği** (ONAYLI hedef, veri haftasına bağlı): iş tipi → kaynak/süre/kalite haritasını runs.csv'den çıkar; raporla (a) küçük modele geçiş önerisi, (b) paralel sub-agent kapasitesi, (c) iş-başı KAYNAK ÖNGÖRÜSÜ raporu (kullanıcının kalan kaynağı planlayabileceği biçimde). → `metrics/` + `delegation/`
+- [2026-10-02] **Kaynak bağımsızlığı + model geçişi yeteneği** (ONAYLI hedef): **FAZ 1 (çerçeve) — BAŞLADI 2026-10-02 Oturum 10 (FunkGoth: B seçimi)**: "geçiş" tanımı + karar kriterleri + rapor iskeleti → `work/2026-10-02-kaynak-bagimsizligi-cercevesi/`. **FAZ 2 (veri + rapor) — veri haftasına bağlı (→10-09)**: iş tipi → kaynak/süre/kalite haritasını runs.csv'den çıkar; raporla (a) küçük modele geçiş önerisi, (b) paralel sub-agent kapasitesi, (c) iş-başı KAYNAK ÖNGÖRÜSÜ raporu (kullanıcının kalan kaynağı planlayabileceği biçimde). → `metrics/` + `delegation/`
 - [2026-10-02] **E:\Bionic\ kök migrasyonu** (ONAYLI): ✅ TAMAM — taşıma + yol referansları + commit `97b7374` (Oturum 9). Gerekçe: Ollama/Claude Code gibi harness'lar E:\'de kendi alanlarını kuracak.
 - [2026-10-01] T7 Agent iyileştirme analizi: hafıza yönetimi + Bionic ayar/donanım taraması + model optimizasyonu → `work/2026-10-01-agent-iyilestirme-analizi/` (✅ rapor + B1–B6 kapalı; B4 TAMAM 2026-10-02; **B6 TAMAM 2026-10-02** — kullanıcı tek satır prompt'u uyguladı)
 - [2026-10-01] Delegation Worker B: kurulum + ilk brief→result denemesi → `delegation/` (✅ worker8b CPU'da doğrulandı; T7 raporu incelemesi yapıldı; **Oturum 6: uçtan uca doğrulama PASS — CPU-only, hız, kalite; `think:false` varsayılan kabul edildi**)

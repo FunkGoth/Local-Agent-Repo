@@ -94,4 +94,10 @@
 
 ## 2026-10-02 — Oturum 9 (kapanış)
 - **Toplama haftası BAŞLADI (doğal akış — FunkGoth seçimi A)**: tohum run'ı yok; 2026-10-09'a kadar gelen her worker run'ında metrics/README politikası geçerli (run_id çift → full; yeni iş tipi daima full; hedef ≥3). Hafta sonu: verimlilik raporu + mekanizma optimizasyon tartışması + kaynak haritası taslağı (model geçişi / paralel sub-agent / kaynak öngörüsü).
-- Bekleyen karar: YOK. Bekleyen iş: EmberTale T1–T6 (ayrı sohbet, `E:\Bionic\Project EmberTale\` kökü). Devir talimatı: yeni sohbet → README → PROTOCOL → STATE; sıradaki adım 1 (toplama haftası yürütme).
+- Beklenen karar: YOK. Beklenen iş: EmberTale T1–T6 (ayrı sohbet, `E:\Bionic\Project EmberTale\` kökü). Devir talimatı: yeni sohbet → README → PROTOCOL → STATE; sıradaki adım 1 (toplama haftası yürütme).
+
+## 2026-10-02 — Oturum 10
+- FunkGoth: "Kaynak bağımsızlığı + model geçişi" konusunu işlemek istiyor; akışı (önce veri → rapor → konu) teyit ettirdi, ardından **B seçti: çerçeveyi şimdi kuralım** (veri gelince doldur).
+- FAZ 1 iş klasörü kuruldu: `work/2026-10-02-kaynak-bagimsizligi-cercevesi/cerceve.md` (geçiş tanımı + karar kriterleri taslağı + FAZ 2 rapor iskeleti + açık sorular).
+- FunkGoth'a 3 soru iletildi: (1) kapsam — (a) ana model 27B / (b) worker 8b / (c) platform-donanım, hangisi(hangileri)? (2) kalite eşiği — onayı yeterli mi yoksa iş tipine kriter mi? (3) paralellik hedefi — bu makinede 2+ worker mı yoksa 1 güçlü worker + gelecek donanım?
+- Kayıtlar: TASKS (FAZ 1/FAZ 2 bölünmesi), STATE (aktif iş + sıradaki adım 1 + detay), bu LOG. git commit.
