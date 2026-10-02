@@ -1,4 +1,4 @@
-# STATE — Anlık Durum (2026-10-02, Oturum 21 — context optimizasyonu DEVAM: 10-09 hazırlık denetimi ✅ + **DEVR (FunkGoth isteği)**; sıradaki = **O22: UE projesi teorik oturum + devir soruşturması**)
+# STATE — Anlık Durum (2026-10-02, Oturum 22 — **O22: UE teorik oturum**; devir soruşturması ✅ `work/2026-10-02-ue-oturum/devir-sorusturmasi.md`; sıradaki = teorik kapasite tartışması (FunkGoth ile))
 
 ## Aktif İş
 | İş | Klasör | Durum |
@@ -11,7 +11,7 @@
 | EmberTale T1–T6 | Project EmberTale/ | 🕐 ayrı sohbet (FunkGoth kök `E:\Bionic\Project EmberTale\` ile açacak) |
 
 ## Sıradaki Adım
-0. **O22 (ilk iş)**: UE projesi teorik oturum + **devir soruşturması** (TASKS Aktif'te detay; devri alır almaz (b) sorusunun araştırmasına başla; kayıt yoksa FunkGoth'a açıkça belirt).
+0. **O22**: (b) devir soruşturması ✅ BİTTİ (kesin 1 vaka O6→O7; ~5 sebep-kayıtsız devir; O19 boot hatası ayrı; O18 2 compaction oturum durdurmadı — detay yukarıdaki dosya). Sıradaki: **(a) UE teorik oturum** — FunkGoth'un büyük UE işinin kapsamıyla kapasite hesabı; soruşturma raporu FunkGoth'a sunuldu.
 1. **10-09 gözden geçirme**: K verileri kriterlerle yeniden kontrol (context-benchmark.md arşiv + snapshots/ledger/runs.csv) + **FAZ 2 raporu** (paralel kapasite, iş tipi haritası, routing teyidi) + **Ö3** (ana model hızı yeniden örnekleme → baseline.md bant). Hazırlık: work/2026-10-02-context-devami/hazirlik-1009.md (boşluklar: kullanıcı compaction sayıları, FAZ 2 unattended ölçüm, Ö3, routing boşluğu).
 2. Ö3 her Sistem Değerlendirmede (ana model ~32 tok API örneği → baseline.md).
 3. Sub-agent entegrasyon çalışması (zaman: FunkGoth'un kararı — muhtemelen 10-09 sonrası).
@@ -21,7 +21,7 @@
 - **Nihai K kararları UYGULANDI (tam yetki, O20 onayı)** — FunkGoth revize edebilir; 10-09 = gözden geçirme noktası (yeni karar turu değil).
 - Mimari ONAYLI: GPU=1 kiracı; **Mod A** = interaktif (27B resident + workers CPU, sıfır geçiş), **Mod B** = unattended paralel batch (evict→`lms unload`→2×GPU→JIT ~17s).
 - **YENİ (O21)**: compaction sayıları O19–O21 = FunkGoth girer (agent sayamaz — K6 sınırlılığı) → K2 kriterinin eksik yarısı.
-- **O22 konuları (FunkGoth, devirde)**: UE teorik oturum + devir soruşturması ("kaç defa yeni prompt ile devam istendi?") — kayıt yoksa bunu da raporla.
+- **O22 (FunkGoth)**: UE teorik oturum — büyük işin kapsamını (dosya sayıları, C++ modülü mü, blueprint mi) ver; kapasite hesabı buna göre. Soruşturma raporu: `work/2026-10-02-ue-oturum/devir-sorusturmasi.md` (kesin 1 vaka; geri kalanı kayıtsızlık olarak beyan edildi).
 
 ## Detay
 - **K2c (yeni, O20)**: append-only CSV → shell `>>` (edit_file DEĞİL) — sıfır yansıma (kanıt: edit ~400–600 tok/tur yansıtıyordu).
