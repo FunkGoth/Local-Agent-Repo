@@ -5,17 +5,18 @@ Son güncelleme: 2026-10-02 (Oturum 12)
 | İş | Klasör | Durum |
 |---|---|---|
 | Kaynak bağımsızlığı + model geçişi | work/2026-10-02-… + model-hafiza.md | 🔄 **FAZ 1 v3: AMAÇ ONAYLI** (27B ana KALIYOR; hedef = paralel iş + verimlilik + kullanım hafızası + context ekonomisi); FAZ 1.5 testleri kuyrukta |
-| Aşama 1 testi (VRAM attribüsyon + reload maliyeti) | work/…/cerceve.md | 🔄 3 adım ÇALIŞTI (runs.csv …-01): **VRAM DÜŞMEDİ (23.2→23.1 GB)**, TTFB 0.21s; dünki düşüş tekrarlamadı → **attribüsyon açık** |
-| L1 boşta boşaltma (ONAYLI) | Bionic yaşam-döngüsü + PROTOCOL | ⚠️ DÜZELTME: JIT=Auto-Load(KAPALI)≠boşaltma; asıl=Idle TTL/Auto-Evict; AMA JIT KAPALI→27B manuel→**muaf(#2051)→ayar boşaltmaz**; asıl kaldıraç=Bionic yaşam-döngüsü; Aşama 1 attribüsyon+reload ölçecek |
+| Aşama 1 testi (VRAM attribüsyon + reload maliyeti) | work/…/cerceve.md | ✅ TAMAM: **VRAM DÜŞMEDİ (23.2→23.1 GB)**, TTFB 0.21s; attribüsyon çözüldü (dünki gözlem=util karışıklığı) |
+| L1 boşta boşaltma (ONAYLI) | LM Studio ayarları | ✅ **ATTRİBÜSYON BİTTİ**: Bionic yaşam-döngüsü DEĞİL (dünki gözlem=util karışıklığı); 27B resident = tasarım (muaf #2051). Seçenekler: A=resident kabul / B=JIT+Idle TTL aç→boşalabilir (reload maliyeti ölçülecek) / C=hibrit → **FunkGoth seçecek** |
 | Full veri toplama haftası | metrics/ | 🔄 2026-10-02→10-09: ~%50 full, hedef ≥3; hafta sonu rapor |
-| Delegation Worker B | PROTOCOL + delegation/ | ✅ operasyonel; runs.csv 6 kayıt |
+| Delegation Worker B | PROTOCOL + delegation/ | ✅ operasyonel; runs.csv 7 kayıt |
+| Oto-devir (YENİ PARALEL İŞ) | agent/ + introspection | 🔄 kapsam netleşti (context izleme + otomatik devir); tasarım önerisi sunuldu → onay bekleniyor |
 | Sistem Değerlendirmesi | metrics/ | ✅ Ö1+Ö2 ONAY+UYGULANDI; **Ö3 hâlâ açık**; son: 2026-10-02 |
 | EmberTale T1–T6 | E:\Bionic\Project EmberTale\ | 🕐 ayrı sohbet |
 
 ## Sıradaki Adım (YENİ SOHBET — devir)
-1. **Aşama 1 attribüsyon turu**: FunkGoth'a sor — dünki 23→2–3 GB düşüş anında ne yapıyordun? (Bionic model seçici / sohbet aç-kapa / LM Studio UI?) → cevapla tetikleyiciyi tekrar üret + gerçek reload maliyeti ölçümü.
-2. **Oto-devir konusunu konuş** (FunkGoth başlattı, YENİ PARALEL İŞ) — kapsamı o anlatacak (muhtemelen: context dolunca/oturum kapanınca hafıza devrinin otomatikleştirilmesi).
-3. **Auto-unload sorusuna cevap hazır** (bu oturumda verildi): JIT=Auto-Load(KAPALI)≠boşaltma; asıl boşaltma=Idle TTL/Auto-Evict; AMA manuel yüklenen (27B) muaf (#2051) → asıl kaldıraç=Bionic yaşam-döngüsü.
+1. **L1 kaldıraç seçimi** (FunkGoth): A=resident kabul / B=JIT+Idle TTL aç + reload maliyeti ölçümü / C=hibrit.
+2. **Oto-devir tasarısı onayı** — context izleme (introspection) + eşikler + devir paketi; Bionic'in context taşması davranışı sorulacak.
+3. **(L1'de) Auto-unload durumu**: JIT=Auto-Load KAPALI; 27B manuel→muaf (#2051); B seçilirse JIT+Idle TTL açılır, reload maliyeti o zaman ölçülür.
 4. **Veri haftası** (→10-09): policy'ye göre full (run_id çift; yeni iş tipi daima); hafta sonu rapor + mekanizma tartışması.
 5. **FAZ 2** (10-09 sonrası): paralel kapasite ölçümü (2×GPU worker) + FAZ 2 raporu.
 6. **Ö3**: sonraki Sistem Değerlendirmesinde ana model ~32 tok API örneği → baseline bandı.
