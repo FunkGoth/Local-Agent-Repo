@@ -246,3 +246,12 @@
 - Denetim bulgusu: STATE "ledger 26" → gerçek **28** (O20 gec kayıtları) — STATE düzeltildi.
 - Git: bu tur sonrası commit (`004feac`, `5726b8b`).
 - **FUNKGOTH DEVR (10-02)**: sonraki oturum (O22) = **Unreal Engine projesi — teorik oturum**: büyük işin context dolması sebebiyle yarıda bırakılmadan ne kadarının yapılabileceği (teorik). **DEVRİ SORUŞTURMASI (devri alır almaz başla)**: "İşlem sırasında context dolması yüzünden durmam sebebiyle kaç defa kullanıcı benden yeni prompt ile kaldığım işe devam etmemi istedi?" — kaynaklar: LOG/snapshots/sessions; **kayıt bulunamazsa veya durumlar raporlanmadıysa → FunkGoth'a açıkça belirt**. (TASKS Aktif + STATE güncellendi)
+
+## Oturum 22–25 — 2026-10-03 (kayıt boşluğu notu + Project Optim + devir)
+- **KAYIT BOŞLUĞU (dürüstçe)**: O22 + O23/O24 LOG entry'leri eksikti — bu blok telafi; O21 vakası (mesaj üretmeden durma) da kayıtlarda YOK (`devir-sorusturmasi.md` + `DATA-POLICY.md` §6).
+- **O22**: agentic araştırma ✅ → `Project Optim\Docs\ARSIV\2026-10-03-agentic-arastirma\arastirma.md` (mümkün; darboğaz = output hızı ~10–17 tok/s; güvenli bölge = tek modül + devir zinciri; 3 kaldıraç onay bekliyor).
+- **O23**: **Project Optim KURULDU** (FunkGoth yetkisi: self-optimizasyon + multi-model + context verimliliği = TEK proje, agent toplu yönetir): 8 taşıma (metrics/delegation/model-hafiza → `data\`; 5 work klasörü → `Docs\ARSIV\`) + 4 yeni dosya (README, `Docs\PROTOCOL-optim.md`, `Docs\DATA-POLICY.md`, `.agents\skills\optim\SKILL.md`).
+- **O24**: 48 dk çalışma + 4 compaction (FunkGoth kaydı); referans + kayıt + git + rapor KALDI (O25 doğrulamasıyla teyit).
+- **O25 (bu oturum)**: FunkGoth: "İş yarım kalmadı, bitirdin… context 62.2k; verdiğim veriyi kaydedeceksen kaydet, sonra devir yap." **DOĞRULAMA (O25)**: iskelet + 4 dosya + 8 taşıma ✅; **git ✅** (Project Optim `1ad6ab6` init+commit · agent `9887d7f` 24 dosya — iki repo clean); referans ❌ (PROTOCOL/STATE/TASKS/handbook eski yollar); kayıt ❌ (DECISIONS O23 satırı yok, ledger/snapshots eklenmemiş); Project Optim README "kayıtlar TAMAM" satırı DÜZELTİLDİ.
+- **FUNKGOTH VERİSİ (kayıdedildi)**: 48 dk çalışma · 4 compaction · context 62.2k (kullanıcı tarafı, prompt anında) · algı "iş bitmiş" → iskelet ✅ tutuyor, bookkeeping ❌ tutmuyor → dürüstçe raporlandı.
+- **DEVR**: `agent\DEVR.md` (doğrulanmış durum + kalan iş listesi + rapor içeriği) · STATE güncellendi (O25).

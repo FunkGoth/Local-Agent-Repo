@@ -1,32 +1,30 @@
-# STATE — Anlık Durum (2026-10-03, Oturum 22 — **O22: UE teorik oturum**; devir soruşturması ✅ + **agentic araştırma ✅** `work/2026-10-03-agentic-arastirma/arastirma.md`; sıradaki = FunkGoth kararları: 3 kaldıraç (reasoning seviyesi, MTP, pencere 128k) + UE kapsamı)
+# STATE — Anlık Durum (2026-10-03, Oturum 26 — **O26: isim + sessiz-stop ONAYLI ✅; kaldı: canon kararı + 3 kaldıraç kararı + referans/kayıt tamamlama → `DEVR.md`**)
 
 ## Aktif İş
 | İş | Klasör | Durum |
 |---|---|---|
-| Nihai karar oturumu (O20) | work/2026-10-02-nihai-karar-oturumu/ | ✅ BİTTİ (tam yetki): rapor 76 satır; PROTOCOL 92 satır; handbook.md 49 (yeni); K1–K9 nihai (KAL×6 · DÜZELT K6/K9 · K8→K9) |
-| Kaynak bağımsızlığı + model geçişi | work/2026-10-02-… + model-hafiza.md | 🔄 FAZ 1 v3 ONAYLI (27B ana KALIYOR); FAZ 2 →10-09 sonrası |
-| K1–K9 context ekonomisi | metrics/ + PROTOCOL | ✅ KAPANDI (O20, erken): kararlar nihai; 10-09 = gözden geçirme noktası |
-| O21 10-09 hazırlık denetimi | work/2026-10-02-context-devami/ | ✅ BİTTİ: denetim + boşluk listesi + yürütme sırası; ledger **28** (26 değil — denetim bulgusu) |
-| Delegation Worker B | PROTOCOL + delegation/ | ✅ operasyonel; runs.csv 12 kayıt; Mod A CPU (varsayılan) + Mod B GPU (break-even ≈200–250 tok) |
-| EmberTale T1–T6 | Project EmberTale/ | 🕐 ayrı sohbet (FunkGoth kök `E:\Bionic\Project EmberTale\` ile açacak) |
-| O22 agentic araştırma | work/2026-10-03-agentic-arastirma/ | ✅ BİTTİ: model yeteneği + donanım + karmaşıklık tavanı + optimizasyon analizi (literatürle örtüşme kanıtlı); 3 kaldıraç önerisi FunkGoth'ta |
+| **Project Optim (YENİ)** | `E:\Bionic\Project Optim\` | 🔄 iskelet + 8 taşıma + 4 dosya + git ✅ (O25); referans + kayıt KALDI (DEVR.md §2) |
+| Nihai karar oturumu (O20) | `Project Optim\Docs\ARSIV\2026-10-02-nihai-karar-oturumu\` | ✅ BİTTİ: K1–K9 nihai; SPEK → `Docs\PROTOCOL-optim.md` |
+| Kaynak bağımsızlığı + model geçişi | `Project Optim\Docs\ARSIV\2026-10-02-kaynak-bagimsizligi-cercevesi\` | 🔄 FAZ 1 v3 ONAYLI (27B ana KALIYOR); FAZ 2 → 10-09 sonrası |
+| O22 agentic araştırma | `Project Optim\Docs\ARSIV\2026-10-03-agentic-arastirma\` | ✅ BİTTİ (arastirma.md); özet O25'te raporlandı |
+| Delegation Worker B | `Project Optim\data\delegation\` | ✅ operasyonel; runs.csv 12 kayıt; Mod A CPU + Mod B GPU |
+| EmberTale T1–T6 | `Project EmberTale/` | 🕐 ayrı sohbet (FunkGoth kök ile açar) |
 
 ## Sıradaki Adım
-0. **O22**: (b) devir soruşturması ✅ BİTTİ (kesin 2 vaka: O6→O7 LOG + O20 62k-durma = FunkGoth ekran görüntüsü, kayıtlarda yoktu; ~5 sebep-kayıtsız devir; O19 boot hatası ayrı — detay yukarıdaki dosya). Sıradaki: **(a) UE teorik oturum** (kapsam: FunkGoth) + **3 kaldıraç kararı (FunkGoth)**: (1) reasoning seviyesi rutin=low/karar=high (2) Bionic MTP desteği kontrolü (3) pencere 64k→128k KV ölçümü.
-1. **10-09 gözden geçirme**: K verileri kriterlerle yeniden kontrol (context-benchmark.md arşiv + snapshots/ledger/runs.csv) + **FAZ 2 raporu** (paralel kapasite, iş tipi haritası, routing teyidi) + **Ö3** (ana model hızı yeniden örnekleme → baseline.md bant). Hazırlık: work/2026-10-02-context-devami/hazirlik-1009.md (boşluklar: kullanıcı compaction sayıları, FAZ 2 unattended ölçüm, Ö3, routing boşluğu).
-2. Ö3 her Sistem Değerlendirmede (ana model ~32 tok API örneği → baseline.md).
-3. Sub-agent entegrasyon çalışması (zaman: FunkGoth'un kararı — muhtemelen 10-09 sonrası).
-4. EmberTale T1–T6: AYRI sohbet (FunkGoth açacak; karıştırma).
+0. **FunkGoth onayları (O26 kısmi)**: ✅ isim "Project Optim" · ✅ sessiz-stop mekanizması (DATA-POLICY §6 — sıradaki oturumdan itibaren aktif) · ⏳ canon (açıklama verildi — karar bekleniyor) · ⏳ 3 kaldıraç (ayar listesi verildi — karar bekleniyor: 1. reasoning effort 2. MTP kontrolü 3. 128K: slot 4→2 + context).
+1. **Bookkeeping (DEVR.md §2)**: referans güncellemeleri (7 dosya — tam liste DEVR'de) + kayıt tamamlama (DECISIONS +O23 satırı, ledger/snapshots telafi K9/K6).
+2. UE teorik oturum (O22): kapsam = FunkGoth (dosya sayısı, C++/blueprint) → kapasite hesabı.
+3. **10-09 gözden geçirme**: K verileri kriterle (`data\metrics\context-benchmark.md` + snapshots/ledger/runs) + FAZ 2 raporu + Ö3.
+4. Sub-agent entegrasyonu (zaman: FunkGoth; muhtemelen 10-09 sonrası).
 
 ## Beklenen Kararlar / Onaylar (FunkGoth)
-- **Nihai K kararları UYGULANDI (tam yetki, O20 onayı)** — FunkGoth revize edebilir; 10-09 = gözden geçirme noktası (yeni karar turu değil).
-- Mimari ONAYLI: GPU=1 kiracı; **Mod A** = interaktif (27B resident + workers CPU, sıfır geçiş), **Mod B** = unattended paralel batch (evict→`lms unload`→2×GPU→JIT ~17s).
-- **YENİ (O21)**: compaction sayıları O19–O21 = FunkGoth girer (agent sayamaz — K6 sınırlılığı) → K2 kriterinin eksik yarısı.
-- **O22 (FunkGoth)**: UE teorik oturum — büyük işin kapsamını (dosya sayıları, C++ modülü mü, blueprint mi) ver; kapasite hesabı buna göre. Soruşturma raporu: `work/2026-10-02-ue-oturum/devir-sorusturmasi.md` (kesin 2 vaka; O20 vakası kayıtlarda YOKTU — kullanıcı kanıtıyla eklendi, sayı alt sınırdır).
+- **YENİ (O23/O25/O26)**: isim ✅ + sessiz-stop ✅ (O26); ⏳ canon + 3 kaldıraç (açıklama/ayar listesi O26'da verildi, FunkGoth kararı bekleniyor).
+- Nihai K kararları UYGULANDI (O20 tam yetki); revize edilebilir; 10-09 = gözden geçirme. Mimari ONAYLI: GPU=1 kiracı; Mod A interaktif / Mod B unattended batch.
+- O21: compaction sayıları O19–O21 = FunkGoth girer (K6 sınırlılığı); "sessiz stop" vakası kayıtlarda YOK (alt sınır 2 + ~5 kayıtsız + O21).
 
 ## Detay
-- **K2c (yeni, O20)**: append-only CSV → shell `>>` (edit_file DEĞİL) — sıfır yansıma (kanıt: edit ~400–600 tok/tur yansıtıyordu).
-- **Kapsam (nihai, O20)**: K9 defter = 100+ satır okuma / 50+ satır edit / ihlal; küçük pencere editleri MUAF; turn sonu TEK shell append. K8 echo → defter `tok_tahmini` sütunu (K8 birleşti).
-- **Routing nihai (O20)**: 27B = karar/diyalog/mimari/kısa okuma; worker8b CPU (Mod A) = 100+ satır özet/çıkarım; Mod B = unattended paralel batch. Detay: `agent/handbook.md` (boot'ta okunmaz).
-- **Model**: `C:\LM-Models\…\Qwen3.8-27B-Q4_K_M.gguf` (15.66 GB, C: 980 PRO). worker8b: CPU ≈10.2–10.4, GPU solo ≈102–108 tok/s; JIT reload VRAM boşken 17.44s.
-- **LOG**: global bütçeden ÇIKTI (arşiv); yumuşak tavan 300 satır, 350'de FunkGoth'a sor (sessiz silme yok).
+- **O25 DEVR**: `E:\Bionic\agent\DEVR.md` — doğrulanmış durum + kalan iş listesi + FunkGoth verisi (48 dk / 4 compaction / 62.2k).
+- **O23 bölüşümü**: K1–K9 operatif metni PROTOCOL'de KALIYOR (O19 dersi: boot çökmesin); proje = SPEK + veri + politika + arşiv.
+- **K2c**: append-only CSV → shell `>>`; routing: 27B karar/diyalog · worker8b CPU 100+ satır · Mod B unattended. Detay: handbook.md.
+- **Model**: 27B ana (C:\LM-Models, 15.66 GB); worker8b CPU ≈10.2–10.4, GPU solo ≈102–108 tok/s; JIT reload 17.44s.
+- **LOG**: arşiv; yumuşak tavan 300 satır, 350'de FunkGoth'a sor.

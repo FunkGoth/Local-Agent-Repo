@@ -1,7 +1,8 @@
 # TASKS — Sıra
-Son güncelleme: 2026-10-02 (Oturum 21 — context optimizasyonu devam: 10-09 hazırlık denetimi `work/2026-10-02-context-devami/hazirlik-1009.md`; veri 50 nokta = K9 kriteri tam)
+Son güncelleme: 2026-10-03 (Oturum 26 — O26 onayları: isim ✅ + sessiz-stop ✅; canon + 3 kaldıraç ⏳; bookkeeping DEVR.md §2)
 
 ## Aktif
+- [2026-10-03] **O26 — Project Optim onay turu 1**: isim ✅ "Project Optim" (alt SelfTune düştü) · sessiz-stop tespit mekanizması ✅ (`Docs\DATA-POLICY.md` §6 — sıradaki oturumdan itibaren aktif: oturum başında önceki oturum LOG kontrolü) · **⏳ canon**: açıklama verildi (Docs\=onaya dek TASLAK; canon = agent'ın belgeyi bağlayıcı kural olarak işlemesi; DATA-POLICY §5 statüsü) → FunkGoth kararı bekleniyor · **⏳ 3 kaldıraç**: ayar listesi verildi (1. reasoning effort: Bionic model ayarı — rutin=low/karar=high · 2. MTP: LM Studio'da kontrol — baseline.md'ye göre ZATEN AKTİF (draft 38/kabul 17) → teyit niteliğinde · 3. 128K: slot 4→2 + context 64K→128K, TEK AYARDA BİR; B2 reddi geçmişi + donma riski) → FunkGoth kararı bekleniyor.
 - [2026-10-02] **O22 (devirde FunkGoth tarafından konuldu) — Unreal Engine projesi teorik oturum + devir soruşturması**:
   (a) **Teorik tartışma**: UE projesinde FunkGoth'un verdiği büyük işin, context dolması sebebiyle yarıda bırakılmadan ne kadarının tek oturumda yapılabileceği (veri: snapshots.csv 59k tepe + compaction vakaları, K2/K4 kuralları, worker'a delege etme).
   (b) **DEVRİ SORUŞTURMASI (devri alır almaz araştırmaya başla)**: "İşlem sırasında context dolması yüzünden durmam sebebiyle kaç defa kullanıcı benden yeni prompt ile kaldığım işe devam etmemi istedi?" → kaynaklar: LOG.md (compaction/devir satırları), context-snapshots.csv (delta<0 vakaları), sessions arşivi. **EĞER KAYIT BULUNAMAZSA VEYA DURUMLAR RAPORLANMADIYSA → FunkGoth'a açıkça belirt** (varsayıma düşme).
