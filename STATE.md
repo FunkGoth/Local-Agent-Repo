@@ -1,5 +1,5 @@
 # STATE — Anlık Durum
-Son güncelleme: 2026-10-02 (Oturum 14)
+Son güncelleme: 2026-10-02 (Oturum 14 — DEVİR)
 
 ## Aktif İş
 | İş | Klasör | Durum |
@@ -14,7 +14,9 @@ Son güncelleme: 2026-10-02 (Oturum 14)
 | Sistem Değerlendirmesi | metrics/ | ✅ Ö1+Ö2 uygulandı; Ö3 açık (son 10-02) |
 | EmberTale T1–T6 | Project EmberTale/ | 🕐 ayrı sohbet |
 
-## Sıradaki Adım (Oturum 14 — FunkGoth sırası: 3→2→1)
+## Sıradaki Adım (YENİ SOHBET — devir; FunkGoth sırası 3→2→1)
+> **DEVİR (Oturum 14 sonu):** yeni sohbet → README → PROTOCOL → STATE; ilk iş = **2 W1 warm teyidi** (ONAYLI, GO bekleniyor) → ardından **1 317.7s anomali tartışması**.
+
 1. ✅ **3 Disk testi** BİTTİ (2026-10-02): disk 317.7s'i açıklamıyor (model 4.5s okunur) → `work/…/disk-testi.md`.
 2. **2 W1 warm teyidi** (ONAYLI, GO beklenir): worker8b GPU cold 18.5 → warm ~100 tok/s teyidi (~5 dk).
 3. **1 317.7s anomali tartışması**: disk elendi; hipotezler = VRAM çakışması (2 worker VRAM'deyken reload) / istek→ilk-token wall-time / CPU-RAM thrashing.
