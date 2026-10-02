@@ -78,3 +78,8 @@
 - **E:\Bionic\ kök migrasyonu kararı KAYDEDİLDİ (işlem bekletiliyor)**: agent hafızası + tüm çalışma dosyaları E:\ kökünden `E:\Bionic\` altına taşınacak; gerekçe: Ollama/Claude Code gibi harness'lar da E:\'de kendi çalışma alanlarını kuracak. B6 (LM Studio global prompt) bu tartışma kapsamına alındı. Kayıtlar: TASKS "Bekleyen" + DECISIONS (en üst) + bu LOG. İşleme başlamadan FunkGoth onayı şart.
 - EmberTale T1–T6: "önce diğer işleri halledelim" → ertelendi (ayrı sohbet, `E:\Project EmberTale\` kökü).
 - lessons'a: ölçüm sistemi ilk gerçek bulgusunu üretti (Ö1) — maliyet takibi gerçek bir denetim döngüsü. git commit.
+
+## 2026-10-02 — Oturum 9 (devir)
+- FunkGoth: "Ö2/Ö3'ü açıklamadın" → **Ö2 + Ö3'ü net, ayrı ayrı tekrar açıklayıp karar sor** (ilk turda ulaşmadığı söylendi).
+- **E:\Bionic\ kök migrasyonu ONAYLANDI + UYGULANIYOR:** taşıma devir öncesi TAMAM (E:\agent\, E:\Project EmberTale\, E:\Project Tale\, E:\README.md → E:\Bionic\ altında; kökte yalnız $RECYCLE.BIN, System Volume Information, boş tmp/). Gerekçe: E:\ diski Ollama/Claude Code gibi başka harness'lara da ayrılacak (FunkGoth kararı).
+- Yol referans güncellemesi (bu oturum): README.md + PROTOCOL.md (başlık, Sabit Kural 1→E:\Bionic\, Kural 3, Çoklu Proje İskeleti, Proje Haritası + Protokol Değişiklikleri kaydı) + STATE/TASKS (migrasyon Aktif'e) + DECISIONS (ONAYLI—UYGULANIYOR) + metrics/README (capture.ps1 yolu + commit yolu) + EmberTale SKILL.md (5 yol referansı + Sabit Kurallar). Delegation klasörü taraması: eski path yok. work/2026-10-01-* altı TARİHLİ İŞ KAYDI olarak aynen korundu (geçmiş metni zorla değiştirilmez).

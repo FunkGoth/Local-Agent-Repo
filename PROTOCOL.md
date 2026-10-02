@@ -1,9 +1,9 @@
-# E:\agent — Hafıza Protokolü (PROTOCOL)
+# E:\Bionic\agent — Hafıza Protokolü (PROTOCOL)
 
 ## Amaç
-Bu klasör, E:\ çalışma alanı için agent'ın oturumlar arası kalıcı hafızasıdır.
+Bu klasör, E:\Bionic\ çalışma alanı için agent'ın oturumlar arası kalıcı hafızasıdır.
 Agent burada özerk yazar; kullanıcı her an okuyup müdahale edebilir.
-`E:\README.md` = her model/uygulama için evrensel giriş noktası (disk haritası + sabit kurallar).
+`E:\Bionic\README.md` = her model/uygulama için evrensel giriş noktası (disk haritası + sabit kurallar).
 
 ## Dosya Haritası
 | Dosya | Görev |
@@ -58,19 +58,19 @@ Agent burada özerk yazar; kullanıcı her an okuyup müdahale edebilir.
 - Gerekçe: FunkGoth (2026-10-01) sub-agent otonom kullanım + günlük veri tabanlı öz-değerlendirme yetkisi verdi (tetik onaylı).
 
 ## Sabit Kurallar (değiştirilemez)
-1. Yalnızca E:\ içinde yaz/sil.
+1. Yalnızca E:\Bionic\ içinde yaz/sil. (2026-10-02: kök migrasyonu; E:\ diski diğer harness'lara da ayrılır)
 2. Kullanıcı onayı olmadan silme / geri alınamaz işlem yok.
-3. E:\agent\ git yedeği güncel tutulur — her önemli adımdan sonra commit.
+3. E:\Bionic\agent\ git yedeği güncel tutulur — her önemli adımdan sonra commit.
 4. Projenin Docs/ dosyaları kullanıcı malıdır: agent önerir, kullanıcı onaylar.
    Kullanıcı onayı olmadan hiçbir içerik "canon" ilan edilemez.
 
 ## Çoklu Proje İskeleti (2026-10-01)
-- E:\ = agent'ın tahsisli çalışma alanıdır (çok proje + çok agent uygulaması + çok model için).
-- `E:\README.md` = evrensel giriş noktası: kimlik, disk haritası, sabit kurallar, yeni proje iskeleti.
-- Global system prompt'lar **proje-bağımsız** tutulur: boş ya da tek satır — "Workspace: E:\ — E:\README.md'yi oku ve uygula."
-- Yeni proje = `E:\<proje-adı>\` kökü, standart iskelet: `README.md` (proje özeti) + `Docs\` (kullanıcı belgeleri) + `.agents\skills\` (proje skill'leri).
+- E:\Bionic\ = agent'ın tahsisli çalışma alanıdır (çok proje + çok agent uygulaması + çok model için); E:\ diski diğer harness'lara da ayrılır (Ollama, Claude Code — 2026-10-02 FunkGoth kararı).
+- `E:\Bionic\README.md` = evrensel giriş noktası: kimlik, disk haritası, sabit kurallar, yeni proje iskeleti.
+- Global system prompt'lar **proje-bağımsız** tutulur: boş ya da tek satır — "Workspace: E:\Bionic\ — E:\Bionic\README.md'yi oku ve uygula."
+- Yeni proje = `E:\Bionic\<proje-adı>\` kökü, standart iskelet: `README.md` (proje özeti) + `Docs\` (kullanıcı belgeleri) + `.agents\skills\` (proje skill'leri).
 - Proje-özel talimatlar **her zaman projenin kendi klasöründe** yaşar; global prompt'a veya agent hafızasına taşınmaz.
-- Agent hafızası (`E:\agent\`) proje-agnostiktir: çalışma sistemi + proje-arası durum; proje içerikleri içermez.
+- Agent hafızası (`E:\Bionic\agent\`) proje-agnostiktir: çalışma sistemi + proje-arası durum; proje içerikleri içermez.
 - Taşıma/yeniden yapılandırma: yalnızca `move` (silme yok); tüm referanslar (skill, doc, uygulama kökü) güncellenmeden taşınmaz; LOG'a gerekçeli kayıt.
 
 ## Protokol Değişiklikleri
@@ -81,10 +81,11 @@ Agent burada özerk yazar; kullanıcı her an okuyup müdahale edebilir.
 - 2026-10-01 (Oturum 5): "Sistem Değerlendirmesi" bölümü + `metrics/` veri havuzu + Delegation'a otonom sub-agent yetkisi satırı — her worker çalıştırması ölçülür (hız, kaynak, ana modele etki, kalite); 24s'de 1 FunkGoth onaylı öz-değerlendirme (5 bölüm + aksiyon eşikleri). Gerekçe: FunkGoth otonom sub-agent kullanımı + günlük veri tabanlı değerlendirme yetkisi verdi. LOG.md.
 - 2026-10-01 (Oturum 5): metrics şeması genişletildi (VRAM dedicated+shared, RAM free/avail/commit, pagefile, gpu_util) + **light/full örnekleme politikası** (yeni iş tipi ilk + ~1/3 rastgele) + `capture_overhead_s` (ölçüm maliyeti) takibi + capture.ps1 aracı. Gerekçe: FunkGoth genişletilmiş telemetri + ölçüm maliyetinin raporlanması + random ve farklı iş ağırlıklarında örneklem istedi. LOG.md.
 - 2026-10-01 (Oturum 6): Worker B çağrı satırına **`think: false` varsayılanı** eklendi (qwen3 thinking modu varsayılan açık; ölçüm: eval 354→33 tok, wall 41s→3.7s, kalite korundu — runs.csv 03/04/05). Gerekçe: FunkGoth doğrulama isteği sırasında ölçülen ~11x maliyet farkı. LOG.md + lessons.md.
+- 2026-10-02 (Oturum 8): **Kök migrasyonu** — tüm E:\ içeriği (agent, Project EmberTale, Project Tale, README) → `E:\Bionic\` altına taşındı; tüm yol referansları güncellendi; Sabit Kural 1 "E:\Bionic\" kapsamına daraltıldı. Gerekçe: E:\ diski Ollama/Claude Code gibi diğer harness'lara da ayrılacak (FunkGoth kararı). LOG.md.
 
 ## Proje Haritası (EmberTale)
-- Proje kökü: E:\Project EmberTale\
+- Proje kökü: E:\Bionic\Project EmberTale\
 - Kullanıcı belgeleri (taslak/canon statüsü onaya bağlı): Docs\ (VIZYON.md, ARCHITECTURE.md, DECISIONS.md, ROADMAP.md, Claude EmberTale md.zip)
 - Proje skill'leri (her oturumda aktif): .agents\skills\
-- Agent hafızası: E:\agent\ (bu klasör)
-- Agent geçici alanı: E:\agent\scratch\
+- Agent hafızası: E:\Bionic\agent\ (bu klasör)
+- Agent geçici alanı: E:\Bionic\agent\scratch\

@@ -7,7 +7,7 @@ Sorumlu: ana agent (kayıt + değerlendirme); FunkGoth raporları okur, aksiyonl
 | Dosya | Görev |
 |---|---|
 | runs.csv | Worker çalıştırma kayıtları (append-only; 1 satır/çalıştırma — satır silinmez/değiştirilmez; hata → üstüne yeni satır + not) |
-| capture.ps1 | Sistem ölçüm aracı (1 JSON satırı: RAM free/avail/commit, pagefile, GPU dedicated+shared, util) — `powershell -NoProfile -ExecutionPolicy Bypass -File E:/agent/metrics/capture.ps1` (≈2 sn) |
+| capture.ps1 | Sistem ölçüm aracı (1 JSON satırı: RAM free/avail/commit, pagefile, GPU dedicated+shared, util) — `powershell -NoProfile -ExecutionPolicy Bypass -File E:/Bionic/agent/metrics/capture.ps1` (≈2 sn) |
 | top_proc.ps1 | Kaynak dağılımı (attribution): RAM en büyük 25 süreç + shared GPU PID bazında — ana agent / sub agent / kullanıcı / OS ayrımı (≈2–7 sn) |
 | baseline.md | Sistem baseline'ı; her Sistem Değerlendirmesinde yenilenir |
 | eval-YYYY-MM-DD.md | Sistem Değerlendirmesi raporu (FunkGoth onayıyla üretilir, 24s'de ≤1) |
@@ -30,7 +30,7 @@ Sorumlu: ana agent (kayıt + değerlendirme); FunkGoth raporları okur, aksiyonl
 1. **light**: `curl -s -d @payload.json http://localhost:11434/api/chat` → yanıt JSON: `prompt_eval_count/duration`, `eval_count/duration`, `load_duration`.
 2. **full**: çağrı **önce** capture.ps1 (JSON'ı sakla) → çağrı → **sonra** capture.ps1 (JSON'ı sakla) → diff'ler CSV'ye.
 3. **Kalite**: ana agent result'ı doğrular → `quality_verdict` + `accepted`.
-4. runs.csv'ye satır ekle + result dosyasının başlığına run_id yaz + git commit (E:\agent).
+4. runs.csv'ye satır ekle + result dosyasının başlığına run_id yaz + git commit (E:\Bionic\agent).
 5. **Her satır 31 kolonluk header ile yazılır** (light veya full fark etmez); N/A alanlar boş bırakılır — eski 16 kolonlu düzen KULLANILMAZ (2026-10-02 şema hatası dersi, eval-2026-10-02.md §4).
 
 ## Yorum kuralları (anomali tespiti)
