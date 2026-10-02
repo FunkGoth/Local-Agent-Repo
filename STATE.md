@@ -1,29 +1,30 @@
 # STATE — Anlık Durum
-Son güncelleme: 2026-10-02 (Oturum 10)
+Son güncelleme: 2026-10-02 (Oturum 11)
 
 ## Aktif İş
 | İş | Klasör | Durum |
 |---|---|---|
-| E:\Bionic\ kök migrasyonu | TASKS "Aktif" | ✅ TAŞIMA + referanslar + commit `97b7374` TAMAM |
-| Sistem Değerlendirmesi | metrics/ | ✅ **Ö1 ONAY+UYGULANDI; Ö2 GENİŞLETİLDİ+ONAYLI** (1 hafta full toplama); **Ö3 hâlâ açık**; son_değerlendirme: 2026-10-02 |
-| Full veri toplama haftası | metrics/ | 🔄 2026-10-02→10-09: ~%50 rastgele full (run_id çift), hedef ≥3; hafta sonu rapor+tartışma |
-| Kaynak bağımsızlığı + model geçişi | work/2026-10-02-kaynak-bagimsizligi-cercevesi/ + metrics/ | 🔄 **FAZ 1 çerçeve BAŞLADI (Oturum 10, FunkGoth: B)**; FAZ 2 veri+rapor 10-09 sonrası |
+| Kaynak bağımsızlığı + model geçişi | work/2026-10-02-… + model-hafiza.md | 🔄 **FAZ 1 v3: AMAÇ ONAYLI** (27B ana KALIYOR; hedef = paralel iş + verimlilik + kullanım hafızası + context ekonomisi); FAZ 1.5 testleri kuyrukta |
+| Aşama 1 testi (VRAM attribüsyon + reload maliyeti) | work/…/cerceve.md | 🕐 FunkGoth hazır olduğunda (O gözlemleyecek) |
+| L1 boşta boşaltma (ONAYLI) | LM Studio ayarı + PROTOCOL | 🕐 FunkGoth auto-unload ayarının yerini arıyor; maliyet Aşama 1'de ölçülecek |
+| Full veri toplama haftası | metrics/ | 🔄 2026-10-02→10-09: ~%50 full, hedef ≥3; hafta sonu rapor |
 | Delegation Worker B | PROTOCOL + delegation/ | ✅ operasyonel; runs.csv 6 kayıt |
-| T7 Agent İyileştirme | work/2026-10-01-agent-iyilestirme-analizi/ | ✅ kapalı; B6 → E:\Bionic\ tartışmasına katıldı |
-| EmberTale T1–T6 | E:\Bionic\Project EmberTale\ | 🕐 ayrı sohbette (önce diğer işler — FunkGoth) |
+| Sistem Değerlendirmesi | metrics/ | ✅ Ö1+Ö2 ONAY+UYGULANDI; **Ö3 hâlâ açık**; son: 2026-10-02 |
+| EmberTale T1–T6 | E:\Bionic\Project EmberTale\ | 🕐 ayrı sohbet |
 
 ## Sıradaki Adım
-1. FAZ 1 çerçeve v2 (AKTİF — Oturum 10): asıl istek netleşti (hafif iş→küçük model, 27B gerektiğinde, VRAM'i boşta işgal etmesin); L1 boşta-boşaltma / L2 iş→model haritası / L3 hafif sohbetlerde 8b ana / L4 iş-başı öngörü (`work/2026-10-02-kaynak-bagimsizligi-cercevesi/`); FunkGoth cevabı bekleniyor: anlayış, ne gördüğü (VRAM/CPU), auto-unload ayarı, öncelik.
-2. Veri toplama haftası (2026-10-02 → 10-09, BAŞLADI — doğal akış): gelen her worker run'ında policy'ye göre full (~%50, run_id çift; yeni iş tipi daima full); hafta sonu verimlilik raporu + mekanizma tartışması. Tohum run'ı yok (FunkGoth: A — doğal akış).
-3. Ö3 uygulaması: sonraki Sistem Değerlendirmesinde ana model ~32 tok API ölçümü → baseline bandı.
-4. EmberTale T1–T6: `E:\Bionic\Project EmberTale\` kökünde ayrı sohbet (FunkGoth: önce diğer işler).
+1. **Aşama 1 testi** (FunkGoth gözlemleyecek): boşta baz → worker başlat (GPU bellek+kullanım) → uyanma maliyeti (ilk token'a kadar reload). Çıktı: VRAM düşüşü attribüsyonu + L1 bedeli.
+2. **L1 boşta boşaltma**: FunkGoth LM Studio auto-unload ayarını buluyor; açılsa → reload maliyeti + PROTOCOL "boşta faz" kuralı + worker GPU opsiyonu.
+3. **Veri haftası** (→10-09): policy'ye göre full (run_id çift; yeni iş tipi daima); hafta sonu rapor + mekanizma tartışması.
+4. **FAZ 2** (10-09 sonrası): paralel kapasite ölçümü (2×GPU worker denemesi) + FAZ 2 raporu; kütüphaneye model geldikçe model-hafiza'ya benchmark beklenti + test sonucu.
+5. **Ö3**: sonraki Sistem Değerlendirmesinde ana model ~32 tok API örneği → baseline bandı.
 
-## Bekleyen Kararlar (FunkGoth)
-- YOK — Ö3 ONAY (2026-10-02), B6 TAMAM (kullanıcı prompt'u uyguladı). Kalan: worker B operasyonel; B2 RED · B3 geri çekildi · B5 8192 (kapalı).
-- Ö3 uygulaması: her Sistem Değerlendirmesinde ana model ~32 tok API örneği → baseline.md bant.
+## Beklenen Kararlar (FunkGoth)
+- Aşama 1 testi zamanı (o gözlemleyecek) + auto-unload ayarı.
+- FAZ 1 v3'teki mimari önerisi (GPU zaman paylaşımı, paralel kapasite tablosu, self-wake ara çözüm) onayı.
 
 ## Detay
-- Oturum 10: FunkGoth **B seçti** + asıl isteği açıkladı (hafif iş→küçük model, 27B sadece gerektiğinde, oyun/iş sırasında VRAM rahatlasın). Stok kontrolü: LM Studio'da yalnız 27b (yüklü); Ollama'da qwen3:8b + gemma4:26b (kullanılmıyor). cerceve.md v2: L1–L4 katmanları + mümkünlük + 4 açık soru; cevap bekleniyor.
-- Oturum 9 kapanış özeti: migrasyon TAMAM (commit `97b7374`); Ö2 genişletilmiş+Ö3 ONAYLI, B6 TAMAM; toplama haftası BAŞLADI (doğal akış).
-- Worker hız/kalite: eval ~10 tok/s stabil; think:false 11x doğrulandı; kalite 5/5 accepted.
-- Veri havuzu: runs.csv 6 kayıt; baseline: worker eval 7–10.4, ana model ≈17 tok/s (ilk örnek).
+- Oturum 11: FunkGoth 4 soruyu cevapladı + amacı genişletti: **27B ana model KALIYOR** (büyük tatminlik); hedef = paralel iş yeteneği + verimlilik + kullanım hafızası + context ekonomisi; boşta boşaltma ONAYLI (boşalan ~23.7 GB → alt ajanlar); model kütüphanesi planı (çeşitli model+kuantizasyon, benchmark beklenti önden). Gözlem: worker testinin (148 s) başladığı an GPU BELLEK 23→2–3 GB, KULLANIM %85–90→~%5. auto-unload KAPALI (boşta VRAM dolu).
+- Çelişki notu: auto-unload kapalıyken worker testinde 27B boşaldı → tetikleyici kim? Aşama 1 testi çözecek.
+- Yeni dosya: `agent/model-hafiza.md` (tohum: 27b ana / 8b worker / 26b aday) — runs.csv = ham, burası distille.
+- Worker: eval 7–10.4 tok/s (CPU); think:false 11x; kalite 5/5. Ana model ≈17 tok/s (ilk örnek).
